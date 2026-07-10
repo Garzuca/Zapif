@@ -1,0 +1,45 @@
+<div class="modal-backdrop-wrapper" [class.is-open]="isOpen">
+
+    <div class="modal-card-center glass-panel">
+
+        <!-- Cabecera del Modal -->
+        <div class="modal-header-zone">
+            <div class="header-text-left">
+                <span class="modal-pretitle"><i class="fa-solid fa-circle-info"></i> Proceso de Postulación 2026</span>
+                <h3>Selecciona tu Categoría</h3>
+            </div>
+            <button class="btn-close-modal" (click)="cerrar()">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <p class="modal-intro-text">
+            Para brindarte una asesoría comercial personalizada y asignarte el pabellón correcto, indícanos en cuál de
+            nuestras áreas estratégicas encaja tu perfil empresarial:
+        </p>
+
+        <!-- Cuadrícula de las 4 Categorías Solicitadas -->
+        <div class="grid-categorias-wizard">
+            <div *ngFor="let cat of categorias" class="card-categoria-item" (click)="seleccionarCategoria(cat.id)">
+                <div class="cat-icon-box">
+                    <i [class]="cat.icono"></i>
+                </div>
+                <div class="cat-info-text">
+                    <h4>{{ cat.titulo }}</h4>
+                    <span class="cat-badge-type">{{ cat.badge }}</span>
+                    <p class="cat-description">{{ cat.descripcion }}</p>
+                </div>
+                <div class="cat-arrow-action">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pie del Modal -->
+        <div class="modal-footer-zone">
+            <span class="footer-help"><i class="fa-solid fa-headset"></i> ¿Dudas con tu rubro? Contáctanos a
+                feriafipaz@gmail.com</span>
+        </div>
+
+    </div>
+</div>

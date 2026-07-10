@@ -1,0 +1,23 @@
+<app-navbar-fipaz (onQuieroExponerClick)="abrirModalExpositores()"></app-navbar-fipaz>
+<app-hero-fipaz></app-hero-fipaz>
+<!-- CONTENEDOR MAESTRO DE LA FERIA -->
+<main style="max-width: 1200px; margin: 0 auto; padding: 40px 20px;">
+  <!-- Encabezado Temporal del Tablero -->
+  <header style="margin-bottom: 40px; border-bottom: 2px solid var(--border); padding-bottom: 20px;">
+    <h1 style="color: var(--text-strong); font-size: 28px; font-weight: 900;">
+      <span style="color: var(--primary);">FIPAZ 2026</span> - Panel de Control Institucional
+    </h1>
+  </header>
+
+  <!-- BLOQUE 1: PANEL DE MÉTRICAS (MÓDULOS GERENCIALES) -->
+  <app-dashboard-metricas></app-dashboard-metricas>
+
+  <!-- BLOQUE 2: PROGRAMA OFICIAL (AGENDA INTERACTIVA) -->
+  <app-tablero-eventos></app-tablero-eventos>
+
+  <!-- Aquí iremos inyectando los siguientes bloques a medida que los migremos -->
+  <app-patrocinadores-premiun></app-patrocinadores-premiun>
+</main>
+
+<app-expositores-wizard [isOpen]="modalExpositoresAbierto"
+  (closeModal)="cerrarModalExpositores()"></app-expositores-wizard>

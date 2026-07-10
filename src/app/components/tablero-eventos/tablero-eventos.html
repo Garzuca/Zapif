@@ -1,0 +1,41 @@
+<div class="tablero-eventos-section">
+
+    <div class="tablero-header">
+        <h2>Programa Oficial de Actividades</h2>
+        <p>Filtra la agenda en tiempo real y planifica tu recorrido por la FIPAZ 2026.</p>
+    </div>
+
+    <!-- BOTONERA DE FILTRADO INTERACTIVO -->
+    <div class="filtro-agenda-bar">
+        <button [class.active]="categoriaActiva === 'todos'" (click)="cambiarFiltro('todos')">Todos los Eventos</button>
+        <button [class.active]="categoriaActiva === 'conferencia'"
+            (click)="cambiarFiltro('conferencia')">Conferencias</button>
+        <button [class.active]="categoriaActiva === 'rueda'" (click)="cambiarFiltro('rueda')">Ruedas de Negocio</button>
+        <button [class.active]="categoriaActiva === 'cultural'" (click)="cambiarFiltro('cultural')">Eventos
+            Culturales</button>
+    </div>
+
+    <!-- CONTENEDOR DINÁMICO DE EVENTOS -->
+    <div class="grid-lista-eventos">
+
+        <!-- Angular recorre el array automáticamente y aplica el filtro en una sola línea lógica -->
+        <ng-container *ngFor="let evento of listaEventos">
+            <div class="tarjeta-evento-lineal glass-panel"
+                *ngIf="categoriaActiva === 'todos' || evento.categoria === categoriaActiva">
+                <div class="evento-hora-badge">
+                    <i class="fa-regular fa-clock"></i> {{ evento.hora }}
+                </div>
+                <div class="evento-info-central">
+                    <h4>{{ evento.titulo }}</h4>
+                    <span class="evento-expositor"><i class="fa-solid fa-user-tie"></i> {{ evento.expositor }}</span>
+                </div>
+                <div class="evento-meta-lado">
+                    <span class="evento-ubicacion"><i class="fa-solid fa-location-dot"></i> {{ evento.ubicacion
+                        }}</span>
+                    <span class="tag-categoria" [ngClass]="evento.categoria">{{ evento.categoria }}</span>
+                </div>
+            </div>
+        </ng-container>
+
+    </div>
+</div>

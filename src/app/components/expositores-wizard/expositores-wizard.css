@@ -1,0 +1,204 @@
+/* Contenedor del fondo que cubre toda la pantalla */
+.modal-backdrop-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    z-index: 2000;
+    /* Por encima de todo, incluyendo el navbar */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+
+    /* Oculto por defecto */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+/* Clase dinámica cuando se activa */
+.modal-backdrop-wrapper.is-open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Tarjeta Central del Modal */
+.modal-card-center {
+    width: 100%;
+    max-width: 760px;
+    background: var(--surface) !important;
+    padding: 30px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15) !important;
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+}
+
+.modal-backdrop-wrapper.is-open .modal-card-center {
+    transform: translateY(0);
+}
+
+/* Cabecera */
+.modal-header-zone {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.modal-pretitle {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.modal-header-zone h3 {
+    font-size: 22px;
+    color: var(--text-strong);
+    font-weight: 900;
+}
+
+.btn-close-modal {
+    background: var(--background);
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-main);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-close-modal:hover {
+    background: var(--primary);
+    color: var(--surface);
+}
+
+.modal-intro-text {
+    font-size: 13px;
+    color: var(--text-light);
+    margin-bottom: 25px;
+    line-height: 1.5;
+}
+
+/* Cuadrícula de Categorías */
+.grid-categorias-wizard {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.card-categoria-item {
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.card-categoria-item:hover {
+    border-color: var(--primary);
+    background: var(--surface);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+    transform: translateX(4px);
+}
+
+/* Iconos de las Categorías */
+.cat-icon-box {
+    width: 44px;
+    height: 44px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: var(--text-strong);
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+}
+
+.card-categoria-item:hover .cat-icon-box {
+    background: rgba(227, 20, 37, 0.05);
+    color: var(--primary);
+    border-color: rgba(227, 20, 37, 0.2);
+}
+
+/* Inyección del tono Verde Éxito en categorías específicas (Sabores y Business) */
+.card-categoria-item:nth-child(2):hover .cat-icon-box,
+.card-categoria-item:nth-child(4):hover .cat-icon-box {
+    background: rgba(9, 137, 62, 0.06);
+    color: var(--success);
+    border-color: rgba(9, 137, 62, 0.2);
+}
+
+.cat-info-text {
+    flex-grow: 1;
+}
+
+.cat-info-text h4 {
+    font-size: 15px;
+    color: var(--text-strong);
+    font-weight: 700;
+}
+
+.cat-badge-type {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: inline-block;
+    margin-bottom: 4px;
+}
+
+.cat-description {
+    font-size: 12px;
+    color: var(--text-main);
+    line-height: 1.4;
+}
+
+.cat-arrow-action {
+    color: var(--border);
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.card-categoria-item:hover .cat-arrow-action {
+    color: var(--primary);
+}
+
+/* Footer */
+.modal-footer-zone {
+    border-top: 1px solid var(--border);
+    padding-top: 15px;
+    text-align: center;
+}
+
+.footer-help {
+    font-size: 11px;
+    color: var(--text-light);
+}
+
+.footer-help i {
+    color: var(--success);
+}

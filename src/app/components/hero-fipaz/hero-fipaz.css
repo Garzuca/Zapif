@@ -1,0 +1,158 @@
+.hero-master-container {
+    position: relative;
+    width: 100%;
+    min-height: 520px;
+    display: flex;
+    align-items: center;
+    padding: 60px 40px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-bottom: 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+/* Manejo del Video de Fondo */
+.video-background-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.video-bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Capa oscura sutil con tinte del azul corporativo oscuro para dar contraste elegante al texto blanco */
+    background: linear-gradient(135deg, rgba(60, 60, 59, 0.95) 0%, rgba(0, 0, 0, 0.75) 100%);
+}
+
+/* Capa de Contenido */
+.hero-content-inner {
+    position: relative;
+    z-index: 2;
+    /* Por encima del video y del overlay */
+    max-width: 680px;
+    color: #FFFFFF;
+    /* Forzamos blanco en este bloque oscuro flotante */
+}
+
+/* Badge Animado "En Vivo" */
+.hero-badge-live {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(9, 137, 262, 0.2);
+    border: 1px solid var(--sucess);
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+
+.pulse-dot {
+    width: 7px;
+    height: 7px;
+    background-color: var(--sucess);
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 rgba(227, 20, 37, 0.7);
+    animation: pulse 1.6s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(227, 20, 37, 0.7);
+    }
+
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 8px rgba(227, 20, 37, 0);
+    }
+
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(227, 20, 37, 0);
+    }
+}
+
+/* Tipografías */
+.hero-title {
+    font-size: 38px;
+    font-weight: 900;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    margin-bottom: 18px;
+}
+
+.text-highlight {
+    color: var(--primary);
+}
+
+.hero-description {
+    font-size: 15px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 30px;
+    font-weight: 400;
+}
+
+/* Botonera */
+.hero-actions-row {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.btn-hero-primary {
+    background: var(--primary);
+    color: #FFFFFF;
+    border: none;
+    padding: 12px 24px;
+    font-size: 13px;
+    font-weight: 700;
+    border-radius: var(--radius);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+
+.btn-hero-primary:hover {
+    background: var(--primary-dark);
+    transform: translateY(-1px);
+}
+
+.btn-hero-secondary {
+    background: transparent;
+    color: #FFFFFF;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 12px 24px;
+    font-size: 13px;
+    font-weight: 700;
+    border-radius: var(--radius);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+
+.btn-hero-secondary:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: #FFFFFF;
+}
