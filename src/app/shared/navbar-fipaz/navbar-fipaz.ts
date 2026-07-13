@@ -12,8 +12,13 @@ export class NavbarFipazComponent {
 
   // Creamos el evento de salida hacia el componente padre
   @Output() onQuieroExponerClick = new EventEmitter<void>();
+  @Output() onQuieroVisitarClick = new EventEmitter<void>();
 
   dispararModal(): void {
     this.onQuieroExponerClick.emit();
+  }
+
+  dispararModalVisitantes(): void {
+    this.onQuieroVisitarClick.emit();
   }
 }

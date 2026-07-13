@@ -1,0 +1,96 @@
+<div class="modal-backdrop-visitantes" [class.is-open]="isOpen" (click)="cerrarModal()">
+
+    <div class="modal-visitantes-card glass-panel" (click)="$event.stopPropagation()">
+
+        <!-- Cabecera del Modal -->
+        <div class="modal-visitantes-header">
+            <div class="header-left-title">
+                <span class="badge-fipaz-green"><span class="pulse-dot-green"></span> Guía del Visitante 2026</span>
+                <h3>Información General del Evento</h3>
+            </div>
+            <button class="btn-close-visitantes" (click)="cerrarModal()">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <!-- BOTONERA DE PESTAÑAS (TABS) -->
+        <div class="tabs-navigation-header">
+            <button [class.active]="tabActiva === 'precios'" (click)="cambiarTab('precios')">
+                <i class="fa-solid fa-wallet"></i> Precios y Horarios
+            </button>
+            <button [class.active]="tabActiva === 'eventos'" (click)="cambiarTab('eventos')">
+                <i class="fa-solid fa-masks-theater"></i> Agenda Familiar
+            </button>
+            <button [class.active]="tabActiva === 'directorio'" (click)="cambiarTab('directorio')">
+                <i class="fa-solid fa-folder-tree"></i> Directorio de Stands
+            </button>
+        </div>
+
+        <!-- CONTENIDOS DINÁMICOS -->
+        <div class="tab-content-render-zone">
+
+            <!-- TAB 1: PRECIOS Y HORARIOS -->
+            <div *ngIf="tabActiva === 'precios'" class="fade-in-tab">
+                <div class="horarios-alert-box">
+                    <div class="alert-clock-icon"><i class="fa-solid fa-clock"></i></div>
+                    <div class="alert-text">
+                        <h4>Horarios Oficiales de Apertura</h4>
+                        <p>Lunes a Viernes: 16:00 a 22:30 | Sábados y Domingos: 11:30 a 23:30</p>
+                    </div>
+                </div>
+
+                <div class="grid-tickets-cards">
+                    <div *ngFor="let t of tickets" class="ticket-card-item" [class.featured-ticket]="t.esDestacado">
+                        <div class="ticket-badge-tag" *ngIf="t.esDestacado">Acceso Estándar</div>
+                        <div class="ticket-icon-header"><i [class]="t.icono"></i></div>
+                        <h3>{{ t.tipo }}</h3>
+                        <div class="ticket-price-tag">{{ t.precio }}</div>
+                        <p class="ticket-desc">{{ t.beneficio }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: AGENDA FAMILIAR -->
+            <div *ngIf="tabActiva === 'eventos'" class="fade-in-tab">
+                <div class="list-eventos-agenda">
+                    <div *ngFor="let ev of eventos" class="evento-row-item">
+                        <div class="ev-time-badge"><i class="fa-regular fa-clock"></i> {{ ev.hora }}</div>
+                        <div class="ev-core-details">
+                            <h4>{{ ev.titulo }}</h4>
+                            <span class="ev-location"><i class="fa-solid fa-location-dot"></i> {{ ev.lugar }}</span>
+                        </div>
+                        <div class="ev-category-tag" [attr.data-cat]="ev.categoria">{{ ev.categoria }}</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 3: DIRECTORIO DE STANDS -->
+            <div *ngIf="tabActiva === 'directorio'" class="fade-in-tab">
+                <div class="directorio-filters-bar">
+                    <button [class.active]="filtroStandActivo === 'TODOS'"
+                        (click)="filtrarStands('TODOS')">Todos</button>
+                    <button [class.active]="filtroStandActivo === 'Tecnologia'"
+                        (click)="filtrarStands('Tecnologia')">Tecnología</button>
+                    <button [class.active]="filtroStandActivo === 'Vivienda'"
+                        (click)="filtrarStands('Vivienda')">Vivienda</button>
+                    <button [class.active]="filtroStandActivo === 'Moda'" (click)="filtrarStands('Moda')">Moda</button>
+                    <button [class.active]="filtroStandActivo === 'Gastronomia'"
+                        (click)="filtrarStands('Gastronomia')">Gastronomía</button>
+                </div>
+
+                <div class="grid-directory-stands">
+                    <div *ngFor="let st of standsFiltrados" class="stand-card-directory">
+                        <div class="stand-header-meta">
+                            <span class="stand-pabellon-label"><i class="fa-solid fa-map-location-dot"></i> {{
+                                st.pabellon }}</span>
+                            <span class="stand-number-badge">Stand {{ st.nroStand }}</span>
+                        </div>
+                        <h4>{{ st.nombre }}</h4>
+                        <span class="stand-specialty-tag">{{ st.destacado }}</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

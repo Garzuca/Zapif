@@ -6,6 +6,8 @@ import { PatrocinadoresPremiun } from './components/patrocinadores-premiun/patro
 import { NavbarFipazComponent } from './shared/navbar-fipaz/navbar-fipaz';
 import { HeroFipaz } from './components/hero-fipaz/hero-fipaz';
 import { ExpositoresWizardComponent } from './components/expositores-wizard/expositores-wizard';
+import { VisitantesFipazComponent } from './components/visitantes-fipaz/visitantes-fipaz';
+
 
 @Component({
   selector: 'app-root',
@@ -17,7 +19,8 @@ import { ExpositoresWizardComponent } from './components/expositores-wizard/expo
     PatrocinadoresPremiun,
     NavbarFipazComponent,
     HeroFipaz,
-    ExpositoresWizardComponent
+    ExpositoresWizardComponent,
+    VisitantesFipazComponent
   ],
   templateUrl: './app.html', // O el nombre abreviado si aplica en tu versión
   styleUrls: ['./app.css']
@@ -26,6 +29,7 @@ export class AppComponent {
   title = 'fipaz-app';
 
   modalExpositoresAbierto: boolean = false;
+  modalVisitantesAbierto: boolean = false;
 
   abrirModalExpositores(): void {
     this.modalExpositoresAbierto = true;
@@ -33,5 +37,13 @@ export class AppComponent {
 
   cerrarModalExpositores(): void {
     this.modalExpositoresAbierto = false;
+  }
+
+  abrirModalVisitantes(): void {
+    this.modalVisitantesAbierto = true;
+  }
+
+  cerrarModalVisitantes(): void {
+    this.modalVisitantesAbierto = false;
   }
 }

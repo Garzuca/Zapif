@@ -1,6 +1,6 @@
-<div class="modal-backdrop-wrapper" [class.is-open]="isOpen">
+<div class="modal-backdrop-wrapper" [class.is-open]="isOpen" (click)="cerrar()">
 
-    <div class="modal-card-center glass-panel">
+    <div class="modal-card-center glass-panel" (click)="$event.stopPropagation()">
 
         <!-- Cabecera del Modal -->
         <div class="modal-header-zone">

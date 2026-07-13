@@ -27,10 +27,17 @@
             </ul>
 
             <!-- Acción Destacada Derecha (CTA) -->
-            <div class="nav-action-zone">
+            <!-- Envolvemos ambos botones en esta nueva clase -->
+            <div class="navbar-buttons-container">
+
+                <button class="btn-visitante-outline" (click)="dispararModalVisitantes()">
+                    <i class="fa-solid fa-map-location-dot"></i> Guía del Visitante
+                </button>
+
                 <button class="btn-cta-nav" (click)="dispararModal()">
                     <i class="fa-solid fa-building-circle-check"></i> Quiero Exponer
                 </button>
+
             </div>
 
         </div>

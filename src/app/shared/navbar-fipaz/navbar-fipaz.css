@@ -129,3 +129,29 @@
     background: var(--primary-dark);
     transform: translateY(-1px);
 }
+
+/* Creamos la estructura horizontal y el espaciado para los botones */
+.navbar-buttons-container {
+    display: flex;
+    flex-direction: row;
+    /* Los obliga a ponerse uno al lado del otro */
+    align-items: center;
+    /* Los centra perfectamente de forma vertical */
+    gap: 12px;
+    /* El espacio exacto entre ambos botones */
+}
+
+.btn-visitante-outline,
+.btn-cta-nav {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    font-size: 13px;
+    font-weight: 700;
+    border-radius: var(--radius);
+    cursor: pointer;
+    white-space: nowrap;
+    /* Evita que el texto del botón se parta en dos líneas */
+    transition: all 0.2s ease;
+}
