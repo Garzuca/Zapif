@@ -1,0 +1,44 @@
+<section class="contador-section-wrapper">
+    <div class="contador-blur-overlay"></div>
+
+    <div class="contador-content">
+        <span class="sub-title"><i class="fa-solid fa-bolt"></i> Prepárate para la Experiencia</span>
+        <h2>El Encuentro Empresarial Más Grande Está Cerca</h2>
+
+        <div class="reloj-grid-container" *ngIf="!feriaIniciada">
+
+            <div class="reloj-box">
+                <span class="numero-reloj">{{ dias }}</span>
+                <span class="etiqueta-reloj">Días</span>
+            </div>
+
+            <div class="reloj-box divider-colon">:</div>
+
+            <div class="reloj-box">
+                <span class="numero-reloj">{{ horas }}</span>
+                <span class="etiqueta-reloj">Horas</span>
+            </div>
+
+            <div class="reloj-box divider-colon">:</div>
+
+            <div class="reloj-box">
+                <span class="numero-reloj">{{ minutos }}</span>
+                <span class="etiqueta-reloj">Minutos</span>
+            </div>
+
+            <div class="reloj-box divider-colon">:</div>
+
+            <div class="reloj-box">
+                <span class="numero-reloj color-segundos">{{ segundos }}</span>
+                <span class="etiqueta-reloj">Segundos</span>
+            </div>
+
+        </div>
+
+        <!-- Mensaje alternativo si el tiempo llegó a cero -->
+        <div class="mensaje-inaugurado" *ngIf="feriaIniciada">
+            <i class="fa-solid fa-door-open"></i> ¡La FIPAZ 2026 ya abrió sus puertas! Te esperamos en el Campo Ferial
+            Chuquiago Marka.
+        </div>
+    </div>
+</section>

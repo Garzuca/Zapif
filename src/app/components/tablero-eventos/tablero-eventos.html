@@ -1,41 +1,68 @@
-<div class="tablero-eventos-section" id="tablero-eventos">
-
-    <div class="tablero-header">
-        <h2>Programa Oficial de Actividades</h2>
-        <p>Filtra la agenda en tiempo real y planifica tu recorrido por la FIPAZ 2026.</p>
+<section class="malla-acordeon-section">
+    <div class="acordeon-header-minimal">
+        <span class="tracker-minimal">Agenda Dinámica</span>
+        <h2>Actividades de la Feria</h2>
     </div>
 
-    <!-- BOTONERA DE FILTRADO INTERACTIVO -->
-    <div class="filtro-agenda-bar">
-        <button [class.active]="categoriaActiva === 'todos'" (click)="cambiarFiltro('todos')">Todos los Eventos</button>
-        <button [class.active]="categoriaActiva === 'conferencia'"
-            (click)="cambiarFiltro('conferencia')">Conferencias</button>
-        <button [class.active]="categoriaActiva === 'rueda'" (click)="cambiarFiltro('rueda')">Ruedas de Negocio</button>
-        <button [class.active]="categoriaActiva === 'cultural'" (click)="cambiarFiltro('cultural')">Eventos
-            Culturales</button>
+    <!-- Carrusel Horizontal / Pestañas de Días -->
+    <div class="tabs-dias-carrusel">
+        <button 
+            *ngFor="let col of columnasDias" 
+            class="tab-dia-btn" 
+            [class.active]="col === diaSeleccionado"
+            (click)="seleccionarDia(col)"
+        >
+            <span class="tab-fecha">{{ col.fecha }}</span>
+            <span class="tab-nombre">{{ col.nombreDia.split(' - ')[0] }}</span>
+        </button>
     </div>
 
-    <!-- CONTENEDOR DINÁMICO DE EVENTOS -->
-    <div class="grid-lista-eventos">
+    <!-- Contenedor del Día Seleccionado -->
+    <div class="dia-seleccionado-info" *ngIf="diaSeleccionado">
+        
+        <!-- Detalle del encabezado del día -->
+        <div class="dia-columna-banner">
+            <span class="banner-fecha">{{ diaSeleccionado.fecha }}</span>
+            <span class="banner-nombre">{{ diaSeleccionado.nombreDia }}</span>
+        </div>
 
-        <!-- Angular recorre el array automáticamente y aplica el filtro en una sola línea lógica -->
-        <ng-container *ngFor="let evento of listaEventos">
-            <div class="tarjeta-evento-lineal glass-panel"
-                *ngIf="categoriaActiva === 'todos' || evento.categoria === categoriaActiva">
-                <div class="evento-hora-badge">
-                    <i class="fa-regular fa-clock"></i> {{ evento.hora }}
+        <!-- Grilla de Eventos del día activo -->
+        <div class="eventos-acordeon-grid">
+            <div *ngFor="let evento of diaSeleccionado.eventos" class="tarjeta-evento-acordeon">
+
+                <!-- Imagen de fondo que se revelará visualmente al pasar el puntero -->
+                <div class="bg-visual-reveal" [style.backgroundImage]="'url(' + evento.imagenFondo + ')'"></div>
+                <div class="overlay-visual"></div>
+
+                <!-- Marcador de Color de Acento Lateral -->
+                <div class="acento-lateral" [style.backgroundColor]="evento.colorAcento"></div>
+
+                <!-- CONTENIDO DE LA TARJETA -->
+                <div class="contenido-tarjeta-acordeon">
+                    <div class="top-meta-acordeon">
+                        <span class="hora-acordeon-tag">
+                            <i class="fa-regular fa-clock"></i> {{ evento.hora }}
+                        </span>
+                        <span class="lugar-acordeon-tag">
+                            <i class="fa-solid fa-location-dot"></i> {{ evento.lugar }}
+                        </span>
+                    </div>
+
+                    <h3 class="titulo-acordeon">{{ evento.titulo }}</h3>
+
+                    <!-- DESCRIPCIÓN VISUAL Y DETALLES (Se expande al pasar el puntero) -->
+                    <div class="descripcion-visual-reveal">
+                        <p class="txt-descripcion-acordeon">{{ evento.descCorta }}</p>
+                        <div class="action-footer-acordeon">
+                            <button class="btn-acordeon-action" [style.borderColor]="evento.colorAcento">
+                                <span>Recordarme</span> <i class="fa-regular fa-bell"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <div class="evento-info-central">
-                    <h4>{{ evento.titulo }}</h4>
-                    <span class="evento-expositor"><i class="fa-solid fa-user-tie"></i> {{ evento.expositor }}</span>
-                </div>
-                <div class="evento-meta-lado">
-                    <span class="evento-ubicacion"><i class="fa-solid fa-location-dot"></i> {{ evento.ubicacion
-                        }}</span>
-                    <span class="tag-categoria" [ngClass]="evento.categoria">{{ evento.categoria }}</span>
-                </div>
+
             </div>
-        </ng-container>
+        </div>
 
     </div>
-</div>
+</section>

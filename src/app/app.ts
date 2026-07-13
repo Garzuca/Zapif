@@ -9,6 +9,8 @@ import { ExpositoresWizardComponent } from './components/expositores-wizard/expo
 import { VisitantesFipazComponent } from './components/visitantes-fipaz/visitantes-fipaz';
 import { FooterFipazComponent } from './components/footer-fipaz/footer-fipaz';
 import { GaleriaHistoricaComponent } from './components/galeria-historica/galeria-historica';
+import { ContadorFipazComponent } from "./components/contador-fipaz/contador-fipaz";
+import { SeccionInstitucionalComponent } from './components/seccion-institucional/seccion-institucional';
 
 
 @Component({
@@ -17,7 +19,7 @@ import { GaleriaHistoricaComponent } from './components/galeria-historica/galeri
   imports: [
     CommonModule,
     DashboardMetricas, // <-- Registramos el bloque de KPIs
-    TableroEventosComponent,     // <-- Registramos la agenda interactiva
+    TableroEventosComponent, // <-- Registramos la agenda interactiva
     PatrocinadoresPremiun,
     NavbarFipazComponent,
     HeroFipaz,
@@ -25,6 +27,8 @@ import { GaleriaHistoricaComponent } from './components/galeria-historica/galeri
     VisitantesFipazComponent,
     FooterFipazComponent,
     GaleriaHistoricaComponent,
+    ContadorFipazComponent,
+    SeccionInstitucionalComponent
   ],
   templateUrl: './app.html', // O el nombre abreviado si aplica en tu versión
   styleUrls: ['./app.css']

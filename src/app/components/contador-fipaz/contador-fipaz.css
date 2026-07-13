@@ -1,0 +1,137 @@
+.contador-section-wrapper {
+    position: relative;
+    background: #0d1015;
+    /* Fondo oscuro que contrasta con el área institucional blanca */
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 50px 30px;
+    margin: 40px 0;
+    overflow: hidden;
+    text-align: center;
+}
+
+/* Efecto de luces de fondo neon */
+.contador-blur-overlay {
+    position: absolute;
+    top: -50%;
+    left: -20%;
+    width: 60%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(9, 137, 62, 0.08) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+.contador-content {
+    position: relative;
+    z-index: 2;
+}
+
+.contador-content .sub-title {
+    color: var(--success);
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.contador-content h2 {
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: 800;
+    margin: 10px 0 35px 0;
+}
+
+/* Grilla del Reloj */
+.reloj-grid-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.reloj-box {
+    background: #161b22;
+    border: 1px solid #21262d;
+    border-radius: var(--radius);
+    min-width: 100px;
+    padding: 16px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.reloj-box .numero-reloj {
+    font-size: 38px;
+    font-weight: 900;
+    color: #ffffff;
+    font-family: monospace;
+    /* Mantiene el ancho de los números fijo */
+    letter-spacing: -1px;
+}
+
+/* Los segundos se iluminan en el verde FIPAZ para dar dinamismo de parpadeo */
+.reloj-box .color-segundos {
+    color: var(--success);
+    text-shadow: 0 0 10px rgba(9, 137, 62, 0.3);
+}
+
+.reloj-box .etiqueta-reloj {
+    font-size: 11px;
+    color: #8b949e;
+    text-transform: uppercase;
+    margin-top: 4px;
+    font-weight: 600;
+}
+
+/* Dos puntos separadores */
+.reloj-box.divider-colon {
+    background: transparent;
+    border: none;
+    min-width: auto;
+    box-shadow: none;
+    font-size: 32px;
+    font-weight: 700;
+    color: #484f58;
+    padding: 0;
+}
+
+/* Mensaje final */
+.mensaje-inaugurado {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--success);
+    background: rgba(9, 137, 62, 0.1);
+    border: 1px solid rgba(9, 137, 62, 0.2);
+    padding: 20px;
+    border-radius: var(--radius);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+    .reloj-grid-container {
+        gap: 8px;
+    }
+
+    .reloj-box {
+        min-width: 70px;
+        padding: 10px 5px;
+    }
+
+    .reloj-box .numero-reloj {
+        font-size: 24px;
+    }
+
+    .reloj-box.divider-colon {
+        display: none;
+        /* Quitamos los puntos en celular para optimizar el espacio */
+    }
+}
