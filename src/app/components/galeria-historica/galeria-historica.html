@@ -1,0 +1,63 @@
+<section class="galeria-section-container">
+
+    <div class="galeria-header text-center">
+        <span class="badge-fipaz-green">Nuestra Trayectoria</span>
+        <h2>25 Años Impulsando la Industria</h2>
+        <p>Explora la evolución cronológica y los momentos cumbres de la feria más representativa de La Paz.</p>
+    </div>
+
+    <!-- BOTONERA DE FILTROS POR DÉCADAS -->
+    <div class="galeria-filters-wrapper">
+        <button [class.active]="filtroActivo === 'TODOS'" (click)="cambiarFiltro('TODOS')">Todos los Años</button>
+        <button [class.active]="filtroActivo === 'moderno'" (click)="cambiarFiltro('moderno')">2020 - 2026</button>
+        <button [class.active]="filtroActivo === 'consolidacion'" (click)="cambiarFiltro('consolidacion')">2010 -
+            2019</button>
+        <button [class.active]="filtroActivo === 'inicios'" (click)="cambiarFiltro('inicios')">2001 - 2009</button>
+    </div>
+
+    <!-- GRILLA DINÁMICA 3x2 -->
+    <div class="galeria-grid-3x2">
+        <div *ngFor="let hito of hitosFiltrados" class="galeria-card-item fade-in-card" (click)="abrirLightbox(hito)">
+
+            <div class="card-image-overlay-wrapper">
+                <img [src]="hito.imagenUrl" [alt]="hito.titulo" loading="lazy">
+                <div class="card-hover-blur-effect">
+                    <span class="hover-anio-badge">{{ hito.anio }}</span>
+                    <i class="fa-solid fa-magnifying-glass-plus zoom-icon"></i>
+                </div>
+            </div>
+
+            <div class="card-meta-footer">
+                <span class="meta-anio">{{ hito.anio }}</span>
+                <h4>{{ hito.titulo }}</h4>
+            </div>
+        </div>
+    </div>
+
+    <!-- LIGHTBOX: VISUALIZADOR CON MINI NOTA HISTÓRICA -->
+    <div class="lightbox-backdrop" [class.is-active]="imagenSeleccionada !== null" (click)="cerrarLightbox()">
+        <div class="lightbox-content-card" *ngIf="imagenSeleccionada" (click)="$event.stopPropagation()">
+
+            <button class="btn-close-lightbox" (click)="cerrarLightbox()">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="lightbox-layout-split">
+                <div class="lightbox-left-image">
+                    <img [src]="imagenSeleccionada.imagenUrl" [alt]="imagenSeleccionada.titulo">
+                </div>
+                <div class="lightbox-right-note">
+                    <span class="note-badge-anio"><i class="fa-solid fa-calendar-check"></i> Año {{
+                        imagenSeleccionada.anio }}</span>
+                    <h3>{{ imagenSeleccionada.titulo }}</h3>
+                    <hr class="divider-green">
+                    <p class="note-text-description">
+                        {{ imagenSeleccionada.descripcion }}
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</section>

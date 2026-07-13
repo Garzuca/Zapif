@@ -15,10 +15,15 @@
   <!-- BLOQUE 2: PROGRAMA OFICIAL (AGENDA INTERACTIVA) -->
   <app-tablero-eventos></app-tablero-eventos>
 
+  <!-- GALERIA HISTORICA  -->
+  <app-galeria-historica></app-galeria-historica>
+
   <!-- Aquí iremos inyectando los siguientes bloques a medida que los migremos -->
   <app-patrocinadores-premiun></app-patrocinadores-premiun>
 </main>
-
+<!--  FOOTER -->
+<app-footer-fipaz (onExponerClick)="abrirModalExpositores()"
+  (onVisitanteClick)="abrirModalVisitantes()"></app-footer-fipaz>
 <!-- MODALES -->
 <app-expositores-wizard [isOpen]="modalExpositoresAbierto"
   (closeModal)="cerrarModalExpositores()"></app-expositores-wizard>

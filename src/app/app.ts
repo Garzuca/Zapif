@@ -7,6 +7,8 @@ import { NavbarFipazComponent } from './shared/navbar-fipaz/navbar-fipaz';
 import { HeroFipaz } from './components/hero-fipaz/hero-fipaz';
 import { ExpositoresWizardComponent } from './components/expositores-wizard/expositores-wizard';
 import { VisitantesFipazComponent } from './components/visitantes-fipaz/visitantes-fipaz';
+import { FooterFipazComponent } from './components/footer-fipaz/footer-fipaz';
+import { GaleriaHistoricaComponent } from './components/galeria-historica/galeria-historica';
 
 
 @Component({
@@ -20,7 +22,9 @@ import { VisitantesFipazComponent } from './components/visitantes-fipaz/visitant
     NavbarFipazComponent,
     HeroFipaz,
     ExpositoresWizardComponent,
-    VisitantesFipazComponent
+    VisitantesFipazComponent,
+    FooterFipazComponent,
+    GaleriaHistoricaComponent,
   ],
   templateUrl: './app.html', // O el nombre abreviado si aplica en tu versión
   styleUrls: ['./app.css']
