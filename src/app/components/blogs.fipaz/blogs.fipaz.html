@@ -1,0 +1,111 @@
+<section class="blogs-section-wrapper">
+  <div class="blogs-blur-background"></div>
+
+  <!-- Encabezado de la Sección -->
+  <header class="blogs-section-header">
+    <div class="header-text-container">
+      <span class="blogs-sub-title"><i class="fa-solid fa-newspaper"></i> Centro de Noticias FIPAZ</span>
+      <h2>Mantente al Día con las Novedades Feriales</h2>
+      <p>Explora comunicados de prensa, eventos especiales y las historias más destacadas de nuestros expositores.</p>
+    </div>
+
+    <!-- Barra de Búsqueda Reactiva -->
+    <div class="blogs-search-container">
+      <i class="fa-solid fa-magnifying-glass search-icon"></i>
+      <input 
+        type="text" 
+        [value]="textoBusqueda()" 
+        (input)="buscar($event)" 
+        placeholder="Buscar artículos o noticias..."
+        aria-label="Buscar noticias de FIPAZ"
+      />
+      <button *ngIf="textoBusqueda()" class="clear-search" (click)="textoBusqueda.set('')" aria-label="Limpiar búsqueda">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Filtros / Chips de Categorías -->
+  <nav class="blogs-categories-nav" aria-label="Filtro de categorías de blog">
+    <button 
+      *ngFor="let cat of categorias" 
+      class="category-chip" 
+      [class.active]="categoriaSeleccionada() === cat"
+      (click)="seleccionarCategoria(cat)"
+    >
+      {{ cat }}
+    </button>
+  </nav>
+
+  <!-- Contenedor Principal de Blogs -->
+  <div class="blogs-content-layout" *ngIf="blogsFiltrados().length > 0; else noResultsTemplate">
+    
+    <!-- 1. ARTÍCULO DESTACADO (Hero Card) -->
+    <article *ngIf="blogDestacado() as destacado" class="blog-hero-card">
+      <div class="hero-image-wrapper">
+        <img [src]="destacado.imagen" [alt]="destacado.titulo" loading="lazy" />
+        <span class="hero-category-tag">{{ destacado.categoria }}</span>
+      </div>
+      
+      <div class="hero-info-wrapper">
+        <div class="hero-meta-data">
+          <span><i class="fa-regular fa-calendar"></i> {{ destacado.fecha }}</span>
+          <span class="meta-dot"></span>
+          <span><i class="fa-regular fa-clock"></i> {{ destacado.tiempoLectura }} de lectura</span>
+        </div>
+        
+        <h3 class="hero-title">{{ destacado.titulo }}</h3>
+        <p class="hero-excerpt">{{ destacado.resumen }}</p>
+        
+        <div class="hero-card-footer">
+          <span class="hero-author"><i class="fa-solid fa-user-pen"></i> Por {{ destacado.autor }}</span>
+          <button class="read-more-btn" aria-label="Leer artículo completo">
+            Leer artículo <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </article>
+
+    <!-- 2. GRID DE NOTICIAS SECUNDARIAS -->
+    <div class="blogs-cards-grid" *ngIf="blogsSecundarios().length > 0">
+      <article *ngFor="let blog of blogsSecundarios()" class="blog-item-card">
+        <div class="card-image-wrapper">
+          <img [src]="blog.imagen" [alt]="blog.titulo" loading="lazy" />
+          <span class="card-category-tag">{{ blog.categoria }}</span>
+        </div>
+        
+        <div class="card-content-wrapper">
+          <div class="card-meta-data">
+            <span>{{ blog.fecha }}</span>
+            <span class="meta-dot"></span>
+            <span>{{ blog.tiempoLectura }}</span>
+          </div>
+          
+          <h4 class="card-title">{{ blog.titulo }}</h4>
+          <p class="card-excerpt">{{ blog.resumen }}</p>
+          
+          <div class="card-footer-layout">
+            <span class="card-author">Por {{ blog.autor }}</span>
+            <span class="read-link">Leer más <i class="fa-solid fa-angle-right"></i></span>
+          </div>
+        </div>
+      </article>
+    </div>
+
+  </div>
+
+  <!-- Plantilla cuando no hay resultados en la búsqueda o filtros -->
+  <ng-template #noResultsTemplate>
+    <div class="blogs-no-results">
+      <div class="no-results-icon-box">
+        <i class="fa-solid fa-newspaper-o fa-3x"></i>
+      </div>
+      <h3>No se encontraron artículos</h3>
+      <p>No hay noticias que coincidan con la búsqueda "<strong>{{ textoBusqueda() }}</strong>" en la categoría "<strong>{{ categoriaSeleccionada() }}</strong>".</p>
+      <button class="reset-filters-btn" (click)="categoriaSeleccionada.set('Todos'); textoBusqueda.set('')">
+        Restablecer Filtros
+      </button>
+    </div>
+  </ng-template>
+
+</section>

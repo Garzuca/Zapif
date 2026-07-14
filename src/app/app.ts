@@ -11,6 +11,8 @@ import { FooterFipazComponent } from './components/footer-fipaz/footer-fipaz';
 import { GaleriaHistoricaComponent } from './components/galeria-historica/galeria-historica';
 import { ContadorFipazComponent } from "./components/contador-fipaz/contador-fipaz";
 import { SeccionInstitucionalComponent } from './components/seccion-institucional/seccion-institucional';
+import { BlogsFipaz } from './components/blogs.fipaz/blogs.fipaz';
+import { ContactosFipaz } from './components/contactos-fipaz/contactos-fipaz';
 
 
 @Component({
@@ -28,7 +30,9 @@ import { SeccionInstitucionalComponent } from './components/seccion-instituciona
     FooterFipazComponent,
     GaleriaHistoricaComponent,
     ContadorFipazComponent,
-    SeccionInstitucionalComponent
+    SeccionInstitucionalComponent,
+    BlogsFipaz,
+    ContactosFipaz
   ],
   templateUrl: './app.html', // O el nombre abreviado si aplica en tu versión
   styleUrls: ['./app.css']

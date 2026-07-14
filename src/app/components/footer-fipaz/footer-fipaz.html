@@ -1,69 +1,90 @@
 <footer class="footer-fipaz-container">
     <div class="footer-grid-wrapper">
 
-        <!-- COLUMNA 1: IDENTIDAD -->
+        <!-- COLUMNA 1: IDENTIDAD Y DESCRIPCIÓN -->
         <div class="footer-column-info">
-            <h3 class="footer-logo-title">FIPAZ<span>2026</span></h3>
+            <div class="footer-brand">
+                <span class="footer-logo-title">FIPAZ <span>2026</span></span>
+            </div>
             <p class="footer-description">
-                Feria Internacional de La Paz. El motor empresarial, comercial y cultural más importante del occidente
-                boliviano.
+                Feria Internacional de La Paz. El motor empresarial, comercial y cultural más importante del
+                occidente boliviano. 25 años conectando negocios.
             </p>
+            <div class="footer-contact-details">
+                <span><i class="fa-solid fa-location-dot"></i> Campo Ferial Chuquiago Marka, La Paz</span>
+                <span><i class="fa-solid fa-calendar-days"></i> Octubre - Noviembre 2026</span>
+            </div>
             <div class="footer-social-links">
-                <a href="#" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="#" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="#" target="_blank" aria-label="Facebook FIPAZ"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" target="_blank" aria-label="Instagram FIPAZ"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" target="_blank" aria-label="LinkedIn FIPAZ"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="#" target="_blank" aria-label="YouTube FIPAZ"><i class="fa-brands fa-youtube"></i></a>
             </div>
         </div>
 
-        <!-- COLUMNA 2: ACCESOS RÁPIDOS (CONECTADOS A TUS MODALES) -->
+        <!-- COLUMNA 2: NAVEGACIÓN DEL SITIO -->
         <div class="footer-column-links">
-            <h4>Enlaces Rápidos</h4>
+            <h4>Navegar</h4>
             <ul>
-                <li><a (click)="dispararVisitantes()"><i class="fa-solid fa-chevron-right"></i> Precios y Horarios</a>
-                </li>
-                <li><a (click)="dispararVisitantes()"><i class="fa-solid fa-chevron-right"></i> Agenda Cultural</a></li>
-                <li><a (click)="dispararExpositores()"><i class="fa-solid fa-chevron-right"></i> Registrar Stand
-                        Comercial</a></li>
-                <li><a href="#" target="_blank"><i class="fa-solid fa-chevron-right"></i> Ubicación del Campo Ferial</a>
-                </li>
+                <li><a href="#"><i class="fa-solid fa-chevron-right"></i> Inicio</a></li>
+                <li><a href="#institucional"><i class="fa-solid fa-chevron-right"></i> Nosotros</a></li>
+                <li><a href="#eventos"><i class="fa-solid fa-chevron-right"></i> Programa Oficial</a></li>
+                <li><a href="#galeria"><i class="fa-solid fa-chevron-right"></i> Galería Histórica</a></li>
+                <li><a href="#blogs"><i class="fa-solid fa-chevron-right"></i> Noticias</a></li>
+                <li><a href="#patrocinadores"><i class="fa-solid fa-chevron-right"></i> Patrocinadores</a></li>
             </ul>
         </div>
 
-        <!-- COLUMNA 3: TU IDEA (FORMULARIO RÁPIDO) -->
+        <!-- COLUMNA 3: ACCESOS RÁPIDOS -->
+        <div class="footer-column-links">
+            <h4>Participar</h4>
+            <ul>
+                <li><a (click)="dispararExpositores()"><i class="fa-solid fa-chevron-right"></i> Registrar Stand</a></li>
+                <li><a (click)="dispararVisitantes()"><i class="fa-solid fa-chevron-right"></i> Guía del Visitante</a></li>
+                <li><a (click)="dispararVisitantes()"><i class="fa-solid fa-chevron-right"></i> Precios y Horarios</a></li>
+                <li><a (click)="dispararVisitantes()"><i class="fa-solid fa-chevron-right"></i> Agenda Cultural</a></li>
+                <li><a href="#" target="_blank"><i class="fa-solid fa-chevron-right"></i> Ubicación</a></li>
+            </ul>
+        </div>
+
+        <!-- COLUMNA 4: CONTACTO RÁPIDO -->
         <div class="footer-column-form">
-            <h4>¿Quieres que te contactemos?</h4>
-            <p class="form-subtitle">Déjanos tus datos y un asesor te llamará en unos minutos.</p>
+            <h4>¿Te contactamos?</h4>
+            <p class="form-subtitle">Déjanos tus datos y un asesor te escribirá a la brevedad.</p>
 
             <form #contactoForm="ngForm" (ngSubmit)="procesarContacto(contactoForm)" novalidate>
-
                 <div class="footer-input-group">
                     <i class="fa-solid fa-envelope input-icon"></i>
-                    <input type="email" name="email" placeholder="Tu correo electrónico" [(ngModel)]="contacto.email"
-                        required email #emailField="ngModel">
+                    <input type="email" name="email" placeholder="Tu correo electrónico"
+                        [(ngModel)]="contacto.email" required email #emailField="ngModel">
                 </div>
-
                 <div class="footer-input-group">
                     <i class="fa-solid fa-phone input-icon"></i>
                     <input type="tel" name="telefono" placeholder="Número de celular o WhatsApp"
                         [(ngModel)]="contacto.telefono" required pattern="^[0-9]{7,10}$" #telField="ngModel">
                 </div>
-
                 <button type="submit" class="btn-footer-submit" [disabled]="!contactoForm.valid">
                     <i class="fa-solid fa-paper-plane"></i> Solicitar Información
                 </button>
-
             </form>
 
-            <!-- Alerta de Éxito Reactiva -->
             <div class="alert-success-footer" *ngIf="exitoEnvio">
-                <i class="fa-solid fa-circle-check"></i> ¡Datos recibidos! Te llamaremos pronto.
+                <i class="fa-solid fa-circle-check"></i> ¡Datos recibidos! Te contactaremos pronto.
             </div>
         </div>
 
     </div>
 
-    <!-- BARRA DE CRÉDITOS INFERIOR -->
+    <!-- BARRA INFERIOR DE CRÉDITOS -->
     <div class="footer-bottom-bar">
-        <p>&copy; 2026 FIPAZ - Departamento de Sistemas. Todos los derechos reservados.</p>
+        <div class="footer-bottom-inner">
+            <p>© 2026 FIPAZ — Departamento de Sistemas. Todos los derechos reservados.</p>
+            <p class="footer-legal-links">
+                <a href="#">Política de Privacidad</a>
+                <span class="divider-dot">·</span>
+                <a href="#">Términos y Condiciones</a>
+            </p>
+        </div>
     </div>
+
 </footer>

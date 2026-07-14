@@ -1,0 +1,78 @@
+<section class="contactos-section-wrapper">
+
+  <!-- Encabezado -->
+  <header class="contactos-header">
+    <span class="contactos-sub-title"><i class="fa-solid fa-headset"></i> Canales de Atención</span>
+    <h2>¿Cómo podemos ayudarte?</h2>
+    <p>Contáctate con el equipo de la FIPAZ a través del canal que mejor se adapte a tu consulta. Respondemos en horario de oficina.</p>
+  </header>
+
+  <!-- Layout principal: tarjetas + ubicación -->
+  <div class="contactos-main-layout">
+
+    <!-- PANEL IZQUIERDO: Tarjetas de canales de contacto -->
+    <div class="canales-grid">
+      <article *ngFor="let canal of canales" class="canal-card" [class]="canal.colorClass">
+        <div class="canal-icon-box">
+          <i [class]="canal.icono"></i>
+        </div>
+        <div class="canal-info">
+          <h3>{{ canal.titulo }}</h3>
+          <p>{{ canal.descripcion }}</p>
+          <a *ngIf="canal.tipo === 'email'" [href]="'mailto:' + canal.valor" class="canal-link">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> {{ canal.valor }}
+          </a>
+          <a *ngIf="canal.tipo === 'telefono'" [href]="'https://wa.me/' + canal.valor" target="_blank" class="canal-link">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> {{ canal.valor }}
+          </a>
+        </div>
+      </article>
+    </div>
+
+    <!-- PANEL DERECHO: Ubicación + horario + CTA -->
+    <aside class="ubicacion-panel">
+
+      <!-- Mapa embebido -->
+      <div class="mapa-wrapper">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3825.2!2d-68.1374!3d-16.5000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x915f20a1c6f3b3b5%3A0x0!2sCampo%20Ferial%20Chuquiago%20Marka!5e0!3m2!1ses!2sbo!4v1234567890"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Ubicación del Campo Ferial Chuquiago Marka en Google Maps"
+          aria-label="Mapa de ubicación FIPAZ">
+        </iframe>
+      </div>
+
+      <!-- Datos de ubicación -->
+      <div class="ubicacion-detalles">
+        <div class="detalle-item">
+          <div class="detalle-icon-box"><i class="fa-solid fa-location-dot"></i></div>
+          <div>
+            <strong>{{ datosUbicacion.direccion }}</strong>
+            <span>{{ datosUbicacion.ciudad }}</span>
+            <span class="detalle-referencia">{{ datosUbicacion.referencia }}</span>
+          </div>
+        </div>
+        <div class="detalle-item">
+          <div class="detalle-icon-box"><i class="fa-regular fa-clock"></i></div>
+          <div>
+            <strong>Horario de Atención</strong>
+            <span>{{ datosUbicacion.horario }}</span>
+            <span>{{ datosUbicacion.horarioFeria }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA hacia el footer -->
+      <button class="btn-ir-formulario" (click)="scrollAlContacto()">
+        <i class="fa-solid fa-paper-plane"></i>
+        ¿Prefieres que te contactemos? Deja tus datos
+        <i class="fa-solid fa-arrow-down"></i>
+      </button>
+
+    </aside>
+
+  </div>
+
+</section>

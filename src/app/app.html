@@ -12,16 +12,22 @@
   <!-- BLOQUE 1: PANEL DE MÉTRICAS (MÓDULOS GERENCIALES)  <app-dashboard-metricas></app-dashboard-metricas>
   -->
   <!-- CONTADOR (Nuevo Bloque Integrado) -->
-  <app-seccion-institucional></app-seccion-institucional>
+  <app-seccion-institucional id="institucional"></app-seccion-institucional>
   <app-contador-fipaz></app-contador-fipaz>
 
   <!-- BLOQUE 2: PROGRAMA OFICIAL (AGENDA INTERACTIVA)   -->
-  <app-tablero-eventos></app-tablero-eventos>
+  <app-tablero-eventos id="eventos"></app-tablero-eventos>
   <!-- GALERIA HISTORICA  -->
-  <app-galeria-historica></app-galeria-historica>
+  <app-galeria-historica id="galeria"></app-galeria-historica>
+
+  <!-- SECCIÓN DE BLOGS Y NOTICIAS -->
+  <app-blogs-fipaz id="blogs"></app-blogs-fipaz>
 
   <!-- Aquí iremos inyectando los siguientes bloques a medida que los migremos -->
-  <app-patrocinadores-premiun></app-patrocinadores-premiun>
+  <app-patrocinadores-premiun id="patrocinadores"></app-patrocinadores-premiun>
+
+  <!-- SECCIÓN DE CONTACTO -->
+  <app-contactos-fipaz id="contacto"></app-contactos-fipaz>
 </main>
 <!--  FOOTER -->
 <app-footer-fipaz (onExponerClick)="abrirModalExpositores()"
