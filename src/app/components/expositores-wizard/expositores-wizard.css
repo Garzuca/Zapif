@@ -202,3 +202,281 @@
 .footer-help i {
     color: var(--success);
 }
+
+/* Botón "Volver al menú" en la cabecera */
+.btn-back-header {
+    background: none;
+    border: none;
+    color: var(--success);
+    /* Cambia al color primario de tu paleta */
+    font-size: 13px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    padding: 0;
+    margin-bottom: 8px;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.btn-back-header:hover {
+    color: var(--primary);
+    transform: translateX(-3px);
+}
+
+/* Contenedor del selector de bloques para regular el alto dentro del modal */
+.seccion-selector-bloques-wizard {
+    max-height: 480px;
+    /* Evita que el modal se deforme si hay mucho contenido */
+    overflow-y: auto;
+    /* Permite scroll interno suave si es necesario */
+    padding-right: 8px;
+}
+
+/* Personalizar barra de scroll interno para que no se vea tosca */
+.seccion-selector-bloques-wizard::-webkit-scrollbar {
+    width: 6px;
+}
+
+.seccion-selector-bloques-wizard::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.seccion-selector-bloques-wizard::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+}
+
+/* Vista de áreas en construcción */
+.seccion-desarrollo-wizard {
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dev-card {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 30px;
+    max-width: 400px;
+}
+
+.icon-dev {
+    font-size: 36px;
+    color: #6c757d;
+    margin-bottom: 15px;
+}
+
+.dev-card h4 {
+    font-size: 16px;
+    font-weight: 800;
+    color: #1a1d20;
+    margin-bottom: 8px;
+}
+
+.dev-card p {
+    font-size: 13px;
+    line-height: 1.5;
+    color: #5a6578;
+}
+
+/* Contenedor principal del formulario */
+.seccion-formulario-wizard {
+    max-height: 480px;
+    overflow-y: auto;
+    padding-right: 8px;
+}
+
+/* Badge de resumen de la ubicación seleccionada */
+.resumen-seleccion-badge {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(13, 110, 253, 0.15);
+    /* Color primario translúcido */
+    border: 1px dashed rgba(13, 110, 253, 0.4);
+    border-radius: 12px;
+    padding: 12px 18px;
+    margin-bottom: 20px;
+    backdrop-filter: blur(4px);
+}
+
+.resumen-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.icon-badge {
+    font-size: 24px;
+    color: var(--success);
+}
+
+.resumen-info h5 {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--success);
+}
+
+.resumen-info p {
+    margin: 2px 0 0 0;
+    font-size: 13px;
+    color: #2c3e50;
+}
+
+.btn-change-location {
+    background: white;
+    border: 1px solid rgba(13, 110, 253, 0.3);
+    color: var(--primary);
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-change-location:hover {
+    background: var(--success);
+    color: white;
+    border-color: var(--success-dark);
+}
+
+/* Grid del Formulario */
+.form-grid-wizard {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+/* Ocupa las dos columnas en pantallas medianas/grandes */
+.form-group.full-width {
+    grid-column: span 2;
+}
+
+.form-group label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #495057;
+}
+
+/* Envoltura del input para colocar iconos */
+.input-icon-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon {
+    position: absolute;
+    left: 14px;
+    color: #6c757d;
+    font-size: 14px;
+    pointer-events: none;
+}
+
+/* Estilo unificado de Inputs, Selects y Textareas */
+.input-icon-wrapper input,
+.input-icon-wrapper select,
+.input-icon-wrapper textarea {
+    width: 100%;
+    padding: 11px 16px 11px 40px;
+    font-size: 13px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.7);
+    transition: all 0.2s ease;
+    color: #212529;
+}
+
+.input-icon-wrapper input:focus,
+.input-icon-wrapper select:focus,
+.input-icon-wrapper textarea:focus {
+    outline: none;
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.15);
+    background: white;
+}
+
+/* Ajustes especiales para Textarea */
+.textarea-wrapper {
+    align-items: flex-start;
+}
+
+.textarea-icon {
+    top: 14px;
+}
+
+.input-icon-wrapper textarea {
+    resize: none;
+    min-height: 80px;
+}
+
+/* Mensajes de error en tiempo real */
+.error-msg {
+    font-size: 11px;
+    color: #dc3545;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* Estilo del botón de envío */
+.form-actions-submit {
+    grid-column: span 2;
+    margin-top: 10px;
+}
+
+.btn-submit-postulacion {
+    width: 100%;
+    background: linear-gradient(135deg, #0d6efd 0%, #0056b3 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 14px 20px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 4px 12px rgba(13, 110, 253, 0.25);
+    transition: all 0.2s ease;
+}
+
+.btn-submit-postulacion:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(13, 110, 253, 0.35);
+}
+
+.btn-submit-postulacion:disabled {
+    background: #cbd5e1;
+    color: #94a3b8;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* Responsive para celulares */
+@media (max-width: 768px) {
+    .form-grid-wizard {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group.full-width,
+    .form-actions-submit {
+        grid-column: span 1;
+    }
+}

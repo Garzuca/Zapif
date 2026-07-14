@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NavbarFipaz } from './navbar-fipaz';
+import { NavbarFipazComponent } from './navbar-fipaz';
 
 describe('NavbarFipaz', () => {
-  let component: NavbarFipaz;
-  let fixture: ComponentFixture<NavbarFipaz>;
+  let component: NavbarFipazComponent;
+  let fixture: ComponentFixture<NavbarFipazComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NavbarFipaz],
+      imports: [NavbarFipazComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(NavbarFipaz);
+    fixture = TestBed.createComponent(NavbarFipazComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

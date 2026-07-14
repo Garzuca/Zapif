@@ -1,0 +1,67 @@
+<div class="contenedor-expositores-flujo">
+
+    <div class="bloques-grid">
+        <div *ngFor="let bloque of bloques" class="card-bloque"
+            [class.seleccionado]="bloqueSeleccionadoId === bloque.id" (click)="seleccionarBloque(bloque)">
+
+            <!-- PARTE SUPERIOR: Imagen con Efecto Blur y Selector de Pisos -->
+            <div class="card-imagen-wrapper">
+                <img [src]="bloque.imagen" [alt]="bloque.nombre" class="img-bloque" />
+
+                <!-- El Overlay con Blur (Se activa cuando bloqueConPisosActivo === bloque.id) -->
+                <div class="overlay-pisos" [class.activo]="bloqueConPisosActivo === bloque.id">
+
+                    <button class="btn-cerrar-pisos" (click)="cancelarPisos($event)">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+
+                    <div class="pisos-container">
+                        <p class="selector-titulo">¿En qué piso prefieres ubicarte?</p>
+                        <div class="pisos-botones">
+                            <button *ngFor="let piso of bloque.pisos" class="btn-piso"
+                                (click)="confirmarSeleccion(bloque.id, piso); $event.stopPropagation()">
+                                {{ piso }}
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Indicador de Seleccionado en la esquina -->
+                <div class="badge-check-seleccionado" *ngIf="bloqueSeleccionadoId === bloque.id">
+                    <i class="fa-solid fa-circle-check"></i> Seleccionado ({{ pisoSeleccionado }})
+                </div>
+            </div>
+
+            <!-- PARTE INFERIOR: Información e Indicadores -->
+            <div class="card-info-detalles">
+                <div class="meta-bloque">
+                    <h3 class="nombre-bloque">{{ bloque.nombre }}</h3>
+
+                    <!-- Nivel de Ocupación Visual -->
+                    <div class="ocupacion-container">
+                        <div class="ocupacion-texto">
+                            <span>Ocupación</span>
+                            <span class="porcentaje-valor">{{ bloque.ocupacion }}%</span>
+                        </div>
+                        <div class="barra-progreso-bg">
+                            <div class="barra-progreso-fill" [style.width.%]="bloque.ocupacion"
+                                [class.lleno-critico]="bloque.ocupacion >= 80">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="descripcion-bloque">{{ bloque.descripcion }}</p>
+
+                <!-- Globo de ayuda integrado transparente -->
+                <div class="globo-ayuda-disclaimer">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <p>{{ bloque.disclaimer }}</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

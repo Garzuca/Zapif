@@ -32,13 +32,13 @@
 
 /* Barra de Navegación Principal */
 .main-navigation-bar {
-    padding: 15px 0;
+    padding: 5px 0;
 }
 
 .nav-container {
-    max-width: 1200px;
+    max-width: 1300px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 10px 5px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -154,4 +154,29 @@
     white-space: nowrap;
     /* Evita que el texto del botón se parta en dos líneas */
     transition: all 0.2s ease;
+}
+
+.contacto-iconos {
+    padding-left: 15px;
+    display: flex;
+    gap: 20px;
+    font-size: 18px;
+}
+
+.contacto-iconos a {
+    color: var(--text-main);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contacto-iconos a:hover {
+    color: var(--primary);
+}
+
+.contacto-iconos i {
+    transition: transform 0.2s ease;
+}
+
+.contacto-iconos a:hover i {
+    transform: scale(1.1);
 }

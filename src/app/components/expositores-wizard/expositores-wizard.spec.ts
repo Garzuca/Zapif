@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ExpositoresWizard } from './expositores-wizard';
+import { ExpositoresWizardComponent } from './expositores-wizard';
 
 describe('ExpositoresWizard', () => {
-  let component: ExpositoresWizard;
-  let fixture: ComponentFixture<ExpositoresWizard>;
+  let component: ExpositoresWizardComponent;
+  let fixture: ComponentFixture<ExpositoresWizardComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ExpositoresWizard],
+      imports: [ExpositoresWizardComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ExpositoresWizard);
+    fixture = TestBed.createComponent(ExpositoresWizardComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

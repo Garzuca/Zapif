@@ -1,0 +1,262 @@
+/* Contenedor principal */
+.contenedor-expositores-flujo {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Grilla de 3 bloques */
+.bloques-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+/* Tarjeta Base del Bloque */
+.card-bloque {
+    background: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-bloque:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+}
+
+/* Estado cuando la tarjeta entera está seleccionada */
+.card-bloque.seleccionado {
+    border-color: #0d6efd;
+    /* Cambia a tu color primario */
+    box-shadow: 0 10px 25px rgba(13, 110, 253, 0.12);
+}
+
+/* --- MITAD SUPERIOR: IMAGEN --- */
+.card-imagen-wrapper {
+    position: relative;
+    height: 220px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.img-bloque {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.card-bloque:hover .img-bloque {
+    transform: scale(1.03);
+}
+
+/* --- OVERLAY DE BLUR (La Magia) --- */
+.overlay-pisos {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    /* Difumina lo que está detrás */
+    -webkit-backdrop-filter: blur(12px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: 5;
+}
+
+.overlay-pisos.activo {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Botón de cerrar de la esquina del Blur */
+.btn-cerrar-pisos {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: #ffffff;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.btn-cerrar-pisos:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+/* Contenido interno del overlay */
+.pisos-container {
+    text-align: center;
+    padding: 20px;
+    color: #111111;
+    transform: translateY(15px);
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.overlay-pisos.activo .pisos-container {
+    transform: translateY(0);
+}
+
+.selector-titulo {
+    font-size: 14px;
+    font-weight: 800;
+    margin-bottom: 15px;
+    color: #000000;
+    text-shadow: 0 1px 4px rgba(255, 255, 255, 0.8);
+}
+
+.pisos-botones {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+.btn-piso {
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: #111111;
+    padding: 10px 20px;
+    font-size: 13px;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+}
+
+.btn-piso:hover {
+    background: #0d6efd;
+    color: #ffffff;
+    transform: scale(1.05);
+}
+
+/* Badge de Seleccionado */
+.badge-check-seleccionado {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: var(--success);
+    color: #ffffff;
+    padding: 6px 12px;
+    font-size: 11px;
+    font-weight: 800;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(13, 110, 253, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    z-index: 4;
+}
+
+/* --- MITAD INFERIOR: INFORMACIÓN --- */
+.card-info-detalles {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.meta-bloque {
+    margin-bottom: 16px;
+}
+
+.nombre-bloque {
+    font-size: 18px;
+    font-weight: 800;
+    color: #1a1d20;
+    margin: 0 0 12px 0;
+}
+
+/* Indicadores de Ocupación */
+.ocupacion-container {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.ocupacion-texto {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    font-weight: 700;
+    color: #5a6578;
+}
+
+.porcentaje-valor {
+    color: #111111;
+}
+
+.barra-progreso-bg {
+    height: 6px;
+    background: #e9ecef;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.barra-progreso-fill {
+    height: 100%;
+    background: #198754;
+    /* Verde por defecto */
+    border-radius: 4px;
+    transition: width 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.barra-progreso-fill.lleno-critico {
+    background: #dc3545;
+    /* Rojo si hay alta demanda/poca disponibilidad */
+}
+
+/* Descripción */
+.descripcion-bloque {
+    font-size: 13px;
+    line-height: 1.5;
+    color: #495057;
+    margin: 0 0 20px 0;
+    flex-grow: 1;
+}
+
+/* Disclaimer integrado */
+.globo-ayuda-disclaimer {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    background: #f8f9fa;
+    padding: 12px;
+    border-radius: 8px;
+    border-left: 3px solid #6c757d;
+}
+
+.globo-ayuda-disclaimer i {
+    color: #6c757d;
+    font-size: 14px;
+    margin-top: 2px;
+}
+
+.globo-ayuda-disclaimer p {
+    font-size: 11px;
+    line-height: 1.4;
+    color: #6c757d;
+    margin: 0;
+    font-weight: 500;
+}

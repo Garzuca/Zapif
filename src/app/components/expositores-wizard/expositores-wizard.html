@@ -2,24 +2,55 @@
 
     <div class="modal-card-center glass-panel" (click)="$event.stopPropagation()">
 
-        <!-- Cabecera del Modal -->
+        <!-- Cabecera del Modal (Dinámica) -->
         <div class="modal-header-zone">
             <div class="header-text-left">
-                <span class="modal-pretitle"><i class="fa-solid fa-circle-info"></i> Proceso de Postulación 2026</span>
-                <h3>Selecciona tu Categoría</h3>
+                <!-- Botón Volver Dinámico -->
+                <button *ngIf="areaActiva === 'expositores'" class="btn-back-header" (click)="volverAlMenu()">
+                    <i class="fa-solid fa-chevron-left"></i> Cambiar de Área
+                </button>
+                <button *ngIf="areaActiva === 'formulario'" class="btn-back-header" (click)="volverAlMapa()">
+                    <i class="fa-solid fa-chevron-left"></i> Cambiar de Stand
+                </button>
+
+                <span class="modal-pretitle">
+                    <i class="fa-solid fa-circle-info"></i>
+                    Proceso de Postulación 2026
+                    <span *ngIf="areaActiva === 'expositores'">• Paso 1 de 2</span>
+                    <span *ngIf="areaActiva === 'formulario'">• Paso 2 de 2</span>
+                </span>
+
+                <!-- Títulos Dinámicos -->
+                <h3 *ngIf="areaActiva === 'menu'">Selecciona tu Categoría</h3>
+                <h3 *ngIf="areaActiva === 'expositores'">Selecciona tu Ubicación</h3>
+                <h3 *ngIf="areaActiva === 'formulario'">Datos de Postulación</h3>
+                <h3 *ngIf="areaActiva !== 'menu' && areaActiva !== 'expositores' && areaActiva !== 'formulario'">Área en
+                    Desarrollo</h3>
             </div>
+
             <button class="btn-close-modal" (click)="cerrar()">
                 <i class="fa-solid fa-xmark"></i>
             </button>
         </div>
 
-        <p class="modal-intro-text">
+        <!-- Textos de Introducción Dinámicos -->
+        <p class="modal-intro-text" *ngIf="areaActiva === 'menu'">
             Para brindarte una asesoría comercial personalizada y asignarte el pabellón correcto, indícanos en cuál de
             nuestras áreas estratégicas encaja tu perfil empresarial:
         </p>
+        <p class="modal-intro-text" *ngIf="areaActiva === 'expositores'">
+            Elige el bloque de tu preferencia para ver los pisos disponibles. El equipo organizador asignará tu stand
+            final dentro del sector seleccionado para garantizar la mejor distribución.
+        </p>
+        <p class="modal-intro-text" *ngIf="areaActiva === 'formulario'">
+            Completa este breve formulario con los datos de tu negocio. Un asesor comercial evaluará tu propuesta y se
+            contactará contigo para finalizar tu reserva.
+        </p>
 
-        <!-- Cuadrícula de las 4 Categorías Solicitadas -->
-        <div class="grid-categorias-wizard">
+        <!-- ==========================================
+         VISTA 1: CUADRÍCULA DE LAS 4 CATEGORÍAS 
+         ========================================== -->
+        <div *ngIf="areaActiva === 'menu'" class="grid-categorias-wizard">
             <div *ngFor="let cat of categorias" class="card-categoria-item" (click)="seleccionarCategoria(cat.id)">
                 <div class="cat-icon-box">
                     <i [class]="cat.icono"></i>
@@ -35,10 +66,196 @@
             </div>
         </div>
 
+        <!-- ==========================================
+         VISTA 2: SELECTOR DE BLOQUES
+         ========================================== -->
+        <div *ngIf="areaActiva === 'expositores'" class="seccion-selector-bloques-wizard">
+            <app-selector-bloques (seleccionCompletada)="procesarSeleccionBloque($event)">
+            </app-selector-bloques>
+        </div>
+
+        <!-- ==========================================
+         VISTA 3: FORMULARIO SIMPLIFICADO (FIPAZ 2026)
+         ========================================== -->
+        <div *ngIf="areaActiva === 'formulario'" class="seccion-formulario-wizard">
+
+            <!-- Resumen de Ubicación Seleccionada -->
+            <div class="resumen-seleccion-badge">
+                <div class="resumen-info">
+                    <i class="fa-solid fa-map-location-dot icon-badge"></i>
+                    <div>
+                        <h5>Ubicación Reservada</h5>
+                        <p><strong>Bloque:</strong> {{ bloqueSeleccionado }} | <strong>Nivel:</strong> {{
+                            pisoSeleccionado }}</p>
+                    </div>
+                </div>
+                <button class="btn-change-location" (click)="volverAlMapa()">Cambiar</button>
+            </div>
+
+            <!-- El Formulario Reactivo -->
+            <form [formGroup]="postulacionForm" (ngSubmit)="enviarPostulacion()" class="form-grid-wizard">
+
+                <!-- Nombre Completo -->
+                <div class="form-group">
+                    <label for="nombreCompleto">Nombre Completo del Contacto *</label>
+                    <div class="input-icon-wrapper">
+                        <i class="fa-solid fa-user input-icon"></i>
+                        <input type="text" id="nombreCompleto" formControlName="nombreCompleto"
+                            placeholder="Ej. Axel Facundo">
+                    </div>
+                    <span class="error-msg"
+                        *ngIf="postulacionForm.get('nombreCompleto')?.touched && postulacionForm.get('nombreCompleto')?.errors?.['required']">
+                        El nombre es requerido.
+                    </span>
+                    <span class="error-msg"
+                        *ngIf="postulacionForm.get('nombreCompleto')?.touched && postulacionForm.get('nombreCompleto')?.errors?.['minlength']">
+                        Debe tener al menos 4 caracteres.
+                    </span>
+                </div>
+
+                <!-- Correo Electrónico -->
+                <div class="form-group">
+                    <label for="email">Correo Electrónico *</label>
+                    <div class="input-icon-wrapper">
+                        <i class="fa-solid fa-envelope input-icon"></i>
+                        <input type="email" id="email" formControlName="email" placeholder="correo@ejemplo.com">
+                    </div>
+                    <span class="error-msg"
+                        *ngIf="postulacionForm.get('email')?.touched && postulacionForm.get('email')?.errors?.['required']">
+                        El correo electrónico es requerido.
+                    </span>
+                    <span class="error-msg"
+                        *ngIf="postulacionForm.get('email')?.touched && postulacionForm.get('email')?.errors?.['email']">
+                        Ingresa un correo electrónico válido.
+                    </span>
+                </div>
+
+                <!-- Celular / WhatsApp -->
+                <div class="form-group">
+                    <label for="telefono">Celular (WhatsApp) *</label>
+                    <div class="input-icon-wrapper">
+                        <i class="fa-brands fa-whatsapp input-icon"></i>
+                        <input type="tel" id="telefono" formControlName="telefono" placeholder="Ej. 76543210">
+                    </div>
+                    <span class="error-msg"
+                        *ngIf="postulacionForm.get('telefono')?.touched && postulacionForm.get('telefono')?.errors?.['required']">
+                        El número de celular es requerido.
+                    </span>
+                    <span class="error-msg"
+                        *ngIf="postulacionForm.get('telefono')?.touched && postulacionForm.get('telefono')?.errors?.['pattern']">
+                        Celular no válido en Bolivia (debe tener 8 dígitos e iniciar con 6 o 7).
+                    </span>
+                </div>
+
+                <!-- Nombre de la Empresa o Marca -->
+                <div class="form-group">
+                    <label for="nombreEmpresa">Nombre de tu Empresa o Marca *</label>
+                    <div class="input-icon-wrapper">
+                        <i class="fa-solid fa-building input-icon"></i>
+                        <input type="text" id="nombreEmpresa" formControlName="nombreEmpresa"
+                            placeholder="Ej. TecnoBolivia o Marca Propia">
+                    </div>
+                    <span class="error-msg"
+                        *ngIf="postulacionForm.get('nombreEmpresa')?.touched && postulacionForm.get('nombreEmpresa')?.errors?.['required']">
+                        El nombre comercial es obligatorio.
+                    </span>
+                </div>
+
+                <!-- Rubro / Especialidad -->
+                <div class="form-group">
+                    <label for="rubro">Rubro Comercial / Especialidad *</label>
+                    <div class="input-icon-wrapper">
+                        <i class="fa-solid fa-tags input-icon"></i>
+                        <select id="rubro" formControlName="rubro">
+                            <option value="" disabled selected>Selecciona una opción</option>
+                            <option *ngFor="let r of rubros" [value]="r">{{ r }}</option>
+                        </select>
+                    </div>
+                    <span class="error-msg"
+                        *ngIf="postulacionForm.get('rubro')?.touched && postulacionForm.get('rubro')?.errors?.['required']">
+                        Por favor, selecciona un rubro.
+                    </span>
+                </div>
+
+                <!-- Ciudad / Origen -->
+                <div class="form-group">
+                    <label for="ciudad">Ciudad de Origen *</label>
+                    <div class="input-icon-wrapper">
+                        <i class="fa-solid fa-location-dot input-icon"></i>
+                        <select id="ciudad" formControlName="ciudad">
+                            <option value="" disabled selected>Selecciona tu ciudad</option>
+                            <option value="La Paz">La Paz</option>
+                            <option value="El Alto">El Alto</option>
+                            <option value="Santa Cruz">Santa Cruz</option>
+                            <option value="Cochabamba">Cochabamba</option>
+                            <option value="Oruro">Oruro</option>
+                            <option value="Potosí">Potosí</option>
+                            <option value="Tarija">Tarija</option>
+                            <option value="Sucre">Sucre</option>
+                            <option value="Beni">Beni</option>
+                            <option value="Pando">Pando</option>
+                            <option value="Exterior">Fuera de Bolivia (Internacional)</option>
+                        </select>
+                    </div>
+                    <span class="error-msg"
+                        *ngIf="postulacionForm.get('ciudad')?.touched && postulacionForm.get('ciudad')?.errors?.['required']">
+                        La ciudad de origen es requerida.
+                    </span>
+                </div>
+
+                <!-- Producto y/o Servicio (Textarea) -->
+                <div class="form-group full-width">
+                    <label for="productoServicio">Describe brevemente tu Producto y/o Servicio *</label>
+                    <div class="input-icon-wrapper textarea-wrapper">
+                        <i class="fa-solid fa-basket-shopping input-icon textarea-icon"></i>
+                        <textarea id="productoServicio" formControlName="productoServicio" rows="3"
+                            placeholder="¿Qué vas a exponer o vender en tu stand? Ej: Accesorios tecnológicos importados, fundas personalizadas..."></textarea>
+                    </div>
+                    <span class="error-msg"
+                        *ngIf="postulacionForm.get('productoServicio')?.touched && postulacionForm.get('productoServicio')?.errors?.['required']">
+                        Describe lo que ofrecerás para evaluar tu stand.
+                    </span>
+                </div>
+
+                <!-- Enlace Web o Redes Sociales (Opcional) -->
+                <div class="form-group full-width">
+                    <label for="enlacesWeb">Enlace a tus Redes Sociales o Catálogo (Opcional)</label>
+                    <div class="input-icon-wrapper">
+                        <i class="fa-solid fa-globe input-icon"></i>
+                        <input type="text" id="enlacesWeb" formControlName="enlacesWeb"
+                            placeholder="Ej. facebook.com/mitienda o instagram/user">
+                    </div>
+                </div>
+
+                <!-- Botón de Envío -->
+                <div class="form-actions-submit full-width">
+                    <button type="submit" class="btn-submit-postulacion" [disabled]="postulacionForm.invalid">
+                        Enviar Postulación Oficial <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+
+        <!-- ==========================================
+         VISTA 4: PLACEHOLDER PARA OTRAS ÁREAS
+         ========================================== -->
+        <div *ngIf="areaActiva !== 'menu' && areaActiva !== 'expositores' && areaActiva !== 'formulario'"
+            class="seccion-desarrollo-wizard">
+            <div class="dev-card">
+                <i class="fa-solid fa-hourglass-half icon-dev"></i>
+                <h4>Módulo en construcción</h4>
+                <p>El formulario interactivo para esta área de exhibición estará disponible próximamente. Agradecemos tu
+                    paciencia.</p>
+            </div>
+        </div>
+
         <!-- Pie del Modal -->
         <div class="modal-footer-zone">
-            <span class="footer-help"><i class="fa-solid fa-headset"></i> ¿Dudas con tu rubro? Contáctanos a
-                feriafipaz@gmail.com</span>
+            <span class="footer-help">
+                <i class="fa-solid fa-headset"></i> ¿Dudas con tu rubro? Contáctanos a feriafipaz@gmail.com
+            </span>
         </div>
 
     </div>
