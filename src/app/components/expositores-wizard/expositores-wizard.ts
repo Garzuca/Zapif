@@ -93,7 +93,8 @@ export class ExpositoresWizardComponent {
       rubro: ['', Validators.required],
       productoServicio: ['', [Validators.required, Validators.maxLength(300)]],
       ciudad: ['', Validators.required],
-      enlacesWeb: [''] // No requerido opcional
+      enlacesWeb: [''], // No requerido opcional
+      metrosCuadrados: ['', Validators.required]
     });
   }
 

@@ -202,6 +202,27 @@
                         La ciudad de origen es requerida.
                     </span>
                 </div>
+                <!-- Precio del Stand -->
+                <div class="form-group">
+                    <label for="metrosCuadrados">¿Cuantos Metros cuadrados quiere? Bs950*metro cuadrado</label>
+                    <div class="input-icon-wrapper">
+                        <i class="fa-solid fa-money-bill input-icon"></i>
+                        <select id="metrosCuadrados" formControlName="metrosCuadrados">
+                            <option value="" disabled selected>Selecciona una opción</option>
+                            <option value="9">9</option>
+                            <option value="13.5">13.5</option>
+                            <option value="18">18</option>
+                            <option value="27">27</option>
+                            <option value="36">36</option>
+                            <option value="metrosCuadrados">Mas de 36</option>
+                        </select>
+                    </div>
+                    <span class="error-msg"
+                        *ngIf="postulacionForm.get('metrosCuadrados')?.touched && postulacionForm.get('metrosCuadrados')?.errors?.['required']">
+                        El precio es requerido.
+                    </span>
+                </div>
+
 
                 <!-- Producto y/o Servicio (Textarea) -->
                 <div class="form-group full-width">
@@ -216,7 +237,6 @@
                         Describe lo que ofrecerás para evaluar tu stand.
                     </span>
                 </div>
-
                 <!-- Enlace Web o Redes Sociales (Opcional) -->
                 <div class="form-group full-width">
                     <label for="enlacesWeb">Enlace a tus Redes Sociales o Catálogo (Opcional)</label>
