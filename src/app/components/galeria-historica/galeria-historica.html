@@ -1,5 +1,6 @@
 <section class="galeria-section-container">
 
+    <!-- CABECERA -->
     <div class="galeria-header text-center">
         <span class="badge-fipaz-green">Nuestra Trayectoria</span>
         <h2>25 Años Impulsando la Industria</h2>
@@ -8,16 +9,21 @@
 
     <!-- BOTONERA DE FILTROS POR DÉCADAS -->
     <div class="galeria-filters-wrapper">
-        <button [class.active]="filtroActivo === 'TODOS'" (click)="cambiarFiltro('TODOS')">Todos los Años</button>
-        <button [class.active]="filtroActivo === 'moderno'" (click)="cambiarFiltro('moderno')">2020 - 2026</button>
-        <button [class.active]="filtroActivo === 'consolidacion'" (click)="cambiarFiltro('consolidacion')">2010 -
-            2019</button>
-        <button [class.active]="filtroActivo === 'inicios'" (click)="cambiarFiltro('inicios')">2001 - 2009</button>
+        <button [class.active]="filtroDecadaActivo() === 'TODOS'" (click)="cambiarFiltroDecada('TODOS')">
+            Todos los Años
+        </button>
+
+        @for (item of decadasDisponibles(); track item.decada) {
+        <button [class.active]="filtroDecadaActivo() === item.decada" (click)="cambiarFiltroDecada(item.decada)">
+            Década {{ item.label }}
+        </button>
+        }
     </div>
 
-    <!-- GRILLA DINÁMICA 3x2 -->
+    <!-- GRILLA 3x2 DE FOTOGRAFÍAS -->
     <div class="galeria-grid-3x2">
-        <div *ngFor="let hito of hitosFiltrados" class="galeria-card-item fade-in-card" (click)="abrirLightbox(hito)">
+        @for (hito of hitosFiltrados(); track hito.id) {
+        <div class="galeria-card-item fade-in-card" (click)="abrirLightbox(hito)">
 
             <div class="card-image-overlay-wrapper">
                 <img [src]="hito.imagenUrl" [alt]="hito.titulo" loading="lazy">
@@ -31,33 +37,43 @@
                 <span class="meta-anio">{{ hito.anio }}</span>
                 <h4>{{ hito.titulo }}</h4>
             </div>
+
         </div>
+        } @empty {
+        <div class="galeria-empty-state">
+            <p>No hay fotografías registradas para esta década.</p>
+        </div>
+        }
     </div>
 
-    <!-- LIGHTBOX: VISUALIZADOR CON MINI NOTA HISTÓRICA -->
-    <div class="lightbox-backdrop" [class.is-active]="imagenSeleccionada !== null" (click)="cerrarLightbox()">
-        <div class="lightbox-content-card" *ngIf="imagenSeleccionada" (click)="$event.stopPropagation()">
+    <!-- MODAL LIGHTBOX -->
+    <div class="lightbox-backdrop" [class.is-active]="imagenSeleccionada() !== null" (click)="cerrarLightbox()">
 
-            <button class="btn-close-lightbox" (click)="cerrarLightbox()">
+        @if (imagenSeleccionada(); as hito) {
+        <div class="lightbox-content-card" (click)="$event.stopPropagation()">
+
+            <button class="btn-close-lightbox" (click)="cerrarLightbox()" aria-label="Cerrar modal">
                 <i class="fa-solid fa-xmark"></i>
             </button>
 
             <div class="lightbox-layout-split">
                 <div class="lightbox-left-image">
-                    <img [src]="imagenSeleccionada.imagenUrl" [alt]="imagenSeleccionada.titulo">
+                    <img [src]="hito.imagenUrl" [alt]="hito.titulo">
                 </div>
                 <div class="lightbox-right-note">
-                    <span class="note-badge-anio"><i class="fa-solid fa-calendar-check"></i> Año {{
-                        imagenSeleccionada.anio }}</span>
-                    <h3>{{ imagenSeleccionada.titulo }}</h3>
+                    <span class="note-badge-anio">
+                        <i class="fa-solid fa-calendar-check"></i> Año {{ hito.anio }}
+                    </span>
+                    <h3>{{ hito.titulo }}</h3>
                     <hr class="divider-green">
                     <p class="note-text-description">
-                        {{ imagenSeleccionada.descripcion }}
+                        {{ hito.descripcion }}
                     </p>
                 </div>
             </div>
 
         </div>
+        }
     </div>
 
 </section>
