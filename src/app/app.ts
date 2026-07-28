@@ -11,7 +11,7 @@ import { FooterFipazComponent } from './components/footer-fipaz/footer-fipaz';
 import { GaleriaHistoricaComponent } from './components/galeria-historica/galeria-historica';
 import { ContadorFipazComponent } from "./components/contador-fipaz/contador-fipaz";
 import { SeccionInstitucionalComponent } from './components/seccion-institucional/seccion-institucional';
-import { BlogsFipaz } from './components/blogs.fipaz/blogs.fipaz';
+import { BlogsFipaz } from './components/blogs-fipaz/blogs.fipaz';
 import { ContactosFipaz } from './components/contactos-fipaz/contactos-fipaz';
 
 
