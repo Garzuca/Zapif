@@ -16,6 +16,8 @@
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s ease;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
 }
 
 .modal-backdrop-visitantes.is-open {
@@ -30,24 +32,21 @@
     padding: 24px;
     border-radius: var(--radius);
 
-    /* CONTROL DE ALTURA */
-    max-height: 85vh;
-    /* Límite de alto vertical */
+    /* CONTROL DE ALTURA Y SCROLL FLUIDO */
+    max-height: 88vh;
     display: flex;
     flex-direction: column;
-    /* Apila Header, Tabs y Contenido */
-
-    /* QUITAMOS EL OVERFLOW DE AQUÍ */
-    overflow: hidden !important;
-    /* Evita que la tarjeta entera scrollee */
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y;
 
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2) !important;
-    transform: translateY(30px);
+    transform: scale(0.96);
     transition: transform 0.3s ease;
 }
 
 .modal-backdrop-visitantes.is-open .modal-visitantes-card {
-    transform: translateY(0);
+    transform: scale(1);
 }
 
 /* Cabecera Aplicando el Verde Institucional */
@@ -133,6 +132,33 @@
     background: var(--success);
     /* Active verde corporativo */
     color: var(--surface);
+}
+
+/* Zona de Renderizado de Contenido con Scroll Interno */
+.tab-content-render-zone {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 6px;
+    -webkit-overflow-scrolling: touch;
+}
+
+.tab-content-render-zone::-webkit-scrollbar {
+    width: 6px;
+}
+
+.tab-content-render-zone::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.tab-content-render-zone::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+}
+
+.tab-content-render-zone::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.3);
 }
 
 /* Bloque Informativo Horarios */
@@ -343,64 +369,75 @@
 }
 
 /* ===========================
-   RESPONSIVE - MÓVILES
+   RESPONSIVE - MÓVILES Y TABLETS
    =========================== */
 @media (max-width: 768px) {
 
-    /* El modal ocupa toda la pantalla en móvil, anclado arriba */
     .modal-backdrop-visitantes {
-        padding: 0;
+        padding: 12px 10px;
         align-items: flex-start;
+        justify-content: center;
     }
 
     .modal-visitantes-card {
         max-width: 100%;
         width: 100%;
-        max-height: 95vh;
-        border-radius: 0 0 20px 20px;
-        padding: 20px 16px 28px 16px;
-        /* Animación desde arriba */
-        transform: translateY(-100%);
+        max-height: calc(100vh - 24px);
+        margin-top: 4px;
+        border-radius: 16px;
+        padding: 16px 14px 20px 14px;
+        transform: scale(0.96);
     }
 
     .modal-backdrop-visitantes.is-open .modal-visitantes-card {
-        transform: translateY(0);
+        transform: scale(1);
     }
 
     /* Cabecera más compacta */
     .header-left-title h3 {
-        font-size: 17px;
+        font-size: 16px;
     }
 
-    /* Tabs se organizan en cuadrícula de 2x2 en móvil */
+    /* Tabs con desplazamiento horizontal táctil suave */
     .tabs-navigation-header {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 8px;
-        overflow-x: visible;
-        padding-bottom: 10px;
+        display: flex;
+        overflow-x: auto;
+        white-space: nowrap;
+        gap: 6px;
+        padding-bottom: 8px;
+        margin-bottom: 14px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    .tabs-navigation-header::-webkit-scrollbar {
+        display: none;
     }
 
     .tabs-navigation-header button {
-        white-space: normal;
-        flex-shrink: unset;
-        padding: 10px 8px;
+        flex: 0 0 auto;
+        white-space: nowrap;
+        padding: 8px 12px;
         font-size: 12px;
-        text-align: center;
-        justify-content: center;
+    }
+
+    /* Zona de contenido scrolleable en móvil */
+    .tab-content-render-zone {
+        padding-right: 2px;
     }
 
     /* Horarios: info en columna */
     .horarios-alert-box {
         flex-direction: column;
         text-align: center;
-        gap: 8px;
-        padding: 16px;
+        gap: 6px;
+        padding: 14px;
+        margin-bottom: 14px;
     }
 
     .alert-text p {
         font-size: 12px;
-        line-height: 1.5;
+        line-height: 1.4;
     }
 
     /* Grid de tickets: 1 columna en móvil */
@@ -409,11 +446,11 @@
         gap: 12px;
     }
 
-    /* Eventos: apilar en columna en lugar de fila horizontal */
+    /* Eventos: apilar en columna */
     .evento-row-item {
         flex-direction: column;
         align-items: flex-start;
-        gap: 10px;
+        gap: 8px;
     }
 
     .ev-core-details {
@@ -424,19 +461,32 @@
         font-size: 13px;
     }
 
-    /* Directorio: 1 columna en móvil */
-    .grid-directory-stands {
-        grid-template-columns: 1fr;
-        gap: 10px;
+    /* Directorio: filtros con scroll horizontal */
+    .directorio-filters-bar {
+        display: flex;
+        overflow-x: auto;
+        white-space: nowrap;
+        gap: 6px;
+        padding-bottom: 6px;
+        margin-bottom: 14px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
     }
 
-    .directorio-filters-bar {
-        gap: 6px;
+    .directorio-filters-bar::-webkit-scrollbar {
+        display: none;
     }
 
     .directorio-filters-bar button {
+        flex: 0 0 auto;
         font-size: 11px;
         padding: 5px 12px;
+    }
+
+    /* Grid de stands: 1 columna */
+    .grid-directory-stands {
+        grid-template-columns: 1fr;
+        gap: 10px;
     }
 }
 

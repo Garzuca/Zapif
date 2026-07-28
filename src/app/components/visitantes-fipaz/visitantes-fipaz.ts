@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ElementRef, ViewChild, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 interface Ticket {
@@ -31,16 +31,25 @@ interface StandExpositor {
   templateUrl: './visitantes-fipaz.html',
   styleUrl: './visitantes-fipaz.css'
 })
-export class VisitantesFipazComponent {
+export class VisitantesFipazComponent implements OnChanges {
 
   @Input() isOpen: boolean = false;
   @Output() closeModal = new EventEmitter<void>();
+
+  @ViewChild('tabZone') tabZone?: ElementRef<HTMLDivElement>;
 
   // Pestaña inicial activa
   tabActiva: string = 'precios';
 
   // Filtro inicial para el directorio de stands
   filtroStandActivo: string = 'TODOS';
+
+  // Detecta apertura del modal para resetear scroll a la parte superior
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['isOpen'] && changes['isOpen'].currentValue === true) {
+      this.resetearScroll();
+    }
+  }
 
   // 1. Datos de Accesos y Tarifas
   tickets: Ticket[] = [
@@ -71,10 +80,21 @@ export class VisitantesFipazComponent {
 
   cambiarTab(tab: string): void {
     this.tabActiva = tab;
+    this.resetearScroll();
   }
 
   filtrarStands(categoria: string): void {
     this.filtroStandActivo = categoria;
+    this.resetearScroll();
+  }
+
+  // Resetea el scroll de la pestaña al inicio
+  private resetearScroll(): void {
+    setTimeout(() => {
+      if (this.tabZone?.nativeElement) {
+        this.tabZone.nativeElement.scrollTop = 0;
+      }
+    }, 0);
   }
 
   // Lógica de filtrado en tiempo real para el directorio

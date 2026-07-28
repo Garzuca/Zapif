@@ -29,20 +29,20 @@ export class SelectorBloquesComponent {
   bloqueSeleccionadoId: string | null = null;
   pisoSeleccionado: string | null = null;
 
-  // Datos reales basados en el flujo de FIPAZ
+  // 5 Bloques representativos de FIPAZ
   bloques: Bloque[] = [
     {
       id: 'rojo',
       nombre: 'Bloque Rojo (Internacional)',
-      imagen: 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=600', // Reemplazar por tu render local
-      ocupacion: 15,
-      descripcion: 'El centro neurálgico de la feria. Ideal para marcas internacionales, grandes corporaciones y embajadas de alta visibilidad.',
+      imagen: 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=600',
+      ocupacion: 85,
+      descripcion: 'El centro neurálgico de la feria. Ideal para marcas internacionales, grandes corporaciones y delegaciones diplomáticas de alta visibilidad.',
       disclaimer: 'La asignación del stand final dentro del bloque será coordinada por el equipo comercial para garantizar una distribución armoniosa.',
       pisos: ['Planta Baja', 'Planta Alta']
     },
     {
       id: 'amarillo',
-      nombre: 'Bloque Amarillo (Bolivia)',
+      nombre: 'Bloque Amarillo (Bolivia & PyMEs)',
       imagen: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=600',
       ocupacion: 60,
       descripcion: 'Espacio dedicado a la producción nacional, PyMEs, emprendimientos locales e instituciones estatales e industriales de Bolivia.',
@@ -51,12 +51,30 @@ export class SelectorBloquesComponent {
     },
     {
       id: 'verde',
-      nombre: 'Bloque Verde (La Paz)',
+      nombre: 'Bloque Verde (Innovación & La Paz)',
       imagen: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=600',
       ocupacion: 95,
-      descripcion: 'Área dinámica para la innovación, tecnología, artesanía de vanguardia y servicios de valor agregado.',
-      disclaimer: 'Al contar con un solo piso, tu ubicación general quedará asignada de forma directa tras completar este registro.',
-      pisos: ['Planta Única'] // Solo un piso -> Selección automática
+      descripcion: 'Área dinámica para la innovación, startups, tecnología, artesanía de vanguardia y servicios de valor agregado.',
+      disclaimer: 'Al contar con un solo nivel principal, tu ubicación general quedará asignada de forma directa tras completar este registro.',
+      pisos: ['Planta Única']
+    },
+    {
+      id: 'azul',
+      nombre: 'Bloque Azul (Banca & Servicios)',
+      imagen: 'https://images.unsplash.com/photo-1554469384-e58fac16e23a?q=80&w=600',
+      ocupacion: 40,
+      descripcion: 'Destinado a servicios financieros, banca, seguros, consultoras corporativas y soluciones tecnológicas B2B.',
+      disclaimer: 'Los stands cuentan con conexiones de alta velocidad e instalaciones eléctricas reforzadas para demostraciones operativas.',
+      pisos: ['Planta Baja', 'Planta Alta']
+    },
+    {
+      id: 'bulevar',
+      nombre: 'Bulevar Exterior & Gastronomía',
+      imagen: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=600',
+      ocupacion: 75,
+      descripcion: 'Zona de alto tráfico peatonal al aire libre para la industria automotriz, maquinaria pesada y la gran plaza gastronómica.',
+      disclaimer: 'Ubicación privilegiada al aire libre con flujo continuo de familias y visitantes durante todos los días del evento.',
+      pisos: ['Área Externa']
     }
   ];
 
