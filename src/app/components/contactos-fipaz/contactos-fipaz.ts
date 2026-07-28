@@ -26,7 +26,7 @@ export class ContactosFipaz {
       icono: 'fa-solid fa-envelope-open-text',
       titulo: 'Correo General',
       descripcion: 'Para consultas e información general sobre la feria',
-      valor: 'info@fipaz.bo',
+      valor: 'feriafipaz@gmail.com',
       tipo: 'email',
       colorClass: 'canal-rojo'
     },
@@ -53,14 +53,14 @@ export class ContactosFipaz {
       icono: 'fa-brands fa-whatsapp',
       titulo: 'WhatsApp Oficial',
       descripcion: 'Atención rápida por mensajería instantánea',
-      valor: '+591 2 123 4567',
+      valor: '+59176204510',
       tipo: 'telefono',
       colorClass: 'canal-rojo'
     }
   ];
 
   datosUbicacion = {
-    direccion: 'Campo Ferial Chuquiago Marka',
+    direccion: 'Oficina San Pedro, Cap. Castrillo Nº 363',
     ciudad: 'La Paz, Bolivia',
     referencia: 'Av. Montes, entre calles Bozo y Loayza',
     horario: 'Lunes a Viernes: 9:00 – 17:00',
