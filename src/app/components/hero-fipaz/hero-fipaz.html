@@ -1,13 +1,14 @@
 <div class="hero-master-container">
 
-    <!-- Video de fondo en bucle -->
-    <div class="video-background-wrapper">
-        <video autoplay loop muted playsinline class="video-bg">
-            <!-- URL de ejemplo con video de stock de feria/luces de noche. Luego puedes cambiarlo por un video real de la feria de un drive o assets -->
-            <source src="assets/videos/ejem1.mp4" type="video/mp4">
-            Tu navegador no soporta videos de fondo.
-        </video>
-        <!-- Capa de contraste para asegurar la legibilidad del texto corporativo -->
+    <!-- Carrusel de fondos con efecto Ken Burns (crossfade CSS puro) -->
+    <div class="hero-slideshow" aria-hidden="true">
+        <div class="hero-slide slide-1"></div>
+        <div class="hero-slide slide-2"></div>
+        <div class="hero-slide slide-3"></div>
+        <div class="hero-slide slide-4"></div>
+        <div class="hero-slide slide-5"></div>
+        <div class="hero-slide slide-6"></div>
+        <!-- Capa de contraste para legibilidad del texto -->
         <div class="hero-overlay"></div>
     </div>
 
@@ -32,9 +33,10 @@
                 Espacio Expositor
             </button>
             <button class="btn-hero-secondary">
-                <i class="fa-solid fa-calendar-lines-pen"></i> Explorar Agenda B2B
+                <i class="fa-solid fa-calendar-days"></i> Explorar Agenda B2B
             </button>
         </div>
     </div>
+
 
 </div>

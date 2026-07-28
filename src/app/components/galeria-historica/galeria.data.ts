@@ -57,7 +57,7 @@ export const GALERIA_HITOS: HitoHistorico[] = [
         La feria presentó:
         Más de 300 expositores.
         Pymes, Emprendimientos, Industria, Comercio y Servicio.`,
-        imagenUrl: 'assets/images/galeria/Fipaz-2011.jpg'
+        imagenUrl: 'assets/images/galeria/Fipaz-2012.jpg'
     },
     {
         id: 7,
@@ -80,10 +80,10 @@ export const GALERIA_HITOS: HitoHistorico[] = [
     },
     {
         id: 9,
-        anio: 2015,
-        titulo: 'FIPAZ 2015',
+        anio: 2016,
+        titulo: 'FIPAZ 2016',
         descripcion: `La Feria Internacional de La Paz (Fipaz 2016) se realiza del 5 al 16 de octubre en el Campo Ferial Chuquiago Marka de Nuestra señora de La Paz.
         Recibe a empresas nacionales e internacionales para que micro, pequeños y grandes empresarios muestren lo mejor de sus productos y servicios.`,
-        imagenUrl: 'assets/images/galeria/Fipaz-2015.jpg'
+        imagenUrl: 'assets/images/galeria/Fipaz-2016.jpg'
     }
 ];
