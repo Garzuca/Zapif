@@ -1,11 +1,11 @@
-<nav class="navbar-master">
+<nav class="navbar-master" [class.menu-mobile-open]="menuAbierto">
     <!-- 1. BARRA SUPERIOR UTILITARIA (Estilo Internacional) -->
     <div class="top-utility-bar">
         <div class="utility-container">
             <span class="utility-item"><i class="fa-solid fa-calendar-days"></i> Octubre - Noviembre 2026</span>
             <span class="utility-item"><i class="fa-solid fa-location-dot"></i> Campo Ferial Chuquiago Marka, La
                 Paz</span>
-            <span class="utility-item"><i class="fa-solid fa-fire"></i>25 Años El Fuego que nunca se apaga</span>
+            <span class="utility-item"><i class="fa-solid fa-fire"></i> 25 Años El Fuego que nunca se apaga</span>
         </div>
     </div>
 
@@ -14,48 +14,48 @@
         <div class="nav-container">
 
             <!-- Logo / Identidad Izquierda -->
-            <div class="nav-logo-zone">
+            <div class="nav-logo-zone" (click)="cerrarMenu()">
                 <span class="brand-text">FIPAZ <span class="brand-year">2026</span></span>
                 <span class="brand-tagline">Feria Internacional</span>
             </div>
 
-            <!-- Enlaces Centrales -->
-            <ul class="nav-links-links">
-                <li><a href="#" class="nav-link active">Inicio</a></li>
-                <li><a href="#institucional" class="nav-link">Nosotros</a></li>
-                <li><a href="#eventos" class="nav-link">Programa</a></li>
-                <li><a href="#galeria" class="nav-link">Galería</a></li>
-                <li><a href="#blogs" class="nav-link">Noticias</a></li>
-                <li><a href="#patrocinadores" class="nav-link">Patrocinadores</a></li>
-                <li><a href="#contacto" class="nav-link">Contacto</a></li>
-            </ul>
+            <!-- Botón hamburguesa móvil -->
+            <button class="burger-menu" (click)="toggleMenu()" [class.is-active]="menuAbierto" aria-label="Abrir menú de navegación">
+                <span class="burger-line"></span>
+                <span class="burger-line"></span>
+                <span class="burger-line"></span>
+            </button>
 
-            <!-- Acción Destacada Derecha (CTA) -->
-            <!-- Envolvemos ambos botones en esta nueva clase -->
-            <div class="navbar-buttons-container">
+            <!-- Menú central y móvil -->
+            <div class="nav-menu-wrapper" [class.is-active]="menuAbierto">
+                <!-- Enlaces Centrales -->
+                <ul class="nav-links-links">
+                    <li><a href="#" class="nav-link active" (click)="cerrarMenu()">Inicio</a></li>
+                    <li><a href="#institucional" class="nav-link" (click)="cerrarMenu()">Nosotros</a></li>
+                    <li><a href="#eventos" class="nav-link" (click)="cerrarMenu()">Programa</a></li>
+                    <li><a href="#galeria" class="nav-link" (click)="cerrarMenu()">Galería</a></li>
+                    <li><a href="#blogs" class="nav-link" (click)="cerrarMenu()">Noticias</a></li>
+                    <li><a href="#patrocinadores" class="nav-link" (click)="cerrarMenu()">Patrocinadores</a></li>
+                    <li><a href="#contacto" class="nav-link" (click)="cerrarMenu()">Contacto</a></li>
+                </ul>
 
-                <button class="btn-visitante-outline" (click)="dispararModalVisitantes()">
-                    <i class="fa-solid fa-map-location-dot"></i> Guía del Visitante
-                </button>
+                <!-- Acciones Destacadas -->
+                <div class="navbar-buttons-container">
+                    <button class="btn-visitante-outline" (click)="dispararModalVisitantes()">
+                        <i class="fa-solid fa-map-location-dot"></i> Guía del Visitante
+                    </button>
+                    <button class="btn-cta-nav" (click)="dispararModal()">
+                        <i class="fa-solid fa-building-circle-check"></i> Quiero Exponer
+                    </button>
+                </div>
 
-                <button class="btn-cta-nav" (click)="dispararModal()">
-                    <i class="fa-solid fa-building-circle-check"></i> Quiero Exponer
-                </button>
-
-            </div>
-            <!--Iconos de Contactos-->
-            <div class="contacto-iconos">
-                <!-- Teléfono -->
-                <a href="tel:+591XXXXXXXX"><i class="fa-solid fa-phone"></i></a>
-
-                <!-- WhatsApp -->
-                <a href="https://wa.me/591XXXXXXXX" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
-
-                <!-- Correo / Gmail -->
-                <a href="mailto:ejemplo@correo.com"><i class="fa-solid fa-at"></i></a>
-
-                <!-- Ubicación (FIPAZ / La Paz) -->
-                <a href="#" target="_blank"><i class="fa-solid fa-location-dot"></i></a>
+                <!-- Iconos de Contactos -->
+                <div class="contacto-iconos">
+                    <a href="tel:(2)2485000" aria-label="Llamar FIPAZ"><i class="fa-solid fa-phone"></i></a>
+                    <a href="https://wa.me/59176204510" target="_blank" aria-label="WhatsApp FIPAZ"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="mailto:infofipaz@gmail.com" aria-label="Correo FIPAZ"><i class="fa-solid fa-at"></i></a>
+                    <a href="#" target="_blank" aria-label="Ubicación FIPAZ"><i class="fa-solid fa-location-dot"></i></a>
+                </div>
             </div>
 
         </div>

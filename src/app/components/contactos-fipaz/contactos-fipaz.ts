@@ -26,7 +26,7 @@ export class ContactosFipaz {
       icono: 'fa-solid fa-envelope-open-text',
       titulo: 'Correo General',
       descripcion: 'Para consultas e información general sobre la feria',
-      valor: 'feriafipaz@gmail.com',
+      valor: 'infofipaz@gmail.com',
       tipo: 'email',
       colorClass: 'canal-rojo'
     },
@@ -35,7 +35,7 @@ export class ContactosFipaz {
       icono: 'fa-solid fa-handshake',
       titulo: 'Área Comercial',
       descripcion: 'Registro de stands, tarifas y contratos de exposición',
-      valor: 'comercial@fipaz.bo',
+      valor: 'ejecutiva1.fipaz@gmail.com',
       tipo: 'email',
       colorClass: 'canal-verde'
     },
@@ -44,7 +44,7 @@ export class ContactosFipaz {
       icono: 'fa-solid fa-newspaper',
       titulo: 'Prensa y Comunicación',
       descripcion: 'Acreditaciones, entrevistas y comunicados de prensa',
-      valor: 'prensa@fipaz.bo',
+      valor: 'feriafipaz@gmail.com',
       tipo: 'email',
       colorClass: 'canal-gris'
     },
@@ -62,9 +62,8 @@ export class ContactosFipaz {
   datosUbicacion = {
     direccion: 'Oficina San Pedro, Cap. Castrillo Nº 363',
     ciudad: 'La Paz, Bolivia',
-    referencia: 'Av. Montes, entre calles Bozo y Loayza',
-    horario: 'Lunes a Viernes: 9:00 – 17:00',
-    horarioFeria: 'Durante la feria: 10:00 – 21:00'
+    referencia: '',
+    horario: 'Lunes a Sábado: 08:30 - 12:30'
   };
 
   scrollAlContacto(): void {

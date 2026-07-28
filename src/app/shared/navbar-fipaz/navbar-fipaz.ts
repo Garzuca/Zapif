@@ -14,11 +14,23 @@ export class NavbarFipazComponent {
   @Output() onQuieroExponerClick = new EventEmitter<void>();
   @Output() onQuieroVisitarClick = new EventEmitter<void>();
 
+  menuAbierto = false;
+
+  toggleMenu(): void {
+    this.menuAbierto = !this.menuAbierto;
+  }
+
+  cerrarMenu(): void {
+    this.menuAbierto = false;
+  }
+
   dispararModal(): void {
     this.onQuieroExponerClick.emit();
+    this.cerrarMenu();
   }
 
   dispararModalVisitantes(): void {
     this.onQuieroVisitarClick.emit();
+    this.cerrarMenu();
   }
 }

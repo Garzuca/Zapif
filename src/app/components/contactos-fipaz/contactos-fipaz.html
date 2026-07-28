@@ -4,75 +4,124 @@
   <header class="contactos-header">
     <span class="contactos-sub-title"><i class="fa-solid fa-headset"></i> Canales de Atención</span>
     <h2>¿Cómo podemos ayudarte?</h2>
-    <p>Contáctate con el equipo de la FIPAZ a través del canal que mejor se adapte a tu consulta. Respondemos en horario de oficina.</p>
+    <p>Contáctate con el equipo de la FIPAZ a través del canal que mejor se adapte a tu consulta. Respondemos en horario
+      de oficina.</p>
   </header>
 
-  <!-- Layout principal: tarjetas + ubicación -->
-  <div class="contactos-main-layout">
+  <!-- BLOQUES DE UBICACIÓN (3 columnas en una fila) -->
+  <div class="ubicaciones-horizontal-grid">
 
-    <!-- PANEL IZQUIERDO: Tarjetas de canales de contacto -->
-    <div class="canales-grid">
-      <article *ngFor="let canal of canales" class="canal-card" [class]="canal.colorClass">
-        <div class="canal-icon-box">
-          <i [class]="canal.icono"></i>
-        </div>
-        <div class="canal-info">
-          <h3>{{ canal.titulo }}</h3>
-          <p>{{ canal.descripcion }}</p>
-          <a *ngIf="canal.tipo === 'email'" [href]="'mailto:' + canal.valor" class="canal-link">
-            <i class="fa-solid fa-arrow-up-right-from-square"></i> {{ canal.valor }}
-          </a>
-          <a *ngIf="canal.tipo === 'telefono'" [href]="'https://wa.me/' + canal.valor" target="_blank" class="canal-link">
-            <i class="fa-solid fa-arrow-up-right-from-square"></i> {{ canal.valor }}
-          </a>
-        </div>
-      </article>
-    </div>
-
-    <!-- PANEL DERECHO: Ubicación + horario + CTA -->
-    <aside class="ubicacion-panel">
-
-      <!-- Mapa embebido -->
+    <!-- UBICACIÓN 1: Oficina Central (San Pedro) -->
+    <div class="ubicacion-card">
       <div class="mapa-wrapper">
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3825.2!2d-68.1374!3d-16.5000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x915f20a1c6f3b3b5%3A0x0!2sCampo%20Ferial%20Chuquiago%20Marka!5e0!3m2!1ses!2sbo!4v1234567890"
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          title="Ubicación del Campo Ferial Chuquiago Marka en Google Maps"
-          aria-label="Mapa de ubicación FIPAZ">
+          src="https://www.google.com.bo/maps/embed?pb=!1m18!1m12!1m3!1d3825.434316104443!2d-68.13601552594582!3d-16.50428988424269!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x915f20706509f6e3%3A0xe54d241ea09b30be!2sCalle%20Capit%C3%A1n%20Castrillo%20363%2C%20La%20Paz!5e0!3m2!1ses!2sbo!4v1700000000000!5m2!1ses!2sbo"
+          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          title="Oficina Central - San Pedro">
         </iframe>
       </div>
-
-      <!-- Datos de ubicación -->
       <div class="ubicacion-detalles">
         <div class="detalle-item">
-          <div class="detalle-icon-box"><i class="fa-solid fa-location-dot"></i></div>
+          <div class="detalle-icon-box"><i class="fa-solid fa-building"></i></div>
           <div>
-            <strong>{{ datosUbicacion.direccion }}</strong>
-            <span>{{ datosUbicacion.ciudad }}</span>
-            <span class="detalle-referencia">{{ datosUbicacion.referencia }}</span>
+            <strong>Oficina Central - San Pedro</strong>
+            <span>Cap. Castrillo Nº 363, San Pedro</span>
+            <span>La Paz, Bolivia</span>
           </div>
         </div>
         <div class="detalle-item">
           <div class="detalle-icon-box"><i class="fa-regular fa-clock"></i></div>
           <div>
             <strong>Horario de Atención</strong>
-            <span>{{ datosUbicacion.horario }}</span>
-            <span>{{ datosUbicacion.horarioFeria }}</span>
+            <span>Lunes a Sábado: 08:30 - 12:30</span>
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- CTA hacia el footer -->
-      <button class="btn-ir-formulario" (click)="scrollAlContacto()">
-        <i class="fa-solid fa-paper-plane"></i>
-        ¿Prefieres que te contactemos? Deja tus datos
-        <i class="fa-solid fa-arrow-down"></i>
-      </button>
+    <!-- UBICACIÓN 2: Campo Ferial (Chuquiago Marka) -->
+    <div class="ubicacion-card">
+      <div class="mapa-wrapper">
+        <iframe
+          src="https://www.google.com.bo/maps/embed?pb=!1m18!1m12!1m3!1d3824.9654157147775!2d-68.10649762594528!3d-16.52924158422409!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x915f20f8c2e64627%3A0xe7dc2815f91754!2sCampo%20Ferial%20Chuquiago%20Marka!5e0!3m2!1ses!2sbo!4v1700000000000!5m2!1ses!2sbo"
+          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          title="Campo Ferial Chuquiago Marka">
+        </iframe>
+      </div>
+      <div class="ubicacion-detalles">
+        <div class="detalle-item">
+          <div class="detalle-icon-box"><i class="fa-solid fa-map-location-dot"></i></div>
+          <div>
+            <strong>Campo Ferial - Chuquiago Marka</strong>
+            <span>Bajo Seguencoma, Av. Costanera</span>
+            <span>La Paz, Bolivia</span>
+          </div>
+        </div>
+        <div class="detalle-item">
+          <div class="detalle-icon-box"><i class="fa-regular fa-clock"></i></div>
+          <div>
+            <strong>Horario de Atención</strong>
+            <span>Lunes a Sabado: 8:00 - 12:30</span>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    </aside>
+    <!-- UBICACIÓN 3: Oficina de Enlace - El Alto -->
+    <div class="ubicacion-card">
+      <div class="mapa-wrapper">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3799.1128215065305!2d-63.213609!3d-17.786393999999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTfCsDQ3JzExLjAiUyA2M8KwMTInNDkuMCJX!5e0!3m2!1ses-419!2sbo!4v1785250065258!5m2!1ses-419!2sbo"
+          width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+          referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      </div>
+      <div class="ubicacion-detalles">
+        <div class="detalle-item">
+          <div class="detalle-icon-box"><i class="fa-solid fa-city"></i></div>
+          <div>
+            <strong>Oficina de Enlace - Santa Cruz</strong>
+            <span>Oficina 3er y 4to anillo, Paura N°42</span>
+            <span>Santa Cruz, Bolivia</span>
+          </div>
+        </div>
+        <div class="detalle-item">
+          <div class="detalle-icon-box"><i class="fa-regular fa-clock"></i></div>
+          <div>
+            <strong>Horario de Atención</strong>
+            <span>Lunes a Sábado: 08:30 - 12:30</span>
+          </div>
+        </div>
+      </div>
+    </div>
 
+  </div>
+
+  <!-- CONTACT CARDS (Horizontal row under locations) -->
+  <div class="canales-horizontal-row">
+    <article *ngFor="let canal of canales" class="canal-card" [class]="canal.colorClass">
+      <div class="canal-icon-box">
+        <i [class]="canal.icono"></i>
+      </div>
+      <div class="canal-info">
+        <h3>{{ canal.titulo }}</h3>
+        <p>{{ canal.descripcion }}</p>
+        <a *ngIf="canal.tipo === 'email'" [href]="'mailto:' + canal.valor" class="canal-link">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i> {{ canal.valor }}
+        </a>
+        <a *ngIf="canal.tipo === 'telefono'" [href]="'https://wa.me/' + canal.valor" target="_blank" class="canal-link">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i> {{ canal.valor }}
+        </a>
+      </div>
+    </article>
+  </div>
+
+  <!-- CTA hacia el footer -->
+  <div class="cta-wrapper">
+    <button class="btn-ir-formulario" (click)="scrollAlContacto()">
+      <i class="fa-solid fa-paper-plane"></i>
+      ¿Prefieres que te contactemos? Deja tus datos
+      <i class="fa-solid fa-arrow-down"></i>
+    </button>
   </div>
 
 </section>

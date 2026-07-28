@@ -45,7 +45,7 @@ export class VisitantesFipazComponent {
   // 1. Datos de Accesos y Tarifas
   tickets: Ticket[] = [
     { tipo: 'Entrada Mayor', precio: '30 BOB', beneficio: 'Acceso total a todos los pabellones comerciales y shows nocturnos.', icono: 'fa-solid fa-ticket', esDestacado: true },
-    { tipo: 'Entrada Menor', precio: '10 BOB', beneficio: 'Válido para niños de 5 a 12 años. Menores de 5 años entran gratis.', icono: 'fa-solid fa-child', esDestacado: false },
+    { tipo: 'Entrada Menor', precio: '15 BOB', beneficio: 'Válido para niños de 5 a 9 años. Menores de 5 años entran gratis.', icono: 'fa-solid fa-child', esDestacado: false },
     { tipo: 'Adulto Mayor / Personas con Discapacidad', precio: '15 BOB', beneficio: 'Tarifa preferencial presentando carnet de identidad o de discapacidad.', icono: 'fa-solid fa-blind', esDestacado: false }
   ];
 
