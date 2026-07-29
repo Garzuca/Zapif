@@ -1,383 +1,325 @@
+/* ============================================
+   VARIABLES DE ESTE COMPONENTE (INTEGRADO CON STYLES.CSS)
+   ============================================ */
 .navbar-master {
-    width: 100%;
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
+    --nav-bg: var(--secondary-dark, #000000);
+    --nav-bg-alt: var(--secondary, #3C3C3B);
+    --nav-text: #FFFFFF;
+    --nav-text-muted: #B0B0B0;
+    --nav-accent: var(--primary, #E31425);
+    --nav-accent-dark: var(--primary-dark, #C1282E);
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+    width: 100%;
 }
 
-/* Barra Utilitaria Superior */
+/* ============================================
+   1. BARRA SUPERIOR UTILITARIA
+   ============================================ */
 .top-utility-bar {
-    background: var(--secondary-dark);
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 11px;
-    padding: 6px 0;
-    font-weight: 500;
-    transition: all 0.3s ease;
+    background: var(--nav-bg-alt);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    overflow-x: auto;
+    scrollbar-width: none;
+    width: 100%;
+}
+
+.top-utility-bar::-webkit-scrollbar {
+    display: none;
 }
 
 .utility-container {
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 0 40px;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    gap: 15px;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 8px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    white-space: nowrap;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.utility-item {
+    color: var(--nav-text-muted);
+    font-size: 0.78rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
 }
 
 .utility-item i {
-    color: var(--primary);
-    margin-right: 4px;
+    color: var(--nav-accent);
 }
 
-/* Barra de Navegación Principal */
+/* ============================================
+   2. MENÚ PRINCIPAL
+   ============================================ */
 .main-navigation-bar {
-    padding: 5px 0;
-    position: relative;
+    background: var(--nav-bg);
+    box-sizing: border-box;
+    width: 100%;
 }
 
 .nav-container {
-    max-width: 100%;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 10px 40px;
+    padding: 12px 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    position: relative;
+    gap: 16px;
+    box-sizing: border-box;
+    width: 100%;
 }
 
-/* Identidad Visual (Logo) */
+/* --- Logo --- */
 .nav-logo-zone {
-    display: inline-flex;
+    display: flex;
     align-items: baseline;
-    /* Alinea las letras por su base de texto */
-    gap: 2px;
-    /* Espaciado sutil entre letras/elementos */
+    gap: 1px;
     cursor: pointer;
-    z-index: 1010;
-    margin: 0 3px 0 0;
-    user-select: none;
-    /* Evita que el texto se seleccione al hacer clic */
-}
-
-/* Estilos para las letras del Acrónimo FIPAZ */
-.color-a,
-.color-b {
-    font-size: 24px;
-    font-weight: 900;
-    line-height: 1;
-    letter-spacing: -0.5px;
-}
-
-.color-a {
-    color: var(--primary);
-    /* Verde FIPAZ */
-}
-
-.color-b {
-    color: var(--success);
-    /* O el segundo color institucional/dark */
-}
-
-/* El año (2026) en un formato distintivo tipo Badge o Subtexto */
-.brand-year {
-    font-size: 14px;
+    flex-shrink: 0;
     font-weight: 800;
-    color: var(--primary);
+    font-size: 1.5rem;
+}
+
+.nav-logo-zone .color-a {
+    color: var(--nav-accent);
+}
+
+.nav-logo-zone .color-b {
+    color: var(--nav-text);
+}
+
+.brand-year {
+    font-size: 0.75rem;
+    color: var(--nav-accent);
+    font-weight: 700;
     margin-left: 4px;
 }
 
-/* Ocultar el tagline en pantallas pequeñas para que no sature el Navbar */
 .brand-tagline {
-    font-size: 10px;
-    font-weight: 600;
-    color: var(--text-light);
-    text-transform: uppercase;
-    margin-left: 6px;
-    border-left: 1px solid var(--border);
-    padding-left: 6px;
+    display: none;
+    font-size: 0.7rem;
+    color: var(--nav-text-muted);
+    font-weight: 400;
+    margin-left: 8px;
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    padding-left: 8px;
 }
 
-/* En móviles ocultamos el tagline para mantener el navbar limpio */
-@media (max-width: 768px) {
-    .brand-tagline {
-        display: none;
-    }
+/* --- Botón hamburguesa --- */
+.burger-menu {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 1100;
 }
 
-.brand-text {
-    font-size: 22px;
-    font-weight: 900;
-    color: var(--text-strong);
-    letter-spacing: -0.5px;
-    line-height: 1;
+.burger-line {
+    width: 24px;
+    height: 2px;
+    background: var(--nav-text);
+    transition: transform 0.25s ease, opacity 0.25s ease;
 }
 
-.brand-year {
-    color: var(--primary);
+.burger-menu.is-active .burger-line:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
 }
 
-.brand-tagline {
-    font-size: 10px;
-    text-transform: uppercase;
-    font-weight: 700;
-    color: var(--text-light);
-    letter-spacing: 1px;
-    margin-top: 2px;
+.burger-menu.is-active .burger-line:nth-child(2) {
+    opacity: 0;
 }
 
-/* Contenedor central (Wrapper) que agrupa enlaces, botones e iconos */
+.burger-menu.is-active .burger-line:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* --- Wrapper del menú (links + botones + contacto) --- */
 .nav-menu-wrapper {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    flex-grow: 1;
-    margin-left: 40px;
+    gap: 16px;
+    flex-wrap: nowrap;
 }
 
-/* Enlaces de Navegación */
 .nav-links-links {
-    display: flex;
     list-style: none;
-    gap: 30px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
     margin: 0;
     padding: 0;
+    flex-wrap: nowrap;
 }
 
 .nav-link {
+    color: var(--nav-text-muted);
     text-decoration: none;
-    color: var(--text-main);
-    font-size: 14px;
+    font-size: 0.82rem;
     font-weight: 600;
-    padding: 8px 0;
-    position: relative;
-    transition: color 0.2s ease;
+    white-space: nowrap;
+    transition: color 0.15s ease;
 }
 
-.nav-link:hover {
-    color: var(--primary);
-}
-
+.nav-link:hover,
 .nav-link.active {
-    color: var(--primary);
+    color: var(--nav-text);
 }
 
-.nav-link.active::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: var(--primary);
-    border-radius: 2px;
-}
-
-/* Botón de Acción (Quiero Exponer / Guía del Visitante) */
 .navbar-buttons-container {
     display: flex;
-    flex-direction: row;
     align-items: center;
-    gap: 12px;
-}
-
-.btn-visitante-outline {
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--text-main);
-}
-
-.btn-visitante-outline:hover {
-    background: var(--background-alt);
-    border-color: var(--primary);
-    color: var(--primary);
-}
-
-.btn-cta-nav {
-    background: var(--primary);
-    border: none;
-    color: var(--surface);
-}
-
-.btn-cta-nav:hover {
-    background: var(--primary-dark);
-    transform: translateY(-1px);
+    gap: 8px;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
 }
 
 .btn-visitante-outline,
 .btn-cta-nav {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 10px 18px;
-    font-size: 13px;
-    font-weight: 700;
-    border-radius: var(--radius);
+    gap: 6px;
+    padding: 7px 12px;
+    border-radius: var(--radius, 8px);
+    font-size: 0.78rem;
+    font-weight: 600;
     cursor: pointer;
     white-space: nowrap;
+    border: 1px solid transparent;
     transition: all 0.2s ease;
 }
 
-/* Iconos de Contactos */
+.btn-visitante-outline {
+    background: transparent;
+    color: var(--nav-text);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.btn-visitante-outline:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--nav-text);
+}
+
+.btn-cta-nav {
+    background: var(--nav-accent);
+    color: white;
+}
+
+.btn-cta-nav:hover {
+    background: var(--nav-accent-dark);
+    transform: translateY(-1px);
+}
+
 .contacto-iconos {
     display: flex;
     align-items: center;
-    gap: 16px;
-    font-size: 18px;
-    margin-left: 20px;
+    gap: 10px;
+    flex-shrink: 0;
 }
 
 .contacto-iconos a {
-    color: var(--text-main);
-    text-decoration: none;
-    transition: color 0.3s ease;
+    color: var(--nav-text-muted);
+    font-size: 0.9rem;
+    transition: color 0.2s ease;
 }
 
 .contacto-iconos a:hover {
-    color: var(--primary);
+    color: var(--nav-accent);
 }
 
-.contacto-iconos i {
-    transition: transform 0.2s ease;
-}
-
-.contacto-iconos a:hover i {
-    transform: scale(1.1);
-}
-
-/* Botón Burger para móviles (oculto en desktop) */
-.burger-menu {
-    display: none;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 24px;
-    height: 18px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    z-index: 1010;
-}
-
-.burger-line {
-    width: 100%;
-    height: 2px;
-    background-color: var(--text-strong);
-    border-radius: 4px;
-    transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
-        opacity 0.2s ease,
-        background-color 0.3s ease;
-    transform-origin: center;
-}
-
-/* Estilos Responsivos (Móviles y Tablets) */
-@media (max-width: 1024px) {
-    .top-utility-bar {
-        display: none;
-        /* Escondemos la barra utilitaria */
-    }
-
+/* ============================================
+   RESPONSIVE: MOBILE Y LAPTOPS HASTA 1199px
+   ============================================ */
+@media (max-width: 1199px) {
     .burger-menu {
         display: flex;
-        /* Mostramos el botón de hamburguesa */
     }
 
-    /* Transformación a 'X' alineada al centro */
-    .burger-menu.is-active .burger-line:nth-child(1) {
-        transform: translateY(8px) rotate(45deg);
-        background-color: var(--primary);
-    }
-
-    .burger-menu.is-active .burger-line:nth-child(2) {
-        opacity: 0;
-        transform: translateX(-10px);
-    }
-
-    .burger-menu.is-active .burger-line:nth-child(3) {
-        transform: translateY(-8px) rotate(-45deg);
-        background-color: var(--primary);
-    }
-
-    /* Menú desplegable seguro con scroll interno */
     .nav-menu-wrapper {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        max-height: calc(100vh - 80px);
-        /* Evita que el menú sobrepase la pantalla */
-        overflow-y: auto;
-        /* Habilita scroll si es necesario */
-        background: var(--surface);
-        border-top: 1px solid var(--border);
-        border-bottom: 3px solid var(--primary);
-        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        max-width: 320px;
+        height: 100vh;
+        background: var(--nav-bg-alt);
         flex-direction: column;
-        align-items: stretch;
+        align-items: flex-start;
         justify-content: flex-start;
-        padding: 24px 20px 28px 20px;
-        margin: 0;
-        gap: 20px;
-        transform: translateY(-10px);
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
-        transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
-            opacity 0.3s ease,
-            visibility 0.3s ease;
-        z-index: 1005;
+        padding: 90px 24px 24px;
+        gap: 28px;
+        transition: right 0.3s ease;
+        overflow-y: auto;
+        box-sizing: border-box;
+        box-shadow: -4px 0 20px rgba(0, 0, 0, 0.5);
     }
 
     .nav-menu-wrapper.is-active {
-        transform: translateY(0);
-        opacity: 1;
-        visibility: visible;
-        pointer-events: all;
+        right: 0;
     }
 
-    /* Enlaces verticales */
     .nav-links-links {
         flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
         width: 100%;
-        gap: 15px;
     }
 
     .nav-link {
-        font-size: 16px;
-        padding: 6px 0;
-        display: block;
-        width: 100%;
+        font-size: 0.95rem;
     }
 
-    .nav-link.active::after {
-        bottom: 0;
-        width: 30px;
-    }
-
-    /* Botones de acción */
     .navbar-buttons-container {
-        flex-direction: row;
+        flex-direction: column;
+        align-items: stretch;
         width: 100%;
-        gap: 12px;
-        margin-top: 0;
     }
 
     .btn-visitante-outline,
     .btn-cta-nav {
-        width: 100%;
         justify-content: center;
-        padding: 12px;
+        padding: 10px 14px;
+        font-size: 0.85rem;
     }
 
-    /* Contacto al pie del menú */
     .contacto-iconos {
-        width: 100%;
-        justify-content: center;
-        margin: 3px 0 0 0;
-        padding: 15px 0 0 0;
-        border-top: 1px solid var(--border);
+        gap: 20px;
+    }
+
+    .utility-item:nth-child(3) {
+        display: none;
+    }
+}
+
+/* ============================================
+   RESPONSIVE: DESKTOP XL (1400px+)
+   ============================================ */
+@media (min-width: 1400px) {
+    .brand-tagline {
+        display: inline;
+    }
+
+    .nav-links-links {
+        gap: 18px;
+    }
+
+    .nav-link {
+        font-size: 0.85rem;
+    }
+
+    .btn-visitante-outline,
+    .btn-cta-nav {
+        padding: 8px 14px;
+        font-size: 0.8rem;
     }
 }
