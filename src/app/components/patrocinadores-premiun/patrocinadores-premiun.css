@@ -1,77 +1,133 @@
+/* ==========================================
+   SECCIÓN PATROCINADORES (Estilo Premium)
+   ========================================== */
 .patrocinadores-section {
-    padding: 30px 40px;
-    margin-bottom: 35px;
-    width: 100%;
+    padding: 40px 28px;
+    border-radius: var(--radius);
+    margin: 40px 0;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border);
 }
 
 .patrocinadores-header {
-    margin-bottom: 25px;
     text-align: center;
+    margin-bottom: 36px;
 }
 
 .patrocinadores-header span {
     font-size: 11px;
-    font-weight: 700;
-    color: var(--primary);
+    font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
+    color: var(--success);
+    /* Verde corporativo FIPAZ */
+    display: block;
+    margin-bottom: 6px;
 }
 
 .patrocinadores-header h3 {
-    font-size: 20px;
+    font-size: 26px;
+    font-weight: 900;
     color: var(--text-strong);
-    font-weight: 800;
-    margin-top: 2px;
 }
 
-/* Rejilla de Logos */
+/* ==========================================
+   GRID UNIFORME
+   ========================================== */
 .logos-grid-premium {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 20px;
-    align-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    align-items: stretch;
+    /* Garantiza que todas las tarjetas tengan el mismo alto */
 }
 
+/* La Tarjeta */
 .logo-wrapper-card {
-    background: var(--background);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    height: 90px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 15px;
-    cursor: pointer;
-    transition: all 0.25s ease;
-}
-
-.logo-wrapper-card:hover {
-    border-color: var(--primary);
     background: var(--surface);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(227, 20, 37, 0.05);
+    border: 1px solid var(--border);
+    border-radius: calc(var(--radius) + 4px);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
 }
 
-/* Estilo para los iconos/placeholders temporales de las empresas */
+/* Efecto Hover */
+.logo-wrapper-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--success);
+    box-shadow: 0 16px 32px rgba(9, 137, 62, 0.12);
+}
+
 .placeholder-logo-empresa {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 6px;
-    color: var(--text-light);
-    transition: color 0.25s ease;
+    height: 100%;
 }
 
-.logo-wrapper-card:hover .placeholder-logo-empresa {
-    color: var(--text-strong);
+/* 1. Marco contenedor del logo (Más amplio) */
+.placeholder-logo-empresa img {
+    width: 100% !important;
+    max-width: 240px;
+    height: 120px !important;
+
+    /* Ajuste de imagen limpio */
+    object-fit: contain;
+
+    /* Tarjeta/Fondo interno para el logo */
+    background: #ffffff;
+    padding: 16px 24px;
+    border-radius: calc(var(--radius) + 2px);
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+
+    margin-bottom: 20px;
+
+    /* Transición suave para el efecto hover */
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
 }
 
-.placeholder-logo-empresa i {
-    font-size: 20px;
+/* 2. EFECTO HOVER MÍNIMO Y ELEGANTE */
+.logo-wrapper-card:hover .placeholder-logo-empresa img {
+    /* Elevación sutil */
+    transform: translateY(-4px) scale(1.03);
+
+    /* Sombra suave y borde verde corporativo */
+    border-color: var(--success);
+    box-shadow: 0 10px 25px rgba(9, 137, 62, 0.15);
 }
 
+/* 3. Ajuste de alineación del texto inferior */
 .placeholder-logo-empresa span {
-    font-size: 12px;
-    font-weight: 600;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--text-main);
     text-align: center;
+    font-weight: 400;
+    margin-top: auto;
+    opacity: 0.85;
+    transition: opacity 0.3s ease;
+}
+
+/* Le da un toque activo a la descripción cuando se pasa el mouse por la tarjeta */
+.logo-wrapper-card:hover .placeholder-logo-empresa span {
+    opacity: 1;
+}
+
+/* ==========================================
+   RESPONSIVE MÓVIL
+   ========================================== */
+@media (max-width: 768px) {
+    .placeholder-logo-empresa img {
+        max-width: 200px;
+        height: 100px !important;
+        padding: 12px 18px;
+    }
 }

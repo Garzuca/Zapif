@@ -19,11 +19,13 @@
 }
 
 .utility-container {
-    max-width: 1200px;
+    max-width: 100%;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 40px;
     display: flex;
-    gap: 20px;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 15px;
 }
 
 .utility-item i {
@@ -38,9 +40,9 @@
 }
 
 .nav-container {
-    max-width: 1300px;
+    max-width: 100%;
     margin: 0 auto;
-    padding: 10px 20px;
+    padding: 10px 40px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -49,10 +51,61 @@
 
 /* Identidad Visual (Logo) */
 .nav-logo-zone {
-    display: flex;
-    flex-direction: column;
+    display: inline-flex;
+    align-items: baseline;
+    /* Alinea las letras por su base de texto */
+    gap: 2px;
+    /* Espaciado sutil entre letras/elementos */
     cursor: pointer;
     z-index: 1010;
+    margin: 0 3px 0 0;
+    user-select: none;
+    /* Evita que el texto se seleccione al hacer clic */
+}
+
+/* Estilos para las letras del Acrónimo FIPAZ */
+.color-a,
+.color-b {
+    font-size: 24px;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.5px;
+}
+
+.color-a {
+    color: var(--primary);
+    /* Verde FIPAZ */
+}
+
+.color-b {
+    color: var(--success);
+    /* O el segundo color institucional/dark */
+}
+
+/* El año (2026) en un formato distintivo tipo Badge o Subtexto */
+.brand-year {
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--primary);
+    margin-left: 4px;
+}
+
+/* Ocultar el tagline en pantallas pequeñas para que no sature el Navbar */
+.brand-tagline {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--text-light);
+    text-transform: uppercase;
+    margin-left: 6px;
+    border-left: 1px solid var(--border);
+    padding-left: 6px;
+}
+
+/* En móviles ocultamos el tagline para mantener el navbar limpio */
+@media (max-width: 768px) {
+    .brand-tagline {
+        display: none;
+    }
 }
 
 .brand-text {
@@ -171,6 +224,7 @@
 /* Iconos de Contactos */
 .contacto-iconos {
     display: flex;
+    align-items: center;
     gap: 16px;
     font-size: 18px;
     margin-left: 20px;
