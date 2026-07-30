@@ -13,6 +13,7 @@ import { ContadorFipazComponent } from "./components/contador-fipaz/contador-fip
 import { SeccionInstitucionalComponent } from './components/seccion-institucional/seccion-institucional';
 import { BlogsFipaz } from './components/blogs-fipaz/blogs.fipaz';
 import { ContactosFipaz } from './components/contactos-fipaz/contactos-fipaz';
+import { GestionAuspiciadores } from './components/gestion-auspiciadores/gestion-auspiciadores';
 
 
 @Component({
@@ -32,7 +33,8 @@ import { ContactosFipaz } from './components/contactos-fipaz/contactos-fipaz';
     ContadorFipazComponent,
     SeccionInstitucionalComponent,
     BlogsFipaz,
-    ContactosFipaz
+    ContactosFipaz,
+    GestionAuspiciadores
   ],
   templateUrl: './app.html', // O el nombre abreviado si aplica en tu versión
   styleUrls: ['./app.css']

@@ -1,0 +1,128 @@
+/* ==========================================
+   SECCIÓN AUSPICIADORES - OPCIÓN 1: LIENZO FLOTANTE
+   ========================================== */
+:host {
+    display: block;
+    width: 100%;
+}
+
+.auspiciadores-section {
+    margin: 28px 0;
+    padding: 28px 20px;
+    /* Fondo contenedor sutil y unificado para dar contraste a los logos */
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+}
+
+.auspiciadores-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.badge-sub {
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-light);
+    display: block;
+    margin-bottom: 4px;
+}
+
+.titulo-seccion {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--text-strong);
+    margin: 0;
+}
+
+/* ==========================================
+   GRID FLOTANTE (SIN MARCOS NINGUNO)
+   ========================================== */
+.auspiciadores-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 12px;
+    align-items: center;
+}
+
+/* Áncora / Contenedor transparente */
+.auspiciador-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 85px;
+    padding: 1px;
+    background: transparent;
+    /* Sin fondo de caja */
+    border: none;
+    /* Sin bordes individuales */
+    border-radius: 0;
+    box-shadow: none;
+    /* Sin sombras de marco */
+    text-decoration: none;
+    cursor: pointer;
+
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* La imagen es la protagonista directa */
+.auspiciador-card img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+
+    /* Atenuación ligera por defecto para integrar con el layout */
+    opacity: 0.75;
+    filter: grayscale(20%);
+
+    transition: opacity 0.25s ease, filter 0.25s ease, transform 0.25s ease;
+}
+
+/* Hover: El logo cobra vida en su sitio */
+.auspiciador-card:hover {
+    transform: translateY(-2px);
+}
+
+.auspiciador-card:hover img {
+    opacity: 1;
+    filter: grayscale(0%);
+    transform: scale(1.08);
+    /* Crece suavemente sin la molestia de romper un cuadro */
+}
+
+/* ==========================================
+   ADAPTACIÓN RESPONSIVA
+   ========================================== */
+@media (max-width: 1024px) {
+    .auspiciadores-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .auspiciadores-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+    }
+
+    .auspiciador-card {
+        height: 75px;
+    }
+}
+
+@media (max-width: 480px) {
+    .auspiciadores-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    .auspiciadores-section {
+        padding: 20px 12px;
+    }
+}

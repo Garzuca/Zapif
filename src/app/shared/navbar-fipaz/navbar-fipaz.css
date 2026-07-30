@@ -4,7 +4,7 @@
 .navbar-master {
     --nav-bg: var(--secondary-dark, #000000);
     --nav-bg-alt: var(--secondary, #3C3C3B);
-    --nav-text: #FFFFFF;
+    --nav-text: var(--success);
     --nav-text-muted: #B0B0B0;
     --nav-accent: var(--primary, #E31425);
     --nav-accent-dark: var(--primary-dark, #C1282E);

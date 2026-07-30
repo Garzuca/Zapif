@@ -1,0 +1,14 @@
+<section class="auspiciadores-section">
+    <div class="auspiciadores-header">
+        <span class="badge-sub">Respaldo e Institucionalidad</span>
+        <h2 class="titulo-seccion">Auspiciadores Oficiales</h2>
+    </div>
+
+    <div class="auspiciadores-grid">
+        @for (item of auspiciadores(); track item.id) {
+        <a [href]="item.url" target="_blank" rel="noopener noreferrer" class="auspiciador-card" [title]="item.nombre">
+            <img [src]="item.imagenUrl" [alt]="item.nombre" loading="lazy" />
+        </a>
+        }
+    </div>
+</section>
