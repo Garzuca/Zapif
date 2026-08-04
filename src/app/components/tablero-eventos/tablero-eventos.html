@@ -4,65 +4,85 @@
         <h2>Actividades de la Feria</h2>
     </div>
 
-    <!-- Carrusel Horizontal / Pestañas de Días -->
-    <div class="tabs-dias-carrusel">
-        <button 
-            *ngFor="let col of columnasDias" 
-            class="tab-dia-btn" 
-            [class.active]="col === diaSeleccionado"
-            (click)="seleccionarDia(col)"
-        >
-            <span class="tab-fecha">{{ col.fecha }}</span>
-            <span class="tab-nombre">{{ col.nombreDia.split(' - ')[0] }}</span>
-        </button>
+    <!-- Indicador de carga -->
+    <div class="loading-state" *ngIf="cargando">
+        <p>Cargando actividades de la feria...</p>
     </div>
 
-    <!-- Contenedor del Día Seleccionado -->
-    <div class="dia-seleccionado-info" *ngIf="diaSeleccionado">
-        
-        <!-- Detalle del encabezado del día -->
-        <div class="dia-columna-banner">
-            <span class="banner-fecha">{{ diaSeleccionado.fecha }}</span>
-            <span class="banner-nombre">{{ diaSeleccionado.nombreDia }}</span>
+    <ng-container *ngIf="!cargando">
+
+        <!-- Carrusel Horizontal / Pestañas de Días -->
+        <div class="tabs-dias-carrusel" *ngIf="dias.length > 0">
+            <button *ngFor="let dia of dias" class="tab-dia-btn" [class.active]="diaSeleccionado?.id === dia.id"
+                (click)="seleccionarDia(dia)">
+                <span class="tab-fecha">{{ dia.fecha }}</span>
+                <span class="tab-nombre">{{ dia.nombreDia.split(' - ')[0] }}</span>
+            </button>
         </div>
 
-        <!-- Grilla de Eventos del día activo -->
-        <div class="eventos-acordeon-grid">
-            <div *ngFor="let evento of diaSeleccionado.eventos" class="tarjeta-evento-acordeon">
+        <!-- Contenedor del Día Seleccionado -->
+        <div class="dia-seleccionado-info" *ngIf="diaSeleccionado">
 
-                <!-- Imagen de fondo que se revelará visualmente al pasar el puntero -->
-                <div class="bg-visual-reveal" [style.backgroundImage]="'url(' + evento.imagenFondo + ')'"></div>
-                <div class="overlay-visual"></div>
+            <!-- Detalle del encabezado del día -->
+            <div class="dia-columna-banner">
+                <span class="banner-fecha">{{ diaSeleccionado.fecha }}</span>
+                <span class="banner-nombre">{{ diaSeleccionado.nombreDia }}</span>
+            </div>
 
-                <!-- Marcador de Color de Acento Lateral -->
-                <div class="acento-lateral" [style.backgroundColor]="evento.colorAcento"></div>
+            <!-- Grilla de Eventos del día activo -->
+            <div class="eventos-acordeon-grid" *ngIf="eventosDelDia.length > 0; else sinEventos">
+                <div *ngFor="let evento of eventosDelDia" class="tarjeta-evento-acordeon">
 
-                <!-- CONTENIDO DE LA TARJETA -->
-                <div class="contenido-tarjeta-acordeon">
-                    <div class="top-meta-acordeon">
-                        <span class="hora-acordeon-tag">
-                            <i class="fa-regular fa-clock"></i> {{ evento.hora }}
-                        </span>
-                        <span class="lugar-acordeon-tag">
-                            <i class="fa-solid fa-location-dot"></i> {{ evento.lugar }}
-                        </span>
+                    <!-- Imagen de fondo (con fallback para nulos o URLs relativas) -->
+                    <div class="bg-visual-reveal"
+                        [style.backgroundImage]="'url(' + (evento.imagenFondo ? (evento.imagenFondo.startsWith('http') ? evento.imagenFondo : 'https://fipaz-backend.onrender.com' + evento.imagenFondo) : 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=600&auto=format&fit=crop') + ')'">
                     </div>
+                    <div class="overlay-visual"></div>
 
-                    <h3 class="titulo-acordeon">{{ evento.titulo }}</h3>
+                    <!-- Marcador de Color de Acento Lateral -->
+                    <div class="acento-lateral"></div>
 
-                    <!-- DESCRIPCIÓN VISUAL Y DETALLES (Se expande al pasar el puntero) -->
-                    <div class="descripcion-visual-reveal">
-                        <p class="txt-descripcion-acordeon">{{ evento.descCorta }}</p>
-                        <div class="action-footer-acordeon">
-                            <button class="btn-acordeon-action" [style.borderColor]="evento.colorAcento">
-                                <span>Recordarme</span> <i class="fa-regular fa-bell"></i>
-                            </button>
+                    <!-- CONTENIDO DE LA TARJETA -->
+                    <div class="contenido-tarjeta-acordeon">
+                        <div class="top-meta-acordeon">
+                            <span class="hora-acordeon-tag" *ngIf="evento.hora">
+                                <i class="fa-regular fa-clock"></i> {{ evento.hora.slice(0, 5) }}
+                            </span>
+                            <span class="lugar-acordeon-tag" *ngIf="evento.lugar">
+                                <i class="fa-solid fa-location-dot"></i> {{ evento.lugar }}
+                            </span>
+                            <span class="categoria-acordeon-tag" *ngIf="evento.categoriaNombre">
+                                {{ evento.categoriaNombre }}
+                            </span>
+                        </div>
+
+                        <h3 class="titulo-acordeon">{{ evento.titulo }}</h3>
+
+                        <!-- DESCRIPCIÓN VISUAL Y DETALLES -->
+                        <div class="descripcion-visual-reveal">
+                            <p class="txt-descripcion-acordeon" *ngIf="evento.descripcionCorta">
+                                {{ evento.descripcionCorta }}
+                            </p>
+                            <div class="action-footer-acordeon">
+                                <button class="btn-acordeon-action">
+                                    <span>Recordarme</span> <i class="fa-regular fa-bell"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
 
+                </div>
             </div>
+
+            <!-- Estado Vacío cuando no hay eventos en ese día -->
+            <ng-template #sinEventos>
+                <div class="sin-eventos-container">
+                    <i class="fa-regular fa-calendar-xmark icon-sin-eventos"></i>
+                    <p class="txt-sin-eventos">No hay actividades programadas para este día por el momento.</p>
+                </div>
+            </ng-template>
+
         </div>
 
-    </div>
+    </ng-container>
 </section>
