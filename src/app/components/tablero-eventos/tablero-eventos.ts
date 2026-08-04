@@ -53,6 +53,7 @@ export class TableroEventosComponent implements OnInit {
 
   seleccionarDia(dia: diaAgenda): void {
     this.diaSeleccionado = dia;
+    this.cdr.detectChanges();
   }
 
   // Método helper para obtener los eventos del día actualmente activo

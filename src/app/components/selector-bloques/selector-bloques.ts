@@ -1,14 +1,21 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, inject, OnInit, Output, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReservasService, Pabellon } from '../../services/reservas';
 
-interface Bloque {
-  id: string;
-  nombre: string;
-  imagen: string;
-  ocupacion: number; // Porcentaje de 0 a 100
-  descripcion: string;
-  disclaimer: string;
-  pisos: string[]; // Lista de pisos, ej: ['Planta Baja', 'Planta Alta']
+// Mapeo manual de imágenes por ID de pabellón
+export const IMAGENES_PABELLONES: Record<number, string> = {
+  1: 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=600', // P. Internacional
+  2: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=600', // P. Bolivia / PyMEs
+  3: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=600', // P. Innovación
+  4: 'https://images.unsplash.com/photo-1554469384-e58fac16e23a?q=80&w=600', // P. Banca & Servicios
+  5: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=600'  // Exterior / Gastronomía
+};
+
+export const IMAGEN_DEFAULT = 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=600';
+
+export interface SeleccionBloqueEvent {
+  pabellonId: number;
+  nombrePabellon: string;
 }
 
 @Component({
@@ -18,90 +25,51 @@ interface Bloque {
   templateUrl: './selector-bloques.html',
   styleUrls: ['./selector-bloques.css']
 })
-export class SelectorBloquesComponent {
-  // Emitimos un evento al formulario padre cuando la selección esté lista
-  @Output() seleccionCompletada = new EventEmitter<{ bloque: string; piso: string }>();
+export class SelectorBloquesComponent implements OnInit {
 
-  // ID del bloque que tiene actualmente el menú de pisos abierto (con blur)
-  bloqueConPisosActivo: string | null = null;
+  private readonly reservasService = inject(ReservasService);
+  private readonly cdr = inject(ChangeDetectorRef);
 
-  // Selección final guardada
-  bloqueSeleccionadoId: string | null = null;
-  pisoSeleccionado: string | null = null;
+  @Output() seleccionCompletada = new EventEmitter<SeleccionBloqueEvent>();
 
-  // 5 Bloques representativos de FIPAZ
-  bloques: Bloque[] = [
-    {
-      id: 'rojo',
-      nombre: 'Bloque Rojo (Internacional)',
-      imagen: 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=600',
-      ocupacion: 85,
-      descripcion: 'El centro neurálgico de la feria. Ideal para marcas internacionales, grandes corporaciones y delegaciones diplomáticas de alta visibilidad.',
-      disclaimer: 'La asignación del stand final dentro del bloque será coordinada por el equipo comercial para garantizar una distribución armoniosa.',
-      pisos: ['Planta Baja', 'Planta Alta']
-    },
-    {
-      id: 'amarillo',
-      nombre: 'Bloque Amarillo (Bolivia & PyMEs)',
-      imagen: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=600',
-      ocupacion: 60,
-      descripcion: 'Espacio dedicado a la producción nacional, PyMEs, emprendimientos locales e instituciones estatales e industriales de Bolivia.',
-      disclaimer: 'La organización se encargará de evitar que competidores directos queden ubicados en stands inmediatamente adyacentes.',
-      pisos: ['Planta Baja', 'Planta Alta']
-    },
-    {
-      id: 'verde',
-      nombre: 'Bloque Verde (Innovación & La Paz)',
-      imagen: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=600',
-      ocupacion: 95,
-      descripcion: 'Área dinámica para la innovación, startups, tecnología, artesanía de vanguardia y servicios de valor agregado.',
-      disclaimer: 'Al contar con un solo nivel principal, tu ubicación general quedará asignada de forma directa tras completar este registro.',
-      pisos: ['Planta Única']
-    },
-    {
-      id: 'azul',
-      nombre: 'Bloque Azul (Banca & Servicios)',
-      imagen: 'https://images.unsplash.com/photo-1554469384-e58fac16e23a?q=80&w=600',
-      ocupacion: 40,
-      descripcion: 'Destinado a servicios financieros, banca, seguros, consultoras corporativas y soluciones tecnológicas B2B.',
-      disclaimer: 'Los stands cuentan con conexiones de alta velocidad e instalaciones eléctricas reforzadas para demostraciones operativas.',
-      pisos: ['Planta Baja', 'Planta Alta']
-    },
-    {
-      id: 'bulevar',
-      nombre: 'Bulevar Exterior & Gastronomía',
-      imagen: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=600',
-      ocupacion: 75,
-      descripcion: 'Zona de alto tráfico peatonal al aire libre para la industria automotriz, maquinaria pesada y la gran plaza gastronómica.',
-      disclaimer: 'Ubicación privilegiada al aire libre con flujo continuo de familias y visitantes durante todos los días del evento.',
-      pisos: ['Área Externa']
-    }
-  ];
+  pabellones: Pabellon[] = [];
+  pabellonSeleccionadoId: number | null = null;
+  cargando: boolean = true;
 
-  seleccionarBloque(bloque: Bloque): void {
-    // Si tiene un solo piso, se autoselecciona de inmediato
-    if (bloque.pisos.length === 1) {
-      this.confirmarSeleccion(bloque.id, bloque.pisos[0]);
-    } else {
-      // Si tiene varios pisos, disparamos el efecto Blur y mostramos opciones
-      this.bloqueConPisosActivo = bloque.id;
-    }
+  readonly disclaimerDefault = 'La asignación final del espacio será coordinada por el equipo comercial de FIPAZ.';
+
+  ngOnInit(): void {
+    this.cargarPabellones();
   }
 
-  confirmarSeleccion(bloqueId: string, piso: string): void {
-    this.bloqueSeleccionadoId = bloqueId;
-    this.pisoSeleccionado = piso;
-    this.bloqueConPisosActivo = null; // Cerramos cualquier menú de pisos
+  cargarPabellones(): void {
+    this.cargando = true;
 
-    // Avisamos al formulario padre con los datos elegidos
-    this.seleccionCompletada.emit({
-      bloque: bloqueId,
-      piso: piso
+    this.reservasService.getPabellones().subscribe({
+      next: (data: Pabellon[]) => {
+        this.pabellones = [...data];
+        this.cargando = false;
+        this.cdr.markForCheck();
+      },
+      error: (err) => {
+        console.error('Error al cargar pabellones:', err);
+        this.cargando = false;
+        this.cdr.markForCheck();
+      }
     });
   }
 
-  cancelarPisos(event: MouseEvent): void {
-    event.stopPropagation(); // Evita que se vuelva a disparar el click de la tarjeta
-    this.bloqueConPisosActivo = null;
+  // Método para asignar la imagen manual según el ID
+  obtenerImagenPabellon(id: number): string {
+    return IMAGENES_PABELLONES[id] || IMAGEN_DEFAULT;
+  }
+
+  seleccionarPabellon(pabellon: Pabellon): void {
+    this.pabellonSeleccionadoId = pabellon.id;
+
+    this.seleccionCompletada.emit({
+      pabellonId: pabellon.id,
+      nombrePabellon: pabellon.nombre
+    });
   }
 }
