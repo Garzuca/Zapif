@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DashboardMetricas } from './components/dashboard-metricas/dashboard-metricas'; // Ajusta al nombre real de tu archivo
-import { TableroEventosComponent } from './components/tablero-eventos/tablero-eventos';       // Ajusta al nombre real de tu archivo
+import { DashboardMetricas } from './components/dashboard-metricas/dashboard-metricas';
+import { TableroEventosComponent } from './components/tablero-eventos/tablero-eventos';
 import { PatrocinadoresPremiun } from './components/patrocinadores-premiun/patrocinadores-premiun';
 import { NavbarFipazComponent } from './shared/navbar-fipaz/navbar-fipaz';
 import { HeroFipaz } from './components/hero-fipaz/hero-fipaz';
@@ -21,8 +21,8 @@ import { GestionAuspiciadores } from './components/gestion-auspiciadores/gestion
   standalone: true,
   imports: [
     CommonModule,
-    DashboardMetricas, // <-- Registramos el bloque de KPIs
-    TableroEventosComponent, // <-- Registramos la agenda interactiva
+    DashboardMetricas,
+    TableroEventosComponent,
     PatrocinadoresPremiun,
     NavbarFipazComponent,
     HeroFipaz,
@@ -36,7 +36,7 @@ import { GestionAuspiciadores } from './components/gestion-auspiciadores/gestion
     ContactosFipaz,
     GestionAuspiciadores
   ],
-  templateUrl: './app.html', // O el nombre abreviado si aplica en tu versión
+  templateUrl: './app.html',
   styleUrls: ['./app.css']
 })
 export class AppComponent {
