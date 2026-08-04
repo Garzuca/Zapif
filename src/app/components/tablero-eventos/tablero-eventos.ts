@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { forkJoin } from 'rxjs';
 import { EventosService, diaAgenda, EventoAgenda } from '../../services/eventos';
@@ -13,6 +13,7 @@ import { EventosService, diaAgenda, EventoAgenda } from '../../services/eventos'
 export class TableroEventosComponent implements OnInit {
 
   private readonly eventosService = inject(EventosService);
+  private readonly cdr = inject(ChangeDetectorRef);
 
   dias: diaAgenda[] = [];
   eventos: EventoAgenda[] = [];
@@ -40,10 +41,12 @@ export class TableroEventosComponent implements OnInit {
         }
 
         this.cargando = false;
+        this.cdr.detectChanges();
       },
       error: (err) => {
         console.error('Error al cargar datos de la API:', err);
         this.cargando = false;
+        this.cdr.detectChanges();
       }
     });
   }
