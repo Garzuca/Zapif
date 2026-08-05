@@ -1,45 +1,59 @@
 <!-- Modal Principal de Expositores -->
 @if (isOpen) {
-<div class="modal-backdrop">
-    <div class="modal-container">
-
-        <!-- Botón Cerrar Modal -->
-        <button class="btn-close" (click)="cerrar()">
-            <i class="fa-solid fa-xmark"></i>
-        </button>
+<div class="modal-backdrop-wrapper is-open" (click)="cerrar()">
+    <div class="modal-card-center" (click)="$event.stopPropagation()">
 
         <!-- NAVEGACIÓN VISTA 1: Menú de Categorías -->
         @if (areaActiva === 'menu') {
-        <div class="area-seccion">
-            <h2>Participa en FIPAZ</h2>
-            <p class="subtitulo">Selecciona la modalidad de participación para tu empresa</p>
-
-            <div class="categorias-grid">
-                @for (cat of categorias; track cat.id) {
-                <div class="card-categoria" (click)="seleccionarCategoria(cat.id)">
-                    <div class="icon-wrapper">
-                        <i [class]="cat.icono"></i>
-                    </div>
-                    <span class="badge">{{ cat.badge }}</span>
-                    <h3>{{ cat.titulo }}</h3>
-                    <p>{{ cat.descripcion }}</p>
-                </div>
-                }
+        <div class="modal-header-zone">
+            <div>
+                <span class="modal-pretitle"><i class="fa-solid fa-fire"></i> FIPAZ 2026</span>
+                <h3>Participa en FIPAZ</h3>
             </div>
+            <button class="btn-close-modal" (click)="cerrar()" aria-label="Cerrar modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+        <p class="modal-intro-text">Selecciona la modalidad de participación para tu empresa</p>
+
+        <div class="grid-categorias-wizard">
+            @for (cat of categorias; track cat.id) {
+            <div class="card-categoria-item" (click)="seleccionarCategoria(cat.id)">
+                <div class="cat-icon-box">
+                    <i [class]="cat.icono"></i>
+                </div>
+                <div class="cat-info-text">
+                    <span class="cat-badge-type">{{ cat.badge }}</span>
+                    <h4>{{ cat.titulo }}</h4>
+                    <p class="cat-description">{{ cat.descripcion }}</p>
+                </div>
+                <div class="cat-arrow-action">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
+            </div>
+            }
+        </div>
+
+        <div class="modal-footer-zone">
+            <span class="footer-help"><i class="fa-solid fa-circle-check"></i> Asesoramiento personalizado sin costo</span>
         </div>
         }
 
-        <!-- NAVEGACIÓN VISTA 2: Selector de Pabellones (Grid de Pabellones) -->
-        @if (areaActiva === 'expositores') {
-        <div class="area-seccion">
-            <div class="header-paso">
-                <button class="btn-back" (click)="volverAlMenu()">
+        <!-- NAVEGACIÓN VISTA 2: Selector de Pabellones -->
+        @if (areaActiva === 'expositores' || areaActiva === 'sabores' || areaActiva === 'partners' || areaActiva === 'business') {
+        <div class="modal-header-zone">
+            <div>
+                <button class="btn-back-header" (click)="volverAlMenu()">
                     <i class="fa-solid fa-arrow-left"></i> Volver al menú
                 </button>
-                <h2>Selecciona un Pabellón de Interés</h2>
+                <h3>Selecciona un Pabellón de Interés</h3>
             </div>
+            <button class="btn-close-modal" (click)="cerrar()" aria-label="Cerrar modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
 
-            <!-- Componente Selector de Pabellones de la BD -->
+        <div class="seccion-selector-bloques-wizard">
             <app-selector-bloques (seleccionCompletada)="procesarSeleccionBloque($event)">
             </app-selector-bloques>
         </div>
@@ -47,112 +61,150 @@
 
         <!-- NAVEGACIÓN VISTA 3: Formulario Reactivo de Postulación -->
         @if (areaActiva === 'formulario') {
-        <div class="area-seccion">
-            <div class="header-paso">
-                <button class="btn-back" (click)="volverAlMapa()">
+        <div class="modal-header-zone">
+            <div>
+                <button class="btn-back-header" (click)="volverAlMapa()">
                     <i class="fa-solid fa-arrow-left"></i> Cambiar pabellón
                 </button>
-                <h2>Datos de la Postulación</h2>
-                @if (nombrePabellonSeleccionado) {
-                <p class="pabellon-badge">
-                    Pabellón seleccionado: <strong>{{ nombrePabellonSeleccionado }}</strong>
-                </p>
-                }
+                <h3>Datos de la Postulación</h3>
             </div>
+            <button class="btn-close-modal" (click)="cerrar()" aria-label="Cerrar modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
 
-            <form [formGroup]="postulacionForm" (ngSubmit)="enviarPostulacion()" class="form-postulacion">
-                <div class="form-grid">
+        <div class="seccion-formulario-wizard">
+            @if (nombrePabellonSeleccionado) {
+            <div class="resumen-seleccion-badge">
+                <div class="resumen-info">
+                    <i class="fa-solid fa-circle-check icon-badge"></i>
+                    <div>
+                        <h5>Pabellón Seleccionado</h5>
+                        <p><strong>{{ nombrePabellonSeleccionado }}</strong></p>
+                    </div>
+                </div>
+                <button type="button" class="btn-change-location" (click)="volverAlMapa()">
+                    Cambiar
+                </button>
+            </div>
+            }
+
+            <form [formGroup]="postulacionForm" (ngSubmit)="enviarPostulacion()">
+                <div class="form-grid-wizard">
 
                     <!-- Nombre Completo -->
-                    <div class="form-field">
+                    <div class="form-group">
                         <label for="nombreCompleto">Nombre Completo *</label>
-                        <input id="nombreCompleto" type="text" formControlName="nombreCompleto"
-                            placeholder="Ej. Juan Pérez">
+                        <div class="input-icon-wrapper">
+                            <i class="fa-solid fa-user input-icon"></i>
+                            <input id="nombreCompleto" type="text" formControlName="nombreCompleto"
+                                placeholder="Ej. Juan Pérez">
+                        </div>
                         @if (postulacionForm.get('nombreCompleto')?.touched &&
                         postulacionForm.get('nombreCompleto')?.invalid) {
-                        <span class="error-text">El nombre completo es requerido.</span>
+                        <span class="error-msg"><i class="fa-solid fa-circle-exclamation"></i> El nombre completo es requerido.</span>
                         }
                     </div>
 
                     <!-- Teléfono / WhatsApp -->
-                    <div class="form-field">
+                    <div class="form-group">
                         <label for="telefono">Teléfono / WhatsApp *</label>
-                        <input id="telefono" type="text" formControlName="telefono" placeholder="Ej. 71234567">
+                        <div class="input-icon-wrapper">
+                            <i class="fa-solid fa-phone input-icon"></i>
+                            <input id="telefono" type="text" formControlName="telefono" placeholder="Ej. 71234567">
+                        </div>
                         @if (postulacionForm.get('telefono')?.touched && postulacionForm.get('telefono')?.invalid) {
-                        <span class="error-text">Ingresa un número celular válido de 8 dígitos.</span>
+                        <span class="error-msg"><i class="fa-solid fa-circle-exclamation"></i> Ingresa un número celular válido de 8 dígitos.</span>
                         }
                     </div>
 
                     <!-- Email -->
-                    <div class="form-field">
+                    <div class="form-group">
                         <label for="email">Correo Electrónico *</label>
-                        <input id="email" type="email" formControlName="email" placeholder="correo@empresa.com">
+                        <div class="input-icon-wrapper">
+                            <i class="fa-solid fa-envelope input-icon"></i>
+                            <input id="email" type="email" formControlName="email" placeholder="correo@empresa.com">
+                        </div>
                         @if (postulacionForm.get('email')?.touched && postulacionForm.get('email')?.invalid) {
-                        <span class="error-text">Ingresa un correo electrónico válido.</span>
+                        <span class="error-msg"><i class="fa-solid fa-circle-exclamation"></i> Ingresa un correo electrónico válido.</span>
                         }
                     </div>
 
                     <!-- Empresa -->
-                    <div class="form-field">
+                    <div class="form-group">
                         <label for="nombreEmpresa">Nombre de la Empresa / Marca</label>
-                        <input id="nombreEmpresa" type="text" formControlName="nombreEmpresa"
-                            placeholder="Ej. Mi Empresa S.R.L.">
+                        <div class="input-icon-wrapper">
+                            <i class="fa-solid fa-building input-icon"></i>
+                            <input id="nombreEmpresa" type="text" formControlName="nombreEmpresa"
+                                placeholder="Ej. Mi Empresa S.R.L.">
+                        </div>
                     </div>
 
-                    <!-- Rubro (Alineado con el Enum en .NET) -->
-                    <div class="form-field">
+                    <!-- Rubro -->
+                    <div class="form-group">
                         <label for="rubro">Rubro Comercial *</label>
-                        <select id="rubro" formControlName="rubro">
-                            <option value="" disabled selected>Selecciona un rubro</option>
-                            @for (item of rubros; track item.value) {
-                            <option [value]="item.value">{{ item.label }}</option>
-                            }
-                        </select>
+                        <div class="input-icon-wrapper">
+                            <i class="fa-solid fa-briefcase input-icon"></i>
+                            <select id="rubro" formControlName="rubro">
+                                <option value="" disabled selected>Selecciona un rubro</option>
+                                @for (item of rubros; track item.value) {
+                                <option [value]="item.value">{{ item.label }}</option>
+                                }
+                            </select>
+                        </div>
                         @if (postulacionForm.get('rubro')?.touched && postulacionForm.get('rubro')?.invalid) {
-                        <span class="error-text">Selecciona un rubro obligatorio.</span>
+                        <span class="error-msg"><i class="fa-solid fa-circle-exclamation"></i> Selecciona un rubro obligatorio.</span>
                         }
                     </div>
 
                     <!-- Ciudad -->
-                    <div class="form-field">
+                    <div class="form-group">
                         <label for="ciudad">Ciudad / Origen</label>
-                        <input id="ciudad" type="text" formControlName="ciudad" placeholder="Ej. La Paz">
+                        <div class="input-icon-wrapper">
+                            <i class="fa-solid fa-location-dot input-icon"></i>
+                            <input id="ciudad" type="text" formControlName="ciudad" placeholder="Ej. La Paz">
+                        </div>
                     </div>
 
                     <!-- Producto / Servicio -->
-                    <div class="form-field full-width">
+                    <div class="form-group full-width">
                         <label for="productoServicio">Productos o Servicios a Exhibir</label>
-                        <textarea id="productoServicio" rows="3" formControlName="productoServicio"
-                            placeholder="Resumen de los productos que presentarás en FIPAZ"></textarea>
+                        <div class="input-icon-wrapper textarea-wrapper">
+                            <i class="fa-solid fa-box-open input-icon textarea-icon"></i>
+                            <textarea id="productoServicio" rows="3" formControlName="productoServicio"
+                                placeholder="Resumen de los productos que presentarás en FIPAZ"></textarea>
+                        </div>
                     </div>
 
                     <!-- Enlaces Web -->
-                    <div class="form-field full-width">
+                    <div class="form-group full-width">
                         <label for="enlacesWeb">Sitio Web / Redes Sociales</label>
-                        <input id="enlacesWeb" type="text" formControlName="enlacesWeb"
-                            placeholder="https://facebook.com/miempresa">
+                        <div class="input-icon-wrapper">
+                            <i class="fa-solid fa-globe input-icon"></i>
+                            <input id="enlacesWeb" type="text" formControlName="enlacesWeb"
+                                placeholder="https://facebook.com/miempresa">
+                        </div>
                     </div>
 
-                </div>
+                    <!-- Banner de Error HTTP -->
+                    @if (mensajeError) {
+                    <div class="form-group full-width">
+                        <div style="background: rgba(220, 53, 69, 0.1); border: 1px solid #dc3545; padding: 10px; border-radius: 8px; color: #dc3545; font-size: 13px;">
+                            <p style="margin: 0;">{{ mensajeError }}</p>
+                        </div>
+                    </div>
+                    }
 
-                <!-- Banner de Error HTTP -->
-                @if (mensajeError) {
-                <div class="error-alert">
-                    <p>{{ mensajeError }}</p>
-                </div>
-                }
+                    <div class="form-actions-submit">
+                        <button type="submit" class="btn-submit-postulacion" [disabled]="enviando">
+                            @if (!enviando) {
+                            <span><i class="fa-solid fa-paper-plane"></i> Enviar Postulación</span>
+                            } @else {
+                            <span><i class="fa-solid fa-spinner fa-spin"></i> Enviando...</span>
+                            }
+                        </button>
+                    </div>
 
-                <div class="form-actions">
-                    <button type="button" class="btn-secondary" (click)="cerrar()" [disabled]="enviando">
-                        Cancelar
-                    </button>
-                    <button type="submit" class="btn-primary" [disabled]="enviando">
-                        @if (!enviando) {
-                        <span>Enviar Postulación</span>
-                        } @else {
-                        <span>Enviando...</span>
-                        }
-                    </button>
                 </div>
             </form>
         </div>
