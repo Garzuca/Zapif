@@ -9,10 +9,12 @@
 
     <!-- BOTONERA DE FILTROS POR DÉCADAS -->
     <div class="galeria-filters-wrapper">
-        <button [class.active]="filtroDecadaActivo() === 'TODOS'" (click)="cambiarFiltroDecada('TODOS')">
-            Todos los Años
+        <button [class.active]="filtroDecadaActivo() === 'ULTIMOS'" (click)="cambiarFiltroDecada('ULTIMOS')">
+            2020 - Presente
         </button>
-
+        <button [class.active]="filtroDecadaActivo() === 'TODOS'" (click)="cambiarFiltroDecada('TODOS')">
+            Ver Todos
+        </button>
         @for (item of decadasDisponibles(); track item.decada) {
         <button [class.active]="filtroDecadaActivo() === item.decada" (click)="cambiarFiltroDecada(item.decada)">
             Década {{ item.label }}

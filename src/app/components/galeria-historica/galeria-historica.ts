@@ -16,7 +16,7 @@ export interface DecadaFiltro {
 })
 export class GaleriaHistoricaComponent {
   // 'TODOS' o el número inicial de la década (ej: 2020, 2010, 2000)
-  filtroDecadaActivo = signal<number | 'TODOS'>('TODOS');
+  filtroDecadaActivo = signal<number | 'TODOS' | 'ULTIMOS'>('ULTIMOS');
   imagenSeleccionada = signal<HitoHistorico | null>(null);
 
   readonly hitos = GALERIA_HITOS;
@@ -42,6 +42,7 @@ export class GaleriaHistoricaComponent {
   // Filtra la grilla según la década seleccionada
   hitosFiltrados = computed(() => {
     const filtro = this.filtroDecadaActivo();
+    if (filtro === 'ULTIMOS') return this.hitos.filter(hito => hito.anio >= 2020);
     if (filtro === 'TODOS') return this.hitos;
 
     return this.hitos.filter(hito => {
@@ -50,7 +51,7 @@ export class GaleriaHistoricaComponent {
     });
   });
 
-  cambiarFiltroDecada(decada: number | 'TODOS'): void {
+  cambiarFiltroDecada(decada: number | 'TODOS' | 'ULTIMOS'): void {
     this.filtroDecadaActivo.set(decada);
   }
 

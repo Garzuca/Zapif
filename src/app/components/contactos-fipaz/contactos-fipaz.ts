@@ -9,6 +9,7 @@ export interface CanalContacto {
   valor: string;
   tipo: 'email' | 'telefono' | 'ubicacion' | 'horario';
   colorClass: string;
+  badgeText: string;
 }
 
 @Component({
@@ -28,7 +29,8 @@ export class ContactosFipaz {
       descripcion: 'Para consultas e información general sobre la feria',
       valor: 'infofipaz@gmail.com',
       tipo: 'email',
-      colorClass: 'canal-rojo'
+      colorClass: 'canal-rojo',
+      badgeText: 'Atención General'
     },
     {
       id: 2,
@@ -37,25 +39,28 @@ export class ContactosFipaz {
       descripcion: 'Registro de stands, tarifas y contratos de exposición',
       valor: 'ejecutiva1.fipaz@gmail.com',
       tipo: 'email',
-      colorClass: 'canal-verde'
+      colorClass: 'canal-verde',
+      badgeText: 'Ventas & Stands'
     },
     {
       id: 3,
       icono: 'fa-solid fa-newspaper',
-      titulo: 'Prensa y Comunicación',
+      titulo: 'Prensa y Medios',
       descripcion: 'Acreditaciones, entrevistas y comunicados de prensa',
       valor: 'feriafipaz@gmail.com',
       tipo: 'email',
-      colorClass: 'canal-gris'
+      colorClass: 'canal-gris',
+      badgeText: 'Medios y Prensa'
     },
     {
       id: 4,
       icono: 'fa-brands fa-whatsapp',
       titulo: 'WhatsApp Oficial',
-      descripcion: 'Atención rápida por mensajería instantánea',
+      descripcion: 'Atención rápida e instantánea por mensajería',
       valor: '+59176204510',
       tipo: 'telefono',
-      colorClass: 'canal-rojo'
+      colorClass: 'canal-whatsapp',
+      badgeText: 'Chat en Vivo'
     }
   ];
 

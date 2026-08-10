@@ -1,246 +1,364 @@
 /* ============================================
-   VARIABLES DE ESTE COMPONENTE (INTEGRADO CON STYLES.CSS)
+   NAVBAR MASTER - ESTILO GROVEMADE (MINIMALISTA)
    ============================================ */
 .navbar-master {
-    --nav-bg: var(--secondary-dark, #000000);
-    --nav-bg-alt: var(--secondary, #3C3C3B);
-    --nav-text: var(--success);
-    --nav-text-muted: #B0B0B0;
-    --nav-accent: var(--primary, #E31425);
-    --nav-accent-dark: var(--primary-dark, #C1282E);
     position: sticky;
     top: 0;
     z-index: 1000;
     width: 100%;
+    transition: all 0.3s ease;
 }
 
 /* ============================================
-   1. BARRA SUPERIOR UTILITARIA
+   1. BARRA SUPERIOR UTILITARIA (CONTACTOS + INFO)
    ============================================ */
 .top-utility-bar {
-    background: var(--nav-bg-alt);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    overflow-x: auto;
-    scrollbar-width: none;
-    width: 100%;
-}
-
-.top-utility-bar::-webkit-scrollbar {
-    display: none;
+    background: var(--secondary-dark);
+    color: #ffffff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 0.75rem;
 }
 
 .utility-container {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 16px;
-    padding: 8px 20px;
     max-width: 1200px;
     margin: 0 auto;
-    white-space: nowrap;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.utility-item {
-    color: var(--nav-text-muted);
-    font-size: 0.78rem;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    flex-shrink: 0;
-}
-
-.utility-item i {
-    color: var(--nav-accent);
-}
-
-/* ============================================
-   2. MENÚ PRINCIPAL
-   ============================================ */
-.main-navigation-bar {
-    background: var(--nav-bg);
-    box-sizing: border-box;
-    width: 100%;
-}
-
-.nav-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 12px 20px;
+    padding: 6px 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 16px;
     box-sizing: border-box;
-    width: 100%;
 }
 
-/* --- Logo --- */
-.nav-logo-zone {
-    display: flex;
-    align-items: baseline;
-    gap: 1px;
-    cursor: pointer;
-    flex-shrink: 0;
-    font-weight: 800;
-    font-size: 1.5rem;
-}
-
-.nav-logo-zone .color-a {
-    color: var(--nav-accent);
-}
-
-.nav-logo-zone .color-b {
-    color: var(--nav-text);
-}
-
-.brand-year {
-    font-size: 0.75rem;
-    color: var(--nav-accent);
-    font-weight: 700;
-    margin-left: 4px;
-}
-
-.brand-tagline {
-    display: none;
-    font-size: 0.7rem;
-    color: var(--nav-text-muted);
-    font-weight: 400;
-    margin-left: 8px;
-    border-left: 1px solid rgba(255, 255, 255, 0.2);
-    padding-left: 8px;
-}
-
-/* --- Botón hamburguesa --- */
-.burger-menu {
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    gap: 5px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 8px;
-    z-index: 1100;
-}
-
-.burger-line {
-    width: 24px;
-    height: 2px;
-    background: var(--nav-text);
-    transition: transform 0.25s ease, opacity 0.25s ease;
-}
-
-.burger-menu.is-active .burger-line:nth-child(1) {
-    transform: translateY(7px) rotate(45deg);
-}
-
-.burger-menu.is-active .burger-line:nth-child(2) {
-    opacity: 0;
-}
-
-.burger-menu.is-active .burger-line:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg);
-}
-
-/* --- Wrapper del menú (links + botones + contacto) --- */
-.nav-menu-wrapper {
+.utility-info-zone {
     display: flex;
     align-items: center;
     gap: 16px;
-    flex-wrap: nowrap;
+}
+
+.utility-item {
+    color: #c0c0c0;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 500;
+}
+
+.utility-item i {
+    color: var(--primary);
+    font-size: 0.85rem;
+}
+
+.utility-item.highlight-badge {
+    background: rgba(227, 20, 37, 0.15);
+    color: #ff4d5e;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-weight: 700;
+    border: 1px solid rgba(227, 20, 37, 0.3);
+}
+
+.utility-contact-zone {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.utility-contact-link {
+    color: #d0d0d0;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: 500;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.utility-contact-link:hover {
+    color: #ffffff;
+    transform: translateY(-1px);
+}
+
+.utility-contact-link.whatsapp {
+    color: #25d366;
+    font-weight: 600;
+}
+
+.utility-contact-link.whatsapp:hover {
+    color: #34e775;
+}
+
+/* ============================================
+   2. MENÚ PRINCIPAL (GLASSMORPHISM MINIMALISTA)
+   ============================================ */
+.main-navigation-bar {
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    box-sizing: border-box;
+}
+
+/* --- Logo GROVEMADE Style --- */
+.nav-logo-zone {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.brand-text {
+    font-weight: 900;
+    font-size: 1.45rem;
+    letter-spacing: -0.5px;
+}
+
+.brand-text .color-a {
+    color: var(--primary);
+}
+
+.brand-text .color-b {
+    color: var(--text-strong);
+}
+
+.brand-badge {
+    background: var(--text-strong);
+    color: var(--surface);
+    font-size: 0.65rem;
+    font-weight: 800;
+    padding: 2px 6px;
+    border-radius: 6px;
+    letter-spacing: 0.5px;
+}
+
+/* --- Links de Navegación & Desplegables --- */
+.nav-menu-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 28px;
 }
 
 .nav-links-links {
     list-style: none;
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 24px;
     margin: 0;
     padding: 0;
-    flex-wrap: nowrap;
+}
+
+.nav-item-dropdown {
+    position: relative;
+    padding: 8px 0;
 }
 
 .nav-link {
-    color: var(--nav-text-muted);
+    color: var(--text-main);
     text-decoration: none;
-    font-size: 0.82rem;
+    font-size: 0.88rem;
     font-weight: 600;
-    white-space: nowrap;
-    transition: color 0.15s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s ease;
+    cursor: pointer;
 }
 
-.nav-link:hover,
-.nav-link.active {
-    color: var(--nav-text);
+.nav-arrow {
+    font-size: 0.7rem;
+    color: var(--text-light);
+    transition: transform 0.25s ease, color 0.2s ease;
 }
 
+.nav-item-dropdown:hover .nav-arrow {
+    transform: rotate(180deg);
+    color: var(--primary);
+}
+
+.nav-item-dropdown:hover .nav-link {
+    color: var(--primary);
+}
+
+/* Caja del Menú Desplegable (Dropdown Box) */
+.dropdown-menu-box {
+    position: absolute;
+    top: 100%;
+    left: -12px;
+    min-width: 220px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 8px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 1200;
+}
+
+.nav-item-dropdown:hover .dropdown-menu-box {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    color: var(--text-main);
+    text-decoration: none;
+    font-size: 0.84rem;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.dropdown-item i {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    transition: color 0.2s ease, transform 0.2s ease;
+    width: 16px;
+    text-align: center;
+}
+
+.dropdown-item:hover {
+    background: var(--background);
+    color: var(--primary);
+    transform: translateX(3px);
+}
+
+.dropdown-item:hover i {
+    color: var(--primary);
+}
+
+/* --- Botones de Acción Destacados (CTAs Premium) --- */
 .navbar-buttons-container {
     display: flex;
     align-items: center;
-    gap: 8px;
-    flex-wrap: nowrap;
-    flex-shrink: 0;
+    gap: 12px;
+    margin-left: 8px;
 }
 
 .btn-visitante-outline,
 .btn-cta-nav {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    padding: 7px 12px;
-    border-radius: var(--radius, 8px);
-    font-size: 0.78rem;
-    font-weight: 600;
+    gap: 8px;
+    padding: 9px 18px;
+    border-radius: var(--radius);
+    font-size: 0.84rem;
+    font-weight: 700;
     cursor: pointer;
     white-space: nowrap;
-    border: 1px solid transparent;
-    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    border: 1.5px solid transparent;
 }
 
+/* 1. Botón Guía Visitante (Estilo Verde Institucional / Glass Accent) */
 .btn-visitante-outline {
-    background: transparent;
-    color: var(--nav-text);
-    border-color: rgba(255, 255, 255, 0.3);
+    background: rgba(9, 137, 62, 0.06);
+    color: var(--success);
+    border-color: rgba(9, 137, 62, 0.3);
+}
+
+.btn-visitante-outline i {
+    font-size: 0.95rem;
+    color: var(--success);
+    transition: transform 0.3s ease;
 }
 
 .btn-visitante-outline:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: var(--nav-text);
+    background: var(--success);
+    color: #ffffff;
+    border-color: var(--success);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(9, 137, 62, 0.3);
 }
 
+.btn-visitante-outline:hover i {
+    color: #ffffff;
+    transform: scale(1.15) rotate(-5deg);
+}
+
+/* 2. Botón Quiero Exponer (Estilo Rojo FIPAZ Premium Gradient + Glow) */
 .btn-cta-nav {
-    background: var(--nav-accent);
-    color: white;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 14px rgba(227, 20, 37, 0.35);
+}
+
+.btn-cta-nav i {
+    font-size: 0.95rem;
+    transition: transform 0.3s ease;
+}
+
+/* Shimmer Light Sweep on Hover */
+.btn-cta-nav::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.25) 50%,
+        transparent 100%
+    );
+    transform: rotate(30deg) translateY(-100%);
+    transition: transform 0.6s ease;
+    pointer-events: none;
+}
+
+.btn-cta-nav:hover::before {
+    transform: rotate(30deg) translateY(100%);
 }
 
 .btn-cta-nav:hover {
-    background: var(--nav-accent-dark);
-    transform: translateY(-1px);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 22px rgba(227, 20, 37, 0.45);
 }
 
-.contacto-iconos {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-shrink: 0;
+.btn-cta-nav:hover i {
+    transform: translateX(2px) scale(1.1);
 }
 
-.contacto-iconos a {
-    color: var(--nav-text-muted);
-    font-size: 0.9rem;
-    transition: color 0.2s ease;
-}
-
-.contacto-iconos a:hover {
-    color: var(--nav-accent);
+.btn-cta-nav:active,
+.btn-visitante-outline:active {
+    transform: translateY(0) scale(0.98);
 }
 
 /* ============================================
-   RESPONSIVE: MOBILE Y LAPTOPS HASTA 1199px
+   RESPONSIVE: MOBILE Y TABLETS (< 1024px)
    ============================================ */
-@media (max-width: 1199px) {
+@media (max-width: 1023px) {
+    .utility-info-zone .utility-item:nth-child(2) {
+        display: none;
+    }
+
+    .utility-contact-link span {
+        display: none;
+    }
+
     .burger-menu {
         display: flex;
     }
@@ -249,19 +367,19 @@
         position: fixed;
         top: 0;
         right: -100%;
-        width: 80%;
+        width: 84%;
         max-width: 320px;
         height: 100vh;
-        background: var(--nav-bg-alt);
+        background: var(--surface);
         flex-direction: column;
-        align-items: flex-start;
+        align-items: stretch;
         justify-content: flex-start;
-        padding: 90px 24px 24px;
-        gap: 28px;
-        transition: right 0.3s ease;
+        padding: 80px 24px 30px;
+        gap: 24px;
+        transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.15);
+        z-index: 1050;
         overflow-y: auto;
-        box-sizing: border-box;
-        box-shadow: -4px 0 20px rgba(0, 0, 0, 0.5);
     }
 
     .nav-menu-wrapper.is-active {
@@ -271,55 +389,43 @@
     .nav-links-links {
         flex-direction: column;
         align-items: flex-start;
-        gap: 16px;
+        gap: 12px;
         width: 100%;
     }
 
-    .nav-link {
-        font-size: 0.95rem;
+    .nav-item-dropdown {
+        width: 100%;
+        padding: 0;
+    }
+
+    .dropdown-menu-box {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        border: none;
+        background: var(--background);
+        margin-top: 6px;
+        padding: 4px;
+    }
+
+    .dropdown-item {
+        font-size: 0.85rem;
+        padding: 8px 12px;
     }
 
     .navbar-buttons-container {
         flex-direction: column;
         align-items: stretch;
         width: 100%;
+        margin-top: 10px;
     }
 
     .btn-visitante-outline,
     .btn-cta-nav {
         justify-content: center;
-        padding: 10px 14px;
-        font-size: 0.85rem;
+        padding: 12px;
+        font-size: 0.9rem;
     }
-
-    .contacto-iconos {
-        gap: 20px;
-    }
-
-    .utility-item:nth-child(3) {
-        display: none;
-    }
-}
-
-/* ============================================
-   RESPONSIVE: DESKTOP XL (1400px+)
-   ============================================ */
-@media (min-width: 1400px) {
-    .brand-tagline {
-        display: inline;
-    }
-
-    .nav-links-links {
-        gap: 18px;
-    }
-
-    .nav-link {
-        font-size: 0.85rem;
-    }
-
-    .btn-visitante-outline,
-    .btn-cta-nav {
-        padding: 8px 14px;
-        font-size: 0.8rem;
-    }
-}
+}

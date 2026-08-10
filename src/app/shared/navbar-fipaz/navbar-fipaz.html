@@ -1,27 +1,37 @@
 <nav class="navbar-master" [class.menu-mobile-open]="menuAbierto">
-    <!-- 1. BARRA SUPERIOR UTILITARIA (Estilo Internacional) -->
+    <!-- 1. BARRA SUPERIOR UTILITARIA CON CONTACTOS RÁPIDOS -->
     <div class="top-utility-bar">
         <div class="utility-container">
-            <span class="utility-item"><i class="fa-solid fa-calendar-days"></i> Octubre - Noviembre 2026</span>
-            <span class="utility-item"><i class="fa-solid fa-location-dot"></i> Campo Ferial Chuquiago Marka, La
-                Paz</span>
-            <span class="utility-item"><i class="fa-solid fa-fire"></i> 25 Años El Fuego que nunca se apaga</span>
+            <div class="utility-info-zone">
+                <span class="utility-item"><i class="fa-solid fa-calendar-days"></i> Oct - Nov 2026</span>
+                <span class="utility-item"><i class="fa-solid fa-location-dot"></i> Chuquiago Marka, La Paz</span>
+                <span class="utility-item highlight-badge"><i class="fa-solid fa-fire"></i> 25 Años</span>
+            </div>
+            
+            <div class="utility-contact-zone">
+                <a href="tel:(2)2485000" class="utility-contact-link" title="Llamar a FIPAZ">
+                    <i class="fa-solid fa-phone"></i> <span>(2) 2485000</span>
+                </a>
+                <a href="https://wa.me/59176204510" target="_blank" class="utility-contact-link whatsapp" title="WhatsApp FIPAZ">
+                    <i class="fa-brands fa-whatsapp"></i> <span>+591 76204510</span>
+                </a>
+                <a href="mailto:infofipaz@gmail.com" class="utility-contact-link" title="Correo FIPAZ">
+                    <i class="fa-solid fa-envelope"></i> <span>infofipaz@gmail.com</span>
+                </a>
+            </div>
         </div>
     </div>
 
-    <!-- 2. MENÚ PRINCIPAL DE NAVEGACIÓN -->
+    <!-- 2. MENÚ PRINCIPAL DE NAVEGACIÓN (ESTILO GROVEMADE) -->
     <div class="main-navigation-bar">
         <div class="nav-container">
 
             <!-- Logo / Identidad Izquierda -->
             <div class="nav-logo-zone" (click)="cerrarMenu()">
-                <span class="color-a">F</span>
-                <span class="color-b">I</span>
-                <span class="color-a">P</span>
-                <span class="color-b">A</span>
-                <span class="color-a">Z</span>
-                <span class="brand-year">2026</span>
-                <span class="brand-tagline">Feria Internacional</span>
+                <span class="brand-text">
+                    <span class="color-a">F</span><span class="color-b">I</span><span class="color-a">P</span><span class="color-b">A</span><span class="color-a">Z</span>
+                </span>
+                <span class="brand-badge">2026</span>
             </div>
 
             <!-- Botón hamburguesa móvil -->
@@ -34,36 +44,67 @@
 
             <!-- Menú central y móvil -->
             <div class="nav-menu-wrapper" [class.is-active]="menuAbierto">
-                <!-- Enlaces Centrales -->
+                <!-- 3 Categorías Maestras con Desplegables -->
                 <ul class="nav-links-links">
-                    <li><a href="#" class="nav-link active" (click)="cerrarMenu()">Inicio</a></li>
-                    <li><a href="#institucional" class="nav-link" (click)="cerrarMenu()">Nosotros</a></li>
-                    <li><a href="#eventos" class="nav-link" (click)="cerrarMenu()">Programa</a></li>
-                    <li><a href="#galeria" class="nav-link" (click)="cerrarMenu()">Galería</a></li>
-                    <li><a href="#blogs" class="nav-link" (click)="cerrarMenu()">Noticias</a></li>
-                    <li><a href="#patrocinadores" class="nav-link" (click)="cerrarMenu()">Patrocinadores</a></li>
-                    <li><a href="#auspiciadores" class="nav-link" (click)="cerrarMenu()">Auspiciadores</a></li>
-                    <li><a href="#contacto" class="nav-link" (click)="cerrarMenu()">Contacto</a></li>
+
+                    <!-- Categoría 1: La Feria -->
+                    <li class="nav-item-dropdown">
+                        <a href="#institucional" class="nav-link dropdown-toggle">
+                            La Feria <i class="fa-solid fa-chevron-down nav-arrow"></i>
+                        </a>
+                        <div class="dropdown-menu-box">
+                            <a href="#" class="dropdown-item" (click)="cerrarMenu()">
+                                <i class="fa-solid fa-house"></i> Inicio
+                            </a>
+                            <a href="#institucional" class="dropdown-item" (click)="cerrarMenu()">
+                                <i class="fa-solid fa-building-user"></i> Sobre FIPAZ
+                            </a>
+                            <a href="#patrocinadores" class="dropdown-item" (click)="cerrarMenu()">
+                                <i class="fa-solid fa-handshake"></i> Auspiciadores & Aliados
+                            </a>
+                            <a href="#contacto" class="dropdown-item" (click)="cerrarMenu()">
+                                <i class="fa-solid fa-headset"></i> Contacto Directo
+                            </a>
+                        </div>
+                    </li>
+
+                    <!-- Categoría 2: Programa & Galería -->
+                    <li class="nav-item-dropdown">
+                        <a href="#eventos" class="nav-link dropdown-toggle">
+                            Programa & Galería <i class="fa-solid fa-chevron-down nav-arrow"></i>
+                        </a>
+                        <div class="dropdown-menu-box">
+                            <a href="#eventos" class="dropdown-item" (click)="cerrarMenu()">
+                                <i class="fa-solid fa-calendar-check"></i> Agenda y Programa
+                            </a>
+                            <a href="#galeria-historica" class="dropdown-item" (click)="cerrarMenu()">
+                                <i class="fa-solid fa-images"></i> Galería Histórica 25 Años
+                            </a>
+                        </div>
+                    </li>
+
+                    <!-- Categoría 3: Novedades -->
+                    <li class="nav-item-dropdown">
+                        <a href="#blogs" class="nav-link dropdown-toggle">
+                            Novedades <i class="fa-solid fa-chevron-down nav-arrow"></i>
+                        </a>
+                        <div class="dropdown-menu-box">
+                            <a href="#blogs" class="dropdown-item" (click)="cerrarMenu()">
+                                <i class="fa-solid fa-newspaper"></i> Noticias & Blog
+                            </a>
+                        </div>
+                    </li>
+
                 </ul>
 
-                <!-- Acciones Destacadas -->
+                <!-- Acciones Destacadas (CTAs) -->
                 <div class="navbar-buttons-container">
                     <button class="btn-visitante-outline" (click)="dispararModalVisitantes()">
-                        <i class="fa-solid fa-map-location-dot"></i> Guía del Visitante
+                        <i class="fa-solid fa-map-location-dot"></i> Guía Visitante
                     </button>
                     <button class="btn-cta-nav" (click)="dispararModal()">
                         <i class="fa-solid fa-building-circle-check"></i> Quiero Exponer
                     </button>
-                </div>
-
-                <!-- Iconos de Contactos -->
-                <div class="contacto-iconos">
-                    <a href="tel:(2)2485000" aria-label="Llamar FIPAZ"><i class="fa-solid fa-phone"></i></a>
-                    <a href="https://wa.me/59176204510" target="_blank" aria-label="WhatsApp FIPAZ"><i
-                            class="fa-brands fa-whatsapp"></i></a>
-                    <a href="mailto:infofipaz@gmail.com" aria-label="Correo FIPAZ"><i class="fa-solid fa-at"></i></a>
-                    <a href="#" target="_blank" aria-label="Ubicación FIPAZ"><i
-                            class="fa-solid fa-location-dot"></i></a>
                 </div>
             </div>
 

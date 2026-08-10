@@ -62,28 +62,6 @@ export class BlogsFipaz {
       imagen: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=600&auto=format&fit=crop&q=80',
       autor: 'FIPAZ Eventos',
       destacado: false
-    },
-    {
-      id: 4,
-      titulo: 'La gastronomía paceña brilla en el patio de comidas de la feria',
-      resumen: 'Desde la comida tradicional hasta propuestas gourmet, te mostramos los stands culinarios que están conquistando los paladares en esta versión.',
-      categoria: 'Gastronomía',
-      fecha: '10 Jul 2026',
-      tiempoLectura: '4 min',
-      imagen: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&auto=format&fit=crop&q=80',
-      autor: 'FIPAZ Gourmet',
-      destacado: false
-    },
-    {
-      id: 5,
-      titulo: 'Pabellón de Tecnología: Las startups bolivianas que están marcando tendencia',
-      resumen: 'Inteligencia artificial, automatización y soluciones fintech locales capturan la atención de inversionistas extranjeros en el pabellón tecnológico.',
-      categoria: 'Emprendedores',
-      fecha: '09 Jul 2026',
-      tiempoLectura: '6 min',
-      imagen: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&auto=format&fit=crop&q=80',
-      autor: 'FIPAZ Tech',
-      destacado: false
     }
   ]);
 
@@ -94,8 +72,8 @@ export class BlogsFipaz {
 
     return this.todosLosBlogs().filter(blog => {
       const coincideCat = cat === 'Todos' || blog.categoria === cat;
-      const coincideBusqueda = !query || 
-        blog.titulo.toLowerCase().includes(query) || 
+      const coincideBusqueda = !query ||
+        blog.titulo.toLowerCase().includes(query) ||
         blog.resumen.toLowerCase().includes(query);
       return coincideCat && coincideBusqueda;
     });
