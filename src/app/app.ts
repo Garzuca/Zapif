@@ -14,6 +14,7 @@ import { SeccionInstitucionalComponent } from './components/seccion-instituciona
 import { BlogsFipaz } from './components/blogs-fipaz/blogs.fipaz';
 import { ContactosFipaz } from './components/contactos-fipaz/contactos-fipaz';
 import { GestionAuspiciadores } from './components/gestion-auspiciadores/gestion-auspiciadores';
+import { SeccionTikTokComponent } from "./components/seccion-tiktok/seccion-tiktok";
 
 
 @Component({
@@ -34,7 +35,8 @@ import { GestionAuspiciadores } from './components/gestion-auspiciadores/gestion
     SeccionInstitucionalComponent,
     BlogsFipaz,
     ContactosFipaz,
-    GestionAuspiciadores
+    GestionAuspiciadores,
+    SeccionTikTokComponent
   ],
   templateUrl: './app.html',
   styleUrls: ['./app.css']

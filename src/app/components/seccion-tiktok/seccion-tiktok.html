@@ -1,0 +1,37 @@
+<section class="tiktok-section">
+    <div class="header-section">
+        <div>
+            <span class="badge-redes">REDES SOCIALES</span>
+            <h2>Lo último de la FIPAZ en TikTok 🎥</h2>
+        </div>
+        <a href="https://www.tiktok.com/@fipaz.bolivia" target="_blank" rel="noopener noreferrer" class="btn-tiktok">
+            Siguenos en TikTok
+        </a>
+    </div>
+
+    @if (cargando()) {
+    <div class="loader-container">
+        <p>Cargando publicaciones de la feria...</p>
+    </div>
+    } @else {
+    <div class="grid-tiktoks">
+        @for (video of videos(); track video.id) {
+        <div class="card-tiktok">
+            <!-- Blockquote con estructura estándar de TikTok usando la URL e ID de tu BD -->
+            <blockquote class="tiktok-embed" [attr.cite]="video.urlTikTok" [attr.data-video-id]="video.videoId"
+                style="max-width: 325px; min-width: 288px;">
+                <section>
+                    <a target="_blank" [href]="video.urlTikTok" [title]="video.titulo">
+                        {{ video.titulo }}
+                    </a>
+                </section>
+            </blockquote>
+        </div>
+        } @empty {
+        <div class="sin-videos">
+            <p>Pronto publicaremos nuevo contenido de la feria.</p>
+        </div>
+        }
+    </div>
+    }
+</section>

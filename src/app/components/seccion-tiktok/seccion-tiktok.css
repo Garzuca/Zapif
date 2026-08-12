@@ -1,0 +1,66 @@
+.tiktok-section {
+    padding: 3rem 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.badge-redes {
+    color: #ef4444;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+}
+
+.header-section h2 {
+    font-size: 1.8rem;
+    color: #0f172a;
+    margin-top: 4px;
+}
+
+.btn-tiktok {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-tiktok:hover {
+    background-color: #1e293b;
+    transform: translateY(-2px);
+}
+
+.grid-tiktoks {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    justify-items: center;
+}
+
+.card-tiktok {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.loader-container,
+.sin-videos {
+    text-align: center;
+    padding: 3rem;
+    color: #64748b;
+}
