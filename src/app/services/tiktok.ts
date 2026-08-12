@@ -17,7 +17,7 @@ export interface VideoTikTok {
 })
 export class TikTokService {
     private http = inject(HttpClient);
-    private apiUrl = `${environment.apiUrl}/TikToks`;
+    private apiUrl = `${environment.apiUrl}/tiktok`;
 
     // Único método necesario para el portal público de la FIPAZ
     obtenerPublicos(): Observable<VideoTikTok[]> {
