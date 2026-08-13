@@ -1,0 +1,32 @@
+<section class="testimonios-section">
+    <div class="header-section">
+        <span class="badge-sub">EXPERIENCIAS REALES</span>
+        <h2>Lo que dicen nuestros Expositores 💬</h2>
+        <p>La confianza de las empresas y emprendedores es nuestro mayor respaldo.</p>
+    </div>
+
+    <div class="grid-testimonios">
+        @for (t of testimonios; track t.id) {
+        <div class="card-testimonio">
+            <div class="quote-icon">“</div>
+            <p class="comentario">{{ t.comentario }}</p>
+
+            <div class="estrellas">
+                @for (star of [1,2,3,4,5]; track star) {
+                <span class="star">★</span>
+                }
+            </div>
+
+            <div class="autor-info">
+                <div class="avatar-circle">
+                    {{ t.nombre.charAt(0) }}
+                </div>
+                <div class="datos">
+                    <span class="nombre">{{ t.nombre }}</span>
+                    <span class="cargo">{{ t.cargoEmpresa }}</span>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+</section>

@@ -1,0 +1,18 @@
+@if (!isClosed()) {
+<div class="floating-video-widget">
+    <div class="floating-card-player">
+        <button class="close-floating-btn" (click)="closeWidget()" title="Cerrar video">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div class="widget-video-frame">
+            @if (safeEmbedUrl(); as url) {
+            <iframe [src]="url" title="Video FIPAZ" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+            }
+        </div>
+    </div>
+</div>
+}

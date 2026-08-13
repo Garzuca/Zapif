@@ -15,6 +15,8 @@ import { BlogsFipaz } from './components/blogs-fipaz/blogs.fipaz';
 import { ContactosFipaz } from './components/contactos-fipaz/contactos-fipaz';
 import { GestionAuspiciadores } from './components/gestion-auspiciadores/gestion-auspiciadores';
 import { SeccionTikTokComponent } from "./components/seccion-tiktok/seccion-tiktok";
+import { SeccionTestimoniosComponent } from "./components/testimonios/testimonios";
+import { VideoYoutube } from "./components/video-youtube/video-youtube";
 
 
 @Component({
@@ -36,7 +38,9 @@ import { SeccionTikTokComponent } from "./components/seccion-tiktok/seccion-tikt
     BlogsFipaz,
     ContactosFipaz,
     GestionAuspiciadores,
-    SeccionTikTokComponent
+    SeccionTikTokComponent,
+    SeccionTestimoniosComponent,
+    VideoYoutube
   ],
   templateUrl: './app.html',
   styleUrls: ['./app.css']

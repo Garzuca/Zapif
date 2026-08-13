@@ -1,0 +1,74 @@
+/* ============================================
+   REPRODUCTOR DE VIDEO FLOTANTE MINIMALISTA
+   ============================================ */
+
+.floating-video-widget {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 1050;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.floating-card-player {
+    position: relative;
+    width: 290px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #000000;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Botón cerrar sutil */
+.close-floating-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 20;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.65);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 0.75rem;
+    backdrop-filter: blur(4px);
+    transition: all 0.2s ease;
+}
+
+.close-floating-btn:hover {
+    background: var(--primary, #e31425);
+    color: #ffffff;
+    transform: scale(1.1);
+}
+
+/* Frame Iframe 16:9 */
+.widget-video-frame {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    background: #000000;
+}
+
+.widget-video-frame iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* ============================================
+   RESPONSIVE: OCULTAR EN MÓVILES Y TABLETS
+   ============================================ */
+@media (max-width: 768px) {
+    .floating-video-widget {
+        display: none !important;
+    }
+}

@@ -29,6 +29,8 @@
   <!-- SECCION TIKTOK -->
   <app-seccion-tiktok id="tiktok"></app-seccion-tiktok>
 
+  <app-seccion-testimonios id="testimonios"></app-seccion-testimonios>
+
   <!-- SECCIÓN DE CONTACTO -->
   <app-contactos-fipaz id="contacto"></app-contactos-fipaz>
 </main>
@@ -39,4 +41,5 @@
 <app-expositores-wizard [isOpen]="modalExpositoresAbierto"
   (closeModal)="cerrarModalExpositores()"></app-expositores-wizard>
 <!-- BLOQUE 0: GUÍA INFORMATIVA PARA EL VISITANTE (AÑADIDO) -->
+<app-video-youtube></app-video-youtube>
 <app-visitantes-fipaz [isOpen]="modalVisitantesAbierto" (closeModal)="cerrarModalVisitantes()"></app-visitantes-fipaz>
