@@ -17,6 +17,8 @@ import { GestionAuspiciadores } from './components/gestion-auspiciadores/gestion
 import { SeccionTikTokComponent } from "./components/seccion-tiktok/seccion-tiktok";
 import { SeccionTestimoniosComponent } from "./components/testimonios/testimonios";
 import { VideoYoutube } from "./components/video-youtube/video-youtube";
+import { RouterOutlet } from "@angular/router";
+import { NosotrosFipaz } from './components/nosotros-fipaz/nosotros-fipaz';
 
 
 @Component({
@@ -40,7 +42,9 @@ import { VideoYoutube } from "./components/video-youtube/video-youtube";
     GestionAuspiciadores,
     SeccionTikTokComponent,
     SeccionTestimoniosComponent,
-    VideoYoutube
+    VideoYoutube,
+    RouterOutlet,
+    NosotrosFipaz
   ],
   templateUrl: './app.html',
   styleUrls: ['./app.css']
