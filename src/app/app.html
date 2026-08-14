@@ -1,46 +1,19 @@
-<app-navbar-fipaz (onQuieroExponerClick)="abrirModalExpositores()"
-  (onQuieroVisitarClick)="abrirModalVisitantes()"></app-navbar-fipaz>
+<!-- NAVBAR GLOBAL -->
+<app-navbar-fipaz (onQuieroExponerClick)="abrirModalExpositores()" (onQuieroVisitarClick)="abrirModalVisitantes()">
+</app-navbar-fipaz>
+
+<!-- AQUÍ ANGULAR CAMBIA ENTRE HOME Y NOSOTROS -->
 <router-outlet></router-outlet>
-<app-hero-fipaz (onQuieroExponerClick)="abrirModalExpositores()"></app-hero-fipaz>
-<!-- CONTENEDOR MAESTRO DE LA FERIA -->
-<main style="max-width: 1200px; margin: 0 auto; padding: 40px 20px;">
-  <!-- Encabezado Temporal del Tablero -->
-  <!-- Aquí iremos inyectando los siguientes bloques a medida que los migremos -->
-  <app-patrocinadores-premiun id="patrocinadores"></app-patrocinadores-premiun>
-  <header style="margin-bottom: 40px; border-bottom: 2px solid var(--border); padding-bottom: 20px;">
-    <h1 style="color: var(--text-strong); font-size: 28px; font-weight: 900;">
-      <span style="color: var(--primary);">FIPAZ 2026</span> - 25 Años de historia
-    </h1>
-  </header>
-  <!-- BLOQUE 1: PANEL DE MÉTRICAS (MÓDULOS GERENCIALES)  <app-dashboard-metricas></app-dashboard-metricas>-->
-  <!-- CONTADOR (Nuevo Bloque Integrado) -->
 
-  <app-seccion-institucional id="institucional"></app-seccion-institucional>
-  <app-gestion-auspiciadores id="auspiciadores"></app-gestion-auspiciadores>
-  <app-contador-fipaz></app-contador-fipaz>
+<!-- FOOTER GLOBAL -->
+<app-footer-fipaz (onExponerClick)="abrirModalExpositores()" (onVisitanteClick)="abrirModalVisitantes()">
+</app-footer-fipaz>
 
-  <!-- BLOQUE 2: PROGRAMA OFICIAL (AGENDA INTERACTIVA)   -->
-  <app-tablero-eventos id="eventos"></app-tablero-eventos>
-  <!-- GALERIA HISTORICA  -->
-  <app-galeria-historica id="galeria-historica"></app-galeria-historica>
+<!-- MODALES Y WIDGETS GLOBALES -->
+<app-expositores-wizard [isOpen]="modalExpositoresAbierto" (closeModal)="cerrarModalExpositores()">
+</app-expositores-wizard>
 
-  <!-- SECCIÓN DE BLOGS Y NOTICIAS -->
-  <app-blogs-fipaz id="blogs"></app-blogs-fipaz>
+<app-visitantes-fipaz [isOpen]="modalVisitantesAbierto" (closeModal)="cerrarModalVisitantes()">
+</app-visitantes-fipaz>
 
-  <!-- SECCION TIKTOK -->
-  <app-seccion-tiktok id="tiktok"></app-seccion-tiktok>
-
-  <app-seccion-testimonios id="testimonios"></app-seccion-testimonios>
-
-  <!-- SECCIÓN DE CONTACTO -->
-  <app-contactos-fipaz id="contacto"></app-contactos-fipaz>
-</main>
-<!--  FOOTER -->
-<app-footer-fipaz (onExponerClick)="abrirModalExpositores()"
-  (onVisitanteClick)="abrirModalVisitantes()"></app-footer-fipaz>
-<!-- MODALES -->
-<app-expositores-wizard [isOpen]="modalExpositoresAbierto"
-  (closeModal)="cerrarModalExpositores()"></app-expositores-wizard>
-<!-- BLOQUE 0: GUÍA INFORMATIVA PARA EL VISITANTE (AÑADIDO) -->
 <app-video-youtube></app-video-youtube>
-<app-visitantes-fipaz [isOpen]="modalVisitantesAbierto" (closeModal)="cerrarModalVisitantes()"></app-visitantes-fipaz>

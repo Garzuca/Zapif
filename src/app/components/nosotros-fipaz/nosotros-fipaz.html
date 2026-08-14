@@ -1,72 +1,107 @@
-<div class="nosotros-container">
+<section class="historia-fipaz">
 
-    <!-- Header Institucional -->
-    <header class="nosotros-hero text-center">
-        <span class="badge-tag">25 AÑOS DE TRAYECTORIA</span>
-        <h1>Historia y Presente de FIPAZ</h1>
-        <p class="hero-lead">
-            Desde la gestión 2001, la Feria Internacional de La Paz trabaja de manera ininterrumpida
-            promoviendo el crecimiento económico, comercial, empresarial e institucional de Bolivia.
+    <!-- ENCABEZADO INSTITUCIONAL -->
+    <div class="historia-intro">
+        <span class="badge-fipaz">25 AÑOS DE HISTORIA (2001 - 2026)</span>
+        <h2>Reseña Histórica FIPAZ</h2>
+
+        <p class="paragraph">
+            La <strong>Feria Internacional de La Paz - FIPAZ</strong> es una institución boliviana dedicada a la
+            organización y desarrollo de ferias, exposiciones y eventos especializados de carácter nacional e
+            internacional. Desde su creación en la gestión <strong>2001</strong>, ha trabajado de manera ininterrumpida
+            promoviendo el crecimiento económico, comercial, empresarial e institucional del país.
         </p>
-    </header>
 
-    <main class="content-body">
+        <p class="paragraph">
+            A lo largo de sus 25 años de trayectoria, la FIPAZ se ha consolidado como el evento ferial multisectorial
+            más importante del occidente boliviano, convirtiéndose en un espacio estratégico para la promoción de
+            productos, servicios, innovación, inversión y generación de oportunidades de negocio.
+        </p>
+    </div>
 
-        <!-- BLOQUE 1: Métricas de Impacto -->
-        <section class="section-block">
-            <div class="metrics-grid">
-                @for (metrica of metricas(); track metrica.label) {
-                <div class="metric-card">
-                    <span class="metric-icon">{{ metrica.icono }}</span>
-                    <h2 class="metric-number">{{ metrica.cifra }}</h2>
-                    <p class="metric-label">{{ metrica.label }}</p>
-                </div>
-                }
-            </div>
-        </section>
+    <!-- TARJETAS DE IMPACTO (MÉTRICAS CLAVE) -->
+    <div class="fipaz-stats-grid">
+        <div class="stat-card">
+            <span class="stat-number">+650</span>
+            <span class="stat-label">Expositores por versión</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-number">+250.000</span>
+            <span class="stat-label">Visitantes promedio</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-number">+$50M</span>
+            <span class="stat-label">Movimiento Económico (USD)</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-number">10.000</span>
+            <span class="stat-label">Empleos Directos e Indirectos</span>
+        </div>
+    </div>
 
-        <!-- BLOQUE 2: Timeline de Evolución de Sedes -->
-        <section class="section-block">
-            <div class="section-header text-center">
-                <h2>Evolución de Nuestras Sedes</h2>
-                <p class="text-muted">Un recorrido histórico adaptado al crecimiento de la demanda empresarial</p>
-            </div>
+    <!-- EVOLUCIÓN CRONOLÓGICA DE SEDES -->
+    <div class="historia-sedes">
+        <h3 class="timeline-title">Línea del Tiempo de Recintos Feriales</h3>
 
-            <div class="timeline-wrapper">
-                @for (hito of timelineSedes(); track hito.lugar) {
-                <div class="timeline-item">
-                    <div class="timeline-badge">{{ hito.icono }}</div>
-                    <div class="timeline-card">
-                        <span class="timeline-period">{{ hito.periodo }}</span>
-                        <h3>{{ hito.titulo }}</h3>
-                        <h4 class="timeline-venue">📍 {{ hito.lugar }}</h4>
-                        <p>{{ hito.descripcion }}</p>
-                    </div>
-                </div>
-                }
-            </div>
-        </section>
+        <div class="timeline">
 
-        <!-- BLOQUE 3: Hito Institucional (Chuquiago Marka) -->
-        <section class="section-block">
-            <div class="hito-card">
-                <div class="hito-icon">🏛️</div>
-                <div class="hito-content">
-                    <span class="hito-tag">HITO HISTÓRICO INSTITUCIONAL</span>
-                    <h3>Gestión para la Sede Ferial Permanente de La Paz</h3>
+            <!-- ETAPA 1: COE -->
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <span class="timeline-year">2001 – 2003</span>
+                    <h4>Círculo de Oficiales del Ejército (COE)</h4>
                     <p>
-                        Un hecho trascendental fue la participación activa del Presidente Ejecutivo de FIPAZ,
-                        <strong>Gerardo Dick</strong>, en las gestiones que impulsaron la creación de un espacio ferial
-                        permanente. Este proceso derivó inicialmente en el proyecto del <em>Campo Ferial de
-                            Següencoma</em>,
-                        consolidándose posteriormente con la construcción del <strong>Campo Ferial Chuquiago
-                            Marka</strong>.
+                        En sus tres primeras ediciones, la FIPAZ nació y se consolidó en las instalaciones del COE,
+                        reuniendo a las empresas e instituciones pioneras que creyeron en el proyecto ferial para La
+                        Paz.
                     </p>
                 </div>
             </div>
-        </section>
 
-        <!-- AQUÍ IREMOS AGREGANDO MISIÓN, VISIÓN, OBJETIVOS Y ÁREAS DE TRABAJO -->
+            <!-- ETAPA 2: CÍRCULO AERONÁUTICO -->
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <span class="timeline-year">2004 – 2006</span>
+                    <h4>Círculo Aeronáutico</h4>
+                    <p>
+                        Debido al rápido crecimiento en la cantidad de expositores, la feria trasladó sus operaciones al
+                        Círculo Aeronáutico para ampliar el número de pabellones y estands disponibles.
+                    </p>
+                </div>
+            </div>
 
-    </main>
-</div>
+            <!-- ETAPA 3: COLISEO CERRADO -->
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <span class="timeline-year">2007 – 2013</span>
+                    <h4>Coliseo Cerrado Julio Borelli Viterito</h4>
+                    <p>
+                        Durante 7 años consecutivos, la FIPAZ se asentó en pleno centro paceño. El Coliseo Cerrado
+                        permitió masificar la asistencia del público general y afianzar la logística de grandes
+                        espectáculos y ruedas de negocios.
+                    </p>
+                </div>
+            </div>
+
+            <!-- ETAPA 4: CAMPO FERIAL CHUQUIAGO MARKA (SEDE ACTUAL) -->
+            <div class="timeline-item highlight">
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <span class="timeline-year">2014 – Presente (2026)</span>
+                    <h4>Campo Ferial Chuquiago Marka</h4>
+                    <p>
+                        Un hito institucional impulsado por la visión y gestión del Presidente Ejecutivo de FIPAZ,
+                        <strong>Gerardo Dick</strong>, cuyos esfuerzos derivaron inicialmente en el proyecto del Centro
+                        de Eventos de Següencoma y culminaron en la construcción del campo ferial más moderno del país.
+                        Hoy, la FIPAZ ocupa sus múltiples pabellones consolidadas como la sede definitiva.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</section>

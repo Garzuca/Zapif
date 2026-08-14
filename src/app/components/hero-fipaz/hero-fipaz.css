@@ -37,12 +37,41 @@
 }
 
 /* Imágenes de fondo por slide */
-.slide-1 { background-image: url('../../../assets/images/hero/fondo-hero-1.jpg'); animation-delay: 0s;   animation-name: kenBurns1; }
-.slide-2 { background-image: url('../../../assets/images/hero/fondo-hero-2.png'); animation-delay: 6s;   animation-name: kenBurns2; }
-.slide-3 { background-image: url('../../../assets/images/hero/fondo-hero-3.jpg'); animation-delay: 12s;  animation-name: kenBurns3; }
-.slide-4 { background-image: url('../../../assets/images/hero/fondo-hero-4.jpg'); animation-delay: 18s;  animation-name: kenBurns4; }
-.slide-5 { background-image: url('../../../assets/images/hero/fondo-hero-5.jpg'); animation-delay: 24s;  animation-name: kenBurns5; }
-.slide-6 { background-image: url('../../../assets/images/hero/fondo-hero-6.jpg'); animation-delay: 30s;  animation-name: kenBurns6; }
+.slide-1 {
+    background-image: url('../../../assets/images/hero/fondo-hero-1.jpg');
+    animation-delay: 0s;
+    animation-name: kenBurns1;
+}
+
+.slide-2 {
+    background-image: url('../../../assets/images/hero/fondo-hero-2.png');
+    animation-delay: 6s;
+    animation-name: kenBurns2;
+}
+
+.slide-3 {
+    background-image: url('../../../assets/images/hero/fondo-hero-3.jpg');
+    animation-delay: 12s;
+    animation-name: kenBurns3;
+}
+
+.slide-4 {
+    background-image: url('../../../assets/images/hero/fondo-hero-4.jpg');
+    animation-delay: 18s;
+    animation-name: kenBurns4;
+}
+
+.slide-5 {
+    background-image: url('../../../assets/images/hero/fondo-hero-5.jpg');
+    animation-delay: 24s;
+    animation-name: kenBurns5;
+}
+
+.slide-6 {
+    background-image: url('../../../assets/images/hero/fondo-hero-6.jpg');
+    animation-delay: 30s;
+    animation-name: kenBurns6;
+}
 
 /*
   Keyframes del ciclo de cada slide:
@@ -53,46 +82,159 @@
   - 100%: sigue invisible hasta el siguiente ciclo
 */
 @keyframes kenBurns1 {
-    0%         { opacity: 0; transform: scale(1.05) translate(0%, 0%); }
-    4.16%      { opacity: 1; }
-    16.66%     { opacity: 1; transform: scale(1.12) translate(-1%, -0.5%); }
-    20.83%     { opacity: 0; transform: scale(1.12) translate(-1%, -0.5%); }
-    100%       { opacity: 0; transform: scale(1.05) translate(0%, 0%); }
+    0% {
+        opacity: 0;
+        transform: scale(1.05) translate(0%, 0%);
+    }
+
+    4.16% {
+        opacity: 1;
+    }
+
+    16.66% {
+        opacity: 1;
+        transform: scale(1.12) translate(-1%, -0.5%);
+    }
+
+    20.83% {
+        opacity: 0;
+        transform: scale(1.12) translate(-1%, -0.5%);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(1.05) translate(0%, 0%);
+    }
 }
+
 @keyframes kenBurns2 {
-    0%         { opacity: 0; transform: scale(1.08) translate(1%, 0.5%); }
-    4.16%      { opacity: 1; }
-    16.66%     { opacity: 1; transform: scale(1.14) translate(-0.5%, 1%); }
-    20.83%     { opacity: 0; transform: scale(1.14) translate(-0.5%, 1%); }
-    100%       { opacity: 0; transform: scale(1.08) translate(1%, 0.5%); }
+    0% {
+        opacity: 0;
+        transform: scale(1.08) translate(1%, 0.5%);
+    }
+
+    4.16% {
+        opacity: 1;
+    }
+
+    16.66% {
+        opacity: 1;
+        transform: scale(1.14) translate(-0.5%, 1%);
+    }
+
+    20.83% {
+        opacity: 0;
+        transform: scale(1.14) translate(-0.5%, 1%);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(1.08) translate(1%, 0.5%);
+    }
 }
+
 @keyframes kenBurns3 {
-    0%         { opacity: 0; transform: scale(1.06) translate(-1%, 0.5%); }
-    4.16%      { opacity: 1; }
-    16.66%     { opacity: 1; transform: scale(1.13) translate(0.5%, -1%); }
-    20.83%     { opacity: 0; transform: scale(1.13) translate(0.5%, -1%); }
-    100%       { opacity: 0; transform: scale(1.06) translate(-1%, 0.5%); }
+    0% {
+        opacity: 0;
+        transform: scale(1.06) translate(-1%, 0.5%);
+    }
+
+    4.16% {
+        opacity: 1;
+    }
+
+    16.66% {
+        opacity: 1;
+        transform: scale(1.13) translate(0.5%, -1%);
+    }
+
+    20.83% {
+        opacity: 0;
+        transform: scale(1.13) translate(0.5%, -1%);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(1.06) translate(-1%, 0.5%);
+    }
 }
+
 @keyframes kenBurns4 {
-    0%         { opacity: 0; transform: scale(1.07) translate(0.5%, -0.5%); }
-    4.16%      { opacity: 1; }
-    16.66%     { opacity: 1; transform: scale(1.11) translate(-1%, 0.5%); }
-    20.83%     { opacity: 0; transform: scale(1.11) translate(-1%, 0.5%); }
-    100%       { opacity: 0; transform: scale(1.07) translate(0.5%, -0.5%); }
+    0% {
+        opacity: 0;
+        transform: scale(1.07) translate(0.5%, -0.5%);
+    }
+
+    4.16% {
+        opacity: 1;
+    }
+
+    16.66% {
+        opacity: 1;
+        transform: scale(1.11) translate(-1%, 0.5%);
+    }
+
+    20.83% {
+        opacity: 0;
+        transform: scale(1.11) translate(-1%, 0.5%);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(1.07) translate(0.5%, -0.5%);
+    }
 }
+
 @keyframes kenBurns5 {
-    0%         { opacity: 0; transform: scale(1.05) translate(-0.5%, 1%); }
-    4.16%      { opacity: 1; }
-    16.66%     { opacity: 1; transform: scale(1.12) translate(1%, -0.5%); }
-    20.83%     { opacity: 0; transform: scale(1.12) translate(1%, -0.5%); }
-    100%       { opacity: 0; transform: scale(1.05) translate(-0.5%, 1%); }
+    0% {
+        opacity: 0;
+        transform: scale(1.05) translate(-0.5%, 1%);
+    }
+
+    4.16% {
+        opacity: 1;
+    }
+
+    16.66% {
+        opacity: 1;
+        transform: scale(1.12) translate(1%, -0.5%);
+    }
+
+    20.83% {
+        opacity: 0;
+        transform: scale(1.12) translate(1%, -0.5%);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(1.05) translate(-0.5%, 1%);
+    }
 }
+
 @keyframes kenBurns6 {
-    0%         { opacity: 0; transform: scale(1.09) translate(0%, 1%); }
-    4.16%      { opacity: 1; }
-    16.66%     { opacity: 1; transform: scale(1.15) translate(-0.5%, -0.5%); }
-    20.83%     { opacity: 0; transform: scale(1.15) translate(-0.5%, -0.5%); }
-    100%       { opacity: 0; transform: scale(1.09) translate(0%, 1%); }
+    0% {
+        opacity: 0;
+        transform: scale(1.09) translate(0%, 1%);
+    }
+
+    4.16% {
+        opacity: 1;
+    }
+
+    16.66% {
+        opacity: 1;
+        transform: scale(1.15) translate(-0.5%, -0.5%);
+    }
+
+    20.83% {
+        opacity: 0;
+        transform: scale(1.15) translate(-0.5%, -0.5%);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(1.09) translate(0%, 1%);
+    }
 }
 
 /* Overlay de contraste sobre las imágenes */
