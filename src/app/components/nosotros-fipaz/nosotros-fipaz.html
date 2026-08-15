@@ -21,22 +21,13 @@
 
     <!-- TARJETAS DE IMPACTO (MÉTRICAS CLAVE) -->
     <div class="fipaz-stats-grid">
+        @for (item of metricas(); track item.label) {
         <div class="stat-card">
-            <span class="stat-number">+650</span>
-            <span class="stat-label">Expositores por versión</span>
+            @if (item.icono) { <i [class]="item.icono + ' stat-icon'"></i> }
+            <span class="stat-number">{{ item.cifra }}</span>
+            <span class="stat-label">{{ item.label }}</span>
         </div>
-        <div class="stat-card">
-            <span class="stat-number">+250.000</span>
-            <span class="stat-label">Visitantes promedio</span>
-        </div>
-        <div class="stat-card">
-            <span class="stat-number">+$50M</span>
-            <span class="stat-label">Movimiento Económico (USD)</span>
-        </div>
-        <div class="stat-card">
-            <span class="stat-number">10.000</span>
-            <span class="stat-label">Empleos Directos e Indirectos</span>
-        </div>
+        }
     </div>
 
     <!-- EVOLUCIÓN CRONOLÓGICA DE SEDES -->
@@ -44,64 +35,102 @@
         <h3 class="timeline-title">Línea del Tiempo de Recintos Feriales</h3>
 
         <div class="timeline">
-
-            <!-- ETAPA 1: COE -->
-            <div class="timeline-item">
+            @for (hito of timelineSedes(); track hito.periodo) {
+            <div class="timeline-item" [class.highlight]="hito.esDestacado">
                 <div class="timeline-marker"></div>
                 <div class="timeline-content">
-                    <span class="timeline-year">2001 – 2003</span>
-                    <h4>Círculo de Oficiales del Ejército (COE)</h4>
-                    <p>
-                        En sus tres primeras ediciones, la FIPAZ nació y se consolidó en las instalaciones del COE,
-                        reuniendo a las empresas e instituciones pioneras que creyeron en el proyecto ferial para La
-                        Paz.
-                    </p>
+                    <span class="timeline-year">{{ hito.periodo }}</span>
+                    <h4>{{ hito.lugar }}</h4>
+                    <p>{{ hito.descripcion }}</p>
                 </div>
             </div>
-
-            <!-- ETAPA 2: CÍRCULO AERONÁUTICO -->
-            <div class="timeline-item">
-                <div class="timeline-marker"></div>
-                <div class="timeline-content">
-                    <span class="timeline-year">2004 – 2006</span>
-                    <h4>Círculo Aeronáutico</h4>
-                    <p>
-                        Debido al rápido crecimiento en la cantidad de expositores, la feria trasladó sus operaciones al
-                        Círculo Aeronáutico para ampliar el número de pabellones y estands disponibles.
-                    </p>
-                </div>
-            </div>
-
-            <!-- ETAPA 3: COLISEO CERRADO -->
-            <div class="timeline-item">
-                <div class="timeline-marker"></div>
-                <div class="timeline-content">
-                    <span class="timeline-year">2007 – 2013</span>
-                    <h4>Coliseo Cerrado Julio Borelli Viterito</h4>
-                    <p>
-                        Durante 7 años consecutivos, la FIPAZ se asentó en pleno centro paceño. El Coliseo Cerrado
-                        permitió masificar la asistencia del público general y afianzar la logística de grandes
-                        espectáculos y ruedas de negocios.
-                    </p>
-                </div>
-            </div>
-
-            <!-- ETAPA 4: CAMPO FERIAL CHUQUIAGO MARKA (SEDE ACTUAL) -->
-            <div class="timeline-item highlight">
-                <div class="timeline-marker"></div>
-                <div class="timeline-content">
-                    <span class="timeline-year">2014 – Presente (2026)</span>
-                    <h4>Campo Ferial Chuquiago Marka</h4>
-                    <p>
-                        Un hito institucional impulsado por la visión y gestión del Presidente Ejecutivo de FIPAZ,
-                        <strong>Gerardo Dick</strong>, cuyos esfuerzos derivaron inicialmente en el proyecto del Centro
-                        de Eventos de Següencoma y culminaron en la construcción del campo ferial más moderno del país.
-                        Hoy, la FIPAZ ocupa sus múltiples pabellones consolidadas como la sede definitiva.
-                    </p>
-                </div>
-            </div>
-
+            }
         </div>
     </div>
 
+</section>
+
+<!-- SECCIÓN: MISIÓN Y VISIÓN -->
+<section class="mision-vision-section">
+    <div class="mision-vision-header">
+        <span class="badge-sub">NUESTRO PROPÓSITO</span>
+        <h2>Pilares Institucionales</h2>
+        <p>Los principios que guían la excelencia y la proyección estratégica de la FIPAZ.</p>
+    </div>
+
+    <div class="mision-vision-grid">
+        @for (pilar of pilares(); track pilar.tipo) {
+        <div class="card-pilar" [class]="pilar.tipo + '-card'">
+            <div class="card-header-icon">
+                <div class="icon-wrapper">
+                    <i [class]="pilar.icono"></i>
+                </div>
+                <span class="pilar-tag">{{ pilar.tag }}</span>
+            </div>
+            <h3>{{ pilar.titulo }}</h3>
+            <p>{{ pilar.descripcion }}</p>
+        </div>
+        }
+    </div>
+</section>
+
+<!-- SECCIÓN: OBJETIVOS INSTITUCIONALES -->
+<section class="objetivos-section">
+    <div class="objetivos-header">
+        <span class="badge-sub">METAS ESTRATÉGICAS</span>
+        <h2>Objetivos Institucionales</h2>
+        <p>Los compromisos concretos con los que impulsamos el desarrollo del país.</p>
+    </div>
+
+    <div class="objetivos-grid">
+        @for (obj of objetivos(); track $index) {
+        <div class="objetivo-item">
+            <div class="icon-check">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <p>{{ obj }}</p>
+        </div>
+        }
+    </div>
+</section>
+
+<!-- SECCIÓN: ÁREAS DE TRABAJO -->
+<section class="areas-section">
+    <div class="areas-header">
+        <span class="badge-sub">COBERTURA OPERATIVA</span>
+        <h2>Áreas de Trabajo</h2>
+        <p>Desarrollamos soluciones integrales en la organización, gestión y producción de eventos de gran escala.</p>
+    </div>
+
+    <div class="areas-grid">
+        @for (area of areasTrabajo(); track area.titulo) {
+        <div class="area-card">
+            <div class="area-icon">
+                <i [class]="area.icono"></i>
+            </div>
+            <div class="area-content">
+                <h3>{{ area.titulo }}</h3>
+                <p>{{ area.descripcion }}</p>
+            </div>
+        </div>
+        }
+    </div>
+</section>
+
+<!-- SECCIÓN: PRINCIPALES EVENTOS ORGANIZADOS -->
+<section class="eventos-historicos-section">
+    <div class="eventos-header">
+        <span class="badge-sub">TRAYECTORIA Y ALCANCE</span>
+        <h2>Principales Eventos Organizados</h2>
+        <p>A lo largo de nuestra historia hemos desarrollado y asesorado ferias y exposiciones de impacto nacional e internacional.</p>
+    </div>
+
+    <div class="badges-container">
+        @for (evento of eventosHistoricos(); track evento.nombre) {
+        <div class="event-badge" [class]="evento.categoria">
+            <span class="badge-icon">{{ evento.icono }}</span>
+            <span class="badge-text">{{ evento.nombre }}</span>
+        </div>
+        }
+    </div>
 </section>
