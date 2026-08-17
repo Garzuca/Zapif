@@ -11,9 +11,9 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 export class ContadorFipazComponent implements OnInit, OnDestroy {
 
   private platformId = inject(PLATFORM_ID);
-  
+
   // 🌟 CORRECCIÓN: Instancia exacta y segura para Octubre (mes 9) de 2026
-  private fechaDestino: number = new Date(2026, 9, 7, 18, 0, 0).getTime();
+  private fechaDestino: number = new Date(2026, 9, 28, 15, 0, 0).getTime();
   private timerId: any;
 
   dias = signal<string>('00');
@@ -47,9 +47,9 @@ export class ContadorFipazComponent implements OnInit, OnDestroy {
 
     if (diferencia <= 0) {
       this.feriaIniciada.set(true);
-      this.dias.set('00'); 
-      this.horas.set('00'); 
-      this.minutos.set('00'); 
+      this.dias.set('00');
+      this.horas.set('00');
+      this.minutos.set('00');
       this.segundos.set('00');
       if (this.timerId) clearInterval(this.timerId);
       return;
