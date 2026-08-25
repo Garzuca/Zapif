@@ -72,4 +72,48 @@ export class ContadorFipazComponent implements OnInit, OnDestroy {
     this.minutos.set(String(minutosCalculados).padStart(2, '0'));
     this.segundos.set(String(segundosCalculados).padStart(2, '0'));
   }
+
+  // ============================================================
+  // INTEGRACIÓN CON CALENDARIOS (GOOGLE CALENDAR E IOS/ICS)
+  // ============================================================
+
+  agregarAGoogleCalendar(): void {
+    const titulo = encodeURIComponent('FIPAZ 2026 - 25 Años de historia');
+    const detalles = encodeURIComponent('Feria Internacional de La Paz - El encuentro empresarial más grande del occidente boliviano.');
+    const ubicacion = encodeURIComponent('Campo Ferial Chuquiago Marka, La Paz, Bolivia');
+    // Fecha Inicio: 28 de Octubre 2026, 15:00 UTC (20261028T190000Z en UTC)
+    // Fecha Fin: 08 de Noviembre 2026, 23:00 UTC
+    const inicioUTC = '20261028T190000Z';
+    const finUTC = '20261108T230000Z';
+
+    const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${titulo}&dates=${inicioUTC}/${finUTC}&details=${detalles}&location=${ubicacion}`;
+    window.open(googleCalendarUrl, '_blank');
+  }
+
+  descargarICS(): void {
+    const icsData = [
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      'PRODID:-//FIPAZ//Feria Internacional de La Paz 2026//ES',
+      'CALSCALE:GREGORIAN',
+      'METHOD:PUBLISH',
+      'BEGIN:VEVENT',
+      'SUMMARY:FIPAZ 2026 - 25 Años de historia',
+      'DESCRIPTION:Feria Internacional de La Paz - El encuentro empresarial más grande del occidente boliviano.',
+      'LOCATION:Campo Ferial Chuquiago Marka\\, La Paz\\, Bolivia',
+      'DTSTART:20261028T190000Z',
+      'DTEND:20261108T230000Z',
+      'STATUS:CONFIRMED',
+      'END:VEVENT',
+      'END:VCALENDAR'
+    ].join('\r\n');
+
+    const blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8;' });
+    const link = document.createElement('a');
+    link.href = window.URL.createObjectURL(blob);
+    link.setAttribute('download', 'fipaz-2026.ics');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
 }

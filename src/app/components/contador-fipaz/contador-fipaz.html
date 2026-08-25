@@ -5,7 +5,8 @@
         <span class="sub-title"><i class="fa-solid fa-bolt"></i> Prepárate para la Experiencia</span>
         <h2>El Encuentro Empresarial Más Grande Está Cerca</h2>
 
-        <div class="reloj-grid-container" *ngIf="!feriaIniciada()">
+        @if (!feriaIniciada()) {
+        <div class="reloj-grid-container">
 
             <div class="reloj-box">
                 <span class="numero-reloj">{{ dias() }}</span>
@@ -35,10 +36,24 @@
 
         </div>
 
+        <!-- BOTONES DE AGREGAR AL CALENDARIO -->
+        <div class="calendar-actions">
+            <span class="calendar-hint">Agrega la FIPAZ 2026 a tu agenda:</span>
+            <div class="calendar-buttons">
+                <button type="button" class="btn-calendar google" (click)="agregarAGoogleCalendar()">
+                    <i class="fa-brands fa-google"></i> Google Calendar
+                </button>
+                <button type="button" class="btn-calendar apple" (click)="descargarICS()">
+                    <i class="fa-brands fa-apple"></i> Apple / iOS Calendar (.ics)
+                </button>
+            </div>
+        </div>
+        } @else {
         <!-- Mensaje alternativo si el tiempo llegó a cero -->
-        <div class="mensaje-inaugurado" *ngIf="feriaIniciada()">
+        <div class="mensaje-inaugurado">
             <i class="fa-solid fa-door-open"></i> ¡La FIPAZ 2026 ya abrió sus puertas! Te esperamos en el Campo Ferial
             Chuquiago Marka.
         </div>
+        }
     </div>
 </section>
