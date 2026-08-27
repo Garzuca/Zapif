@@ -1,0 +1,221 @@
+/* ============================================
+   SECCIÓN CINTA / MARQUEE INFINITO STANDS PREMIADOS
+   ============================================ */
+
+.stands-premiados-section {
+    padding: 60px 0;
+    width: 100%;
+    overflow: hidden;
+}
+
+.header-section {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto 36px auto;
+    padding: 0 20px;
+}
+
+.badge-sub {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--primary, #e31425);
+    font-weight: 800;
+    font-size: 0.8rem;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.header-section h2 {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--text-strong, #000000);
+    margin: 0 0 10px 0;
+}
+
+.header-section p {
+    color: var(--text-light, #777777);
+    font-size: 0.95rem;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* ============================================
+   CONTENEDOR MARQUEE INFINITO
+   ============================================ */
+.marquee-wrapper {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding: 20px 0;
+    /* Difuminado sutil a los bordes laterales */
+    mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+
+.marquee-track {
+    display: flex;
+    gap: 24px;
+    width: max-content;
+    animation: marqueeScroll 35s linear infinite;
+}
+
+/* Pausar animación al pasar el cursor sobre la cinta */
+.marquee-wrapper:hover .marquee-track {
+    animation-play-state: paused;
+}
+
+@keyframes marqueeScroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-33.333% - 8px));
+    }
+}
+
+/* ============================================
+   TARJETA INDIVIDUAL DE STAND PREMIADO
+   ============================================ */
+.card-stand-item {
+    width: 310px;
+    flex-shrink: 0;
+    background: var(--surface, #ffffff);
+    border-radius: var(--radius, 16px);
+    border: 1px solid var(--border, #e5e5e5);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+    cursor: pointer;
+}
+
+.card-stand-item:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.14);
+}
+
+/* Bordes Superiores de Galardón */
+.card-stand-item.dorado {
+    border-top: 4px solid #f59e0b;
+}
+
+.card-stand-item.dorado:hover {
+    border-color: #f59e0b;
+}
+
+.card-stand-item.plata {
+    border-top: 4px solid #94a3b8;
+}
+
+.card-stand-item.plata:hover {
+    border-color: #94a3b8;
+}
+
+/* Insignia / Medalla */
+.medalla-badge {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    z-index: 10;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.badge-dorado {
+    background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
+    color: #ffffff;
+}
+
+.badge-plata {
+    background: linear-gradient(135deg, #cbd5e1 0%, #64748b 100%);
+    color: #ffffff;
+}
+
+/* Imagen del Stand */
+.imagen-container {
+    position: relative;
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    background: #000;
+}
+
+.imagen-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.card-stand-item:hover .imagen-container img {
+    transform: scale(1.08);
+}
+
+.card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.4), transparent);
+}
+
+/* Datos del Stand */
+.card-body-custom {
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    text-align: left;
+}
+
+.meta-anio-badge {
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: var(--primary, #e31425);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.nombre-empresa {
+    font-size: 1.05rem;
+    font-weight: 900;
+    color: var(--text-strong, #000000);
+    margin: 0;
+    line-height: 1.3;
+}
+
+.descripcion-premio {
+    font-size: 0.82rem;
+    color: var(--text-light, #777777);
+    line-height: 1.4;
+    margin: 4px 0 0 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Ajustes Responsive */
+@media (max-width: 600px) {
+    .card-stand-item {
+        width: 270px;
+    }
+
+    .imagen-container {
+        height: 150px;
+    }
+}
