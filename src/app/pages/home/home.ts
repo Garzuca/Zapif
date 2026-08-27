@@ -16,6 +16,7 @@ import { SeccionTikTokComponent } from "../../components/seccion-tiktok/seccion-
 import { SeccionTestimoniosComponent } from "../../components/testimonios/testimonios";
 import { VideoYoutube } from "../../components/video-youtube/video-youtube";
 import { NosotrosFipaz } from '../../components/nosotros-fipaz/nosotros-fipaz';
+import { StandPremiados } from '../../components/stand-premiados/stand-premiados';
 
 @Component({
   selector: 'app-home',
@@ -36,7 +37,8 @@ import { NosotrosFipaz } from '../../components/nosotros-fipaz/nosotros-fipaz';
     SeccionTikTokComponent,
     SeccionTestimoniosComponent,
     VideoYoutube,
-    NosotrosFipaz
+    NosotrosFipaz,
+    StandPremiados
   ],
   templateUrl: './home.html',
   styleUrl: './home.css',

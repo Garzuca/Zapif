@@ -1,0 +1,55 @@
+<div class="carrusel-3d-wrapper py-5">
+    <div class="escena-3d">
+        <div class="rueda-3d" [style.transform]="'rotateY(' + rotacionGlobal() + 'deg)'">
+            @for (stand of stands(); track stand.id; let i = $index) {
+            <div class="tarjeta-stand-3d" [class.activa]="i === indiceActivo()"
+                [class.dorado]="stand.categoriaPremio === 'DORADO'" [class.plata]="stand.categoriaPremio === 'PLATA'"
+                [style]="obtenerEstiloItem(i)" (click)="seleccionarIndice(i)">
+                <div class="medalla-badge">
+                    @if (stand.categoriaPremio === 'DORADO') {
+                    <i class="bi bi-trophy-fill text-warning"></i>
+                    <span>Atlas Dorado</span>
+                    } @else {
+                    <i class="bi bi-award-fill text-secondary"></i>
+                    <span>Atlas de Plata</span>
+                    }
+                </div>
+
+                <div class="imagen-container">
+                    <img [src]="stand.imagenUrl" [alt]="stand.nombre" loading="lazy">
+                </div>
+
+                <div class="card-body-custom p-3 text-center">
+                    <span class="badge bg-dark mb-1">{{ stand.categoriaPremio }}</span>
+                    <h5 class="fw-bold m-0 text-truncate">{{ stand.nombre }}</h5>
+                    <small class="text-muted">Gestion {{ stand.anio }}</small>
+                    <p class="text-muted small mt-2 mb-0">{{ stand.descripcion }}</p>
+                </div>
+            </div>
+            } @empty {
+            <div class="text-center text-muted p-4">
+                <i class="bi bi-inbox fs-1 d-block mb-2"></i>
+                <p>No hay stands premiados registrados para esta edicion.</p>
+            </div>
+            }
+        </div>
+    </div>
+
+    @if (stands().length > 0) {
+    <div class="controles-navegacion d-flex justify-content-center align-items-center gap-3 mt-4">
+        <button type="button" class="btn btn-outline-dark rounded-circle p-3" (click)="anterior()"
+            aria-label="Stand Anterior">
+            <i class="bi bi-chevron-left fs-5"></i>
+        </button>
+
+        <span class="fw-bold text-secondary">
+            {{ indiceActivo() + 1 }} / {{ stands().length }}
+        </span>
+
+        <button type="button" class="btn btn-outline-dark rounded-circle p-3" (click)="siguiente()"
+            aria-label="Stand Siguiente">
+            <i class="bi bi-chevron-right fs-5"></i>
+        </button>
+    </div>
+    }
+</div>
